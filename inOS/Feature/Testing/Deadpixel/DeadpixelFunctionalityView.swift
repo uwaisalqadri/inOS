@@ -1,0 +1,64 @@
+//
+//  DeadpixelFunctionalityView.swift
+//  DeviceFunctionality
+//
+//  Created by Uwais Alqadri on 8/9/24.
+//
+
+import SwiftUI
+import AlertToast
+
+struct DeadpixelFunctionalityView: View {
+  @StateObject var presenter: DeadpixelFunctionalityPresenter
+  @StateObject private var timerPresenter = TimerCountdownPresenter()
+
+  private let colors: [Color] = [
+    Color(.redDeadPixel),
+    Color(.greenDeadPixel),
+    Color(.blueDeadPixel),
+    .black,
+    .white
+  ]
+  
+  init() {
+    _presenter = StateObject(
+      wrappedValue: DeadpixelFunctionalityPresenter()
+    )
+  }
+
+  var body: some View {
+    ZStack {
+      colors[presenter.state.index]
+      TimerCountdownText(
+        presenter: timerPresenter,
+        successCondition: false,
+        onSuccess: {},
+        onFailed: {}
+      )
+      .countdown(8)
+      .foregroundColor(colors[presenter.state.index] == .black ? .white : .black)
+    }
+    .edgesIgnoringSafeArea(.all)
+    .onChange(of: presenter.state.index) { _ in
+      timerPresenter.startCountdown(8)
+    }
+    .onAppear {
+      presenter.send(.setTimer)
+    }
+    .onTapGesture {
+      presenter.send(.failed)
+    }
+    .toast(
+      isPresenting: .constant(true),
+      duration: .infinity,
+      tapToDismiss: true,
+      offsetY: 60
+    ) {
+      AlertToast(
+        displayMode: .hud,
+        type: .regular,
+        title: "Tap if you spot any deadpixel"
+      )
+    }
+  }
+}
