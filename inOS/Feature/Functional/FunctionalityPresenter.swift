@@ -39,6 +39,7 @@ class FunctionalityPresenter: ObservableObject {
       state.isConfirmSerial = bool
 
     case .runSerial:
+      state.passedAssessments.removeAll()
       Task {
         await startAssessmentsSerialized()
       }
