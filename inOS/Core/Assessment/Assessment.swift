@@ -11,7 +11,7 @@ public enum Assessment: String, CaseIterable, Codable {
   case cpu
   case storage
   case batteryStatus
-  case rootStatus
+  case jailbreak
   case silentSwitch
   case volumeUp
   case volumeDown
@@ -43,7 +43,7 @@ public enum Assessment: String, CaseIterable, Codable {
       .cpu,
       .storage,
       .batteryStatus,
-      .rootStatus,
+      .jailbreak,
       .silentSwitch,
       .volumeUp,
       .volumeDown,

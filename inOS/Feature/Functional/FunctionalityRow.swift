@@ -42,15 +42,14 @@ struct FunctionalityRow: View {
           .padding(.top, 16)
         
         Text(item.value)
-          .font(.system(size: 14))
+          .font(.system(size: 12))
           .padding(.top, 3)
           .fixedSize(horizontal: false, vertical: true)
       }
       .frame(height: 130)
       .padding(14)
       .background(
-        RoundedRectangle(cornerRadius: 12)
-          .fill(Color.gray.opacity(0.1))
+        Blur().cornerRadius(12)
       )
     }.buttonStyle(.plain)
   }

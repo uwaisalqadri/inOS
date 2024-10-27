@@ -30,10 +30,10 @@ public class DeviceInfoAssessment: AssessmentDriver {
       results[.storage] = false
     }
     
-    if let assessment = assessments[.rootStatus] as? Bool {
-      results[.rootStatus] = !assessment
+    if let assessment = assessments[.jailbreak] as? Bool {
+      results[.jailbreak] = !assessment
     } else {
-      results[.rootStatus] = false
+      results[.jailbreak] = false
     }
     
     return results
@@ -46,7 +46,7 @@ public class DeviceInfoAssessment: AssessmentDriver {
       architecture: "arm64",
       frequency: Device.current.cpu.frequency
     ),
-    .rootStatus: isJailbroken
+    .jailbreak: isJailbroken
   ]
   
   public func startAssessment(for type: Assessment, completion: (() -> Void)?) {

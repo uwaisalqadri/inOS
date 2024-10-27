@@ -20,7 +20,7 @@ struct IntroductionView: View {
       }
       
       if let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String {
-        Text("Welcome to \(appName)")
+        Text("Start with \(appName)")
           .font(.title)
           .bold()
           .multilineTextAlignment(.center)
@@ -56,5 +56,11 @@ struct IntroductionView: View {
     }
     .padding(.top, 16)
     .padding(16)
+  }
+}
+
+#Preview {
+  IntroductionView {
+    
   }
 }

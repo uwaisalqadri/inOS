@@ -35,8 +35,8 @@ class FunctionalityPresenter: ObservableObject {
         await beginAssessment(for: assessment)
       }
 
-    case .confirmSerial:
-      state.isConfirmSerial.toggle()
+    case let .shouldConfirmSerial(bool):
+      state.isConfirmSerial = bool
 
     case .runSerial:
       Task {
@@ -46,6 +46,7 @@ class FunctionalityPresenter: ObservableObject {
     case .terminateSerial:
       cancellables.removeAll()
       state.isSerialRunning = false
+      state.currentAssessment.isRunning = false
       
     case let .shouldShow(assessment, isPresented):
       switch assessment {
@@ -89,12 +90,12 @@ extension FunctionalityPresenter {
     }
 
     if isSerial {
-      try? await Task.sleep(nanoseconds: 2_000_000_000)  // 2 seconds
+      try? await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
     }
   }
 
   @MainActor
-  func streamAssessment(for assessment: Assessment) ->  AsyncThrowingStream<Bool, Error> {
+  func streamAssessment(for assessment: Assessment) -> AsyncThrowingStream<Bool, Error> {
     return AsyncThrowingStream { continuation in
       switch assessment {
       case .cpu:
@@ -119,7 +120,7 @@ extension FunctionalityPresenter {
           }
         }
 
-      case .rootStatus:
+      case .jailbreak:
         continuation.yield(drivers[.deviceInfo]?.hasAssessmentPassed[assessment] ?? false)
         continuation.finish()
 

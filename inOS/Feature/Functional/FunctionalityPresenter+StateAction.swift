@@ -38,7 +38,7 @@ extension FunctionalityPresenter {
   enum Action {
     case loadStatus
     case start(assessment: Assessment)
-    case confirmSerial
+    case shouldConfirmSerial(_ state: Bool)
     case runSerial
     case terminateSerial
     case shouldShow(assessment: Assessment, isPresented: Bool)

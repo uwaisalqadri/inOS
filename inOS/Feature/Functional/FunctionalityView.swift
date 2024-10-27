@@ -24,67 +24,52 @@ struct FunctionalityView: View {
 
   var body: some View {
     NavigationView {
-      ScrollView {
-        VStack {
-          HStack(spacing: 0) {
-            ForEach(
-              Array(presenter.state.deviceStatuses.enumerated()),
-              id: \.offset
-            ) { _, status in
-              Button(action: {
-                if status.isOther {
-                  presenter.state.isSpecificationPresented.toggle()
-                }
-              }) {
-                VStack(spacing: 4) {
-                  Image(systemName: status.spec.icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(.blue)
-                  Text(status.value)
-                    .font(.system(size: 12))
-                    .bold()
-                }
-              }
-              .buttonStyle(.plain)
-              .background(
-                NavigationLink(
-                  destination: SpecificationView(),
-                  isActive: $presenter.state.isSpecificationPresented
-                ) {
-                  EmptyView()
-                }
-              )
-              
-              if presenter.state.deviceStatuses.last != status {
-                Spacer(minLength: 0)
-              }
-            }
-          }
-          .padding(.horizontal)
-          .frame(height: 60)
-          .background(
-            RoundedRectangle(cornerRadius: 12)
-              .fill(Color.gray.opacity(0.1))
-          )
-          .padding(.bottom, 6)
-          
-          HStack(alignment: .top) {
-            ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
-              VStack(spacing: 12) {
-                ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { _, item in
-                  let isPassed = presenter.state.passedAssessments[item]
-                  FunctionalityRow(item: item, isPassed: isPassed, onTestFunction: {
-                    presenter.send(.start(assessment: item))
-                  })
-                  .padding(.horizontal, 3)
+      ZStack(alignment: .bottomTrailing) {
+        ScrollView {
+          VStack {
+            DashboardStatusView(
+              deviceStatuses: presenter.state.deviceStatuses,
+              isSpecificationPresented: $presenter.state.isSpecificationPresented
+            ).padding(.bottom, 6)
+            
+            HStack(alignment: .top) {
+              ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
+                VStack(spacing: 12) {
+                  ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { _, item in
+                    let isPassed = presenter.state.passedAssessments[item]
+                    FunctionalityRow(item: item, isPassed: isPassed, onTestFunction: {
+                      presenter.send(.start(assessment: item))
+                    })
+                    .contextMenu {
+                      Button {
+                        presenter.send(.start(assessment: item))
+                      } label: { Label(item.title, systemImage: item.icon) }
+                    }
+                    .padding(.horizontal, 3)
+                  }
                 }
               }
             }
           }
+          .padding(.horizontal, 12)
+          .padding(.top, 30)
+          .padding(.bottom, 40)
         }
-        .padding(.horizontal, 12)
-        .padding(.top, 30)
-        .padding(.bottom, 40)
+        
+        let rotation: Double = presenter.state.isSerialRunning ? 360 : 0
+        Image(systemName: "goforward")
+          .font(.system(size: 40))
+          .foregroundColor(.blue)
+          .rotationEffect(.degrees(rotation))
+          .animation(
+            presenter.state.isSerialRunning ? .linear(duration: 1).repeatForever(autoreverses: false) : .default,
+            value: rotation
+          )
+          .padding(16)
+          .background(Blur(style: .systemThinMaterial).clipShape(.circle))
+          .padding(.trailing, 20)
+          .padding(.bottom, 10)
+          .opacity(presenter.state.isSerialRunning ? 1.0 : 0.0)
       }
       .onFirstAppear {
         presenter.send(.loadStatus)
@@ -103,17 +88,17 @@ struct FunctionalityView: View {
         
         ToolbarItem(placement: .topBarTrailing) {
           Button(action: {
-            presenter.send(.confirmSerial)
+            if presenter.state.isSerialRunning {
+              presenter.send(.terminateSerial)
+            } else {
+              presenter.send(.shouldConfirmSerial(true))
+            }
           }) {
-            let rotation: Double = presenter.state.isSerialRunning ? 0 : 360
-            Image(systemName: "goforward")
-              .resizable()
-              .scaleEffect(1)
-              .rotationEffect(.degrees(rotation))
-              .animation(presenter.state.isSerialRunning ? .linear(duration: 1).repeatForever(autoreverses: false) : .default, value: rotation)
+            Image(systemName: presenter.state.isSerialRunning ? "stop" : "play")
+              .font(.system(size: 20))
           }
         }
-
+        
         ToolbarItem(placement: .topBarTrailing) {
           Button(action: {
             isDarkMode.toggle()
@@ -146,19 +131,10 @@ struct FunctionalityView: View {
       DeadpixelFunctionalityView()
     }
     .toast(
-      isPresenting: $presenter.state.isAssessmentPassed,
-      duration: 2.5
-    ) {
-      AlertToast(
-        displayMode: .hud,
-        type: .regular,
-        title: presenter.state.toastContents.finished
-      )
-    }
-    .toast(
       isPresenting: $presenter.state.currentAssessment.isRunning,
       duration: .infinity,
-      tapToDismiss: false
+      tapToDismiss: true,
+      offsetY: 60
     ) {
       AlertToast(
         displayMode: .hud,
@@ -170,15 +146,11 @@ struct FunctionalityView: View {
   
   private func serialConfirmAlert() -> Alert {
     Alert(
-      title: Text("Do Serial Tests?"),
-      message: Text("By starting serial tests, all test will automatically start one after another"),
+      title: Text("Serial Tests"),
+      message: Text("This is a serial tests, all test will automatically start one after another"),
       primaryButton: .default(Text("Start")) {
-        if presenter.state.isSerialRunning {
-          presenter.send(.terminateSerial)
-        } else {
-          presenter.send(.confirmSerial)
-          presenter.send(.runSerial)
-        }
+        presenter.send(.runSerial)
+        presenter.send(.shouldConfirmSerial(false))
       },
       secondaryButton: .cancel()
     )

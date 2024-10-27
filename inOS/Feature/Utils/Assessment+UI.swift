@@ -16,7 +16,7 @@ extension Assessment {
       return "internaldrive"
     case .batteryStatus:
       return "battery.100"
-    case .rootStatus:
+    case .jailbreak:
       return "lock.shield"
     case .silentSwitch:
       return "bell.slash"
@@ -79,8 +79,8 @@ extension Assessment {
       return "Storage"
     case .batteryStatus:
       return "Battery"
-    case .rootStatus:
-      return "Jailbreak"
+    case .jailbreak:
+      return "No Jailbreak"
     case .silentSwitch:
       return "Silent Switch"
     case .volumeUp:
@@ -142,7 +142,7 @@ extension Assessment {
       return "Ensure your device's storage is functioning optimally"
     case .batteryStatus:
       return "Check the health of your device's battery"
-    case .rootStatus:
+    case .jailbreak:
       return "Verify if your device has been jailbroken"
     case .silentSwitch:
       return "Test the functionality of your device's silent switch"
@@ -205,8 +205,8 @@ extension Assessment {
       return "Storage is safe!"
     case .batteryStatus:
       return "Battery is healthy!"
-    case .rootStatus:
-      return "Root status verified!"
+    case .jailbreak:
+      return "No Jailbreak identified!"
     case .silentSwitch:
       return "Silent Switch worked!"
     case .volumeUp:
@@ -279,7 +279,7 @@ extension Assessment {
     case .gps:
       return "Check GPS signal"
     case .microphone:
-      return "Test microphone recording"
+      return "Say 'Hi' to Microphone"
     case .earSpeaker:
       return "Put your phone like a call"
     case .mainSpeaker:
@@ -288,6 +288,8 @@ extension Assessment {
       return "Check if the device vibrates"
     case .proximity:
       return "Cover your screen"
+    case .rotation:
+      return "Rotate to landscape"
     default:
       return ""
     }
