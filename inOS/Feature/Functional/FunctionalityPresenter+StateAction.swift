@@ -18,6 +18,7 @@ extension FunctionalityPresenter {
     var isSpecificationPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false
+    var scrollIndex: Double = 0
     var allAssessments: [Assessment] = Assessment.allCases
     var passedAssessments: [Assessment: Bool] = [:] {
       didSet {

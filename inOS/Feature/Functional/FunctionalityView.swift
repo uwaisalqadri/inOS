@@ -8,6 +8,7 @@
 import SwiftUI
 import DeviceKit
 import CoreMotion
+import Combine
 import AlertToast
 
 struct FunctionalityView: View {
@@ -25,35 +26,43 @@ struct FunctionalityView: View {
   var body: some View {
     NavigationView {
       ZStack(alignment: .bottomTrailing) {
-        ScrollView {
-          VStack {
-            DashboardStatusView(
-              deviceStatuses: presenter.state.deviceStatuses,
-              isSpecificationPresented: $presenter.state.isSpecificationPresented
-            ).padding(.bottom, 6)
-            
-            HStack(alignment: .top) {
-              ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
-                VStack(spacing: 12) {
-                  ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { _, item in
-                    let isPassed = presenter.state.passedAssessments[item]
-                    FunctionalityRow(item: item, isPassed: isPassed, onTestFunction: {
-                      presenter.send(.start(assessment: item))
-                    })
-                    .contextMenu {
-                      Button {
+        ScrollViewReader { proxy in
+          ScrollView {
+            VStack {
+              DashboardStatusView(
+                deviceStatuses: presenter.state.deviceStatuses,
+                isSpecificationPresented: $presenter.state.isSpecificationPresented
+              ).padding(.bottom, 6)
+              
+              HStack(alignment: .top) {
+                ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
+                  VStack(spacing: 12) {
+                    ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { index, item in
+                      let isPassed = presenter.state.passedAssessments[item]
+                      FunctionalityRow(item: item, isPassed: isPassed, onTestFunction: {
                         presenter.send(.start(assessment: item))
-                      } label: { Label(item.title, systemImage: item.icon) }
+                      })
+                      .id(Double(index))
+                      .contextMenu {
+                        Button {
+                          presenter.send(.start(assessment: item))
+                        } label: { Label(item.title, systemImage: item.icon) }
+                      }
+                      .padding(.horizontal, 3)
                     }
-                    .padding(.horizontal, 3)
                   }
                 }
               }
             }
+            .padding(.horizontal, 12)
+            .padding(.top, 30)
+            .padding(.bottom, 40)
           }
-          .padding(.horizontal, 12)
-          .padding(.top, 30)
-          .padding(.bottom, 40)
+          .onReceive(Just(presenter.state.scrollIndex)) { index in
+            withAnimation {
+              proxy.scrollTo(index)
+            }
+          }
         }
         
         let rotation: Double = presenter.state.isSerialRunning ? 360 : 0

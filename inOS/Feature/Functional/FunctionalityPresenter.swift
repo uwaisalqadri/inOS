@@ -90,8 +90,14 @@ extension FunctionalityPresenter {
     }
 
     if isSerial {
+      scrollWithFeedback()
       try? await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
     }
+  }
+  
+  private func scrollWithFeedback() {
+    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    state.scrollIndex += 0.5
   }
 
   @MainActor
