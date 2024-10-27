@@ -51,12 +51,15 @@ public enum Assessment: String, CaseIterable, Codable {
       .vibration,
       .camera,
       .touchscreen,
+//      .multitouch,
       .cellular,
       .wifi,
       .biometric,
       .accelerometer,
+//      .barometer,
       .bluetooth,
       .gps,
+//      .compass,
 //      .homeButton,
       .mainSpeaker,
       .earSpeaker,
@@ -64,6 +67,8 @@ public enum Assessment: String, CaseIterable, Codable {
       .deadpixel,
       .rotation,
       .microphone,
+//      .connector,
+//      .wirelessCharging
     ]
 
     return allCases

@@ -58,7 +58,7 @@ struct FunctionalityView: View {
             .padding(.top, 30)
             .padding(.bottom, 40)
           }
-          .onReceive(Just(presenter.state.scrollIndex)) { index in
+          .onChange(of: presenter.state.scrollIndex) { index in
             withAnimation {
               proxy.scrollTo(index)
             }

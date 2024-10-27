@@ -32,7 +32,7 @@ class FunctionalityPresenter: ObservableObject {
       
     case let .start(assessment):
       Task {
-        await beginAssessment(for: assessment)
+        await beginAssessment(for: assessment, isSerial: false)
       }
 
     case let .shouldConfirmSerial(bool):
@@ -66,16 +66,15 @@ class FunctionalityPresenter: ObservableObject {
 extension FunctionalityPresenter {
   func startAssessmentsSerialized() async {
     state.isSerialRunning = true
-    let assessments = Assessment.allCases
 
-    for assessment in assessments {
+    for assessment in Assessment.allCases {
       await beginAssessment(for: assessment, isSerial: true)
     }
 
     state.isSerialRunning = false
   }
 
-  func beginAssessment(for assessment: Assessment, isSerial: Bool = false) async {
+  func beginAssessment(for assessment: Assessment, isSerial: Bool) async {
     state.currentAssessment = (assessment, !assessment.testingMessage.isEmpty)
     state.isAssessmentPassed = false
 

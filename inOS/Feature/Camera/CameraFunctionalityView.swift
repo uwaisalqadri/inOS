@@ -32,6 +32,7 @@ struct CameraFunctionalityView: View {
           
           Text(isCheckingFrontCamera ? "Checking front camera" : "Checking rear camera")
             .font(.system(size: 20, weight: .bold))
+            .foregroundColor(.black)
             .frame(width: UIScreen.main.bounds.width - 35, height: 44)
             .padding(.horizontal)
             .background(Color.white)
