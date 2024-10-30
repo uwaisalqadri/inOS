@@ -15,6 +15,7 @@ extension FunctionalityPresenter {
     var isTouchscreenPresented = false
     var isCameraPresented = false
     var isDeadpixelPresented = false
+    var isCompassPresented = false
     var isSpecificationPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false

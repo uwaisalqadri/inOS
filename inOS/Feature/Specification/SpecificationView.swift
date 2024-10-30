@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import DeviceKit
 import CoreMotion
+import AVFoundation
+import LocalAuthentication
 
 struct SpecificationView: View {
   var models: [Model] {
@@ -36,11 +38,12 @@ struct SpecificationView: View {
           Text(model.title)
             .frame(maxWidth: .infinity, alignment: .leading)
           Text(model.value)
+            .bold()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(.vertical, 4)
       }
-      .listStyle(PlainListStyle())
+      .listStyle(.plain)
     }
     .padding(16)
     .navigationTitle(Device.current.safeDescription)
@@ -57,26 +60,20 @@ extension SpecificationView {
   func getDeviceModels() -> [Model] {
     let screenSize = UIScreen.main.bounds.size
     let displayType = UIScreen.main.traitCollection.displayGamut == .P3 ? "OLED" : "LCD"
-    let resolution = "\(UIScreen.main.nativeBounds.size.width)x\(UIScreen.main.nativeBounds.size.height) @ \(UIScreen.main.scale) PPI"
+    let resolution = "\(UIScreen.main.nativeBounds.size.width.int) x \(UIScreen.main.nativeBounds.size.height.int) @ \(UIScreen.main.scale.int) PPI"
     
     return [
       .init(title: "Model", value: "\(UIDevice.current.model) (\(getDeviceIdentifier()))"),
       .init(title: "Model number", value: "\(modelIdentifier())"),
       .init(title: "Size", value: "\(formatScreenSize(screenSize))"),
-      .init(title: "Weight", value: "135 g"),  // Placeholder
       .init(title: "iOS Ver.", value: UIDevice.current.systemVersion),
       .init(title: "Display", value: displayType),
-      .init(title: "Screen size", value: "\(screenSize.width)x\(screenSize.height)"),
+      .init(title: "Screen size", value: "\(screenSize.width.int) x \(screenSize.height.int)"),
       .init(title: "Resolution", value: resolution),
       .init(title: "Multitouch", value: "Supported"),
       .init(title: "3D Touch", value: check3DTouchSupport()),
-//      .init(title: "Camera", value: "Dual 12 MP, Rear and Ultra Wide"),  // Placeholder
-//      .init(title: "Rear Camera", value: "12 MP, f/1.6, 26mm"),  // Static placeholder
-//      .init(title: "Telephoto Camera", value: "N/A"),  // Static placeholder
-//      .init(title: "Ultra Wide Camera", value: "12 MP, f/2.4, 120°, 13mm"),  // Static placeholder
-//      .init(title: "Back camera recording quality", value: "4K (24/30/60FPS), 1080p (30/60/120/240FPS)"),  // Static placeholder
-//      .init(title: "Front Camera", value: "12 MP, f/2.2, 23mm"),  // Static placeholder
-//      .init(title: "Front camera recording quality", value: "4K (24/30/60FPS), 1080p (30/60/120FPS)"),  // Static placeholder
+      .init(title: "Face ID", value: "\(hasFaceID() ? "Supported" : "Not Supported")"),
+      .init(title: "Touch ID", value: "\(hasTouchID() ? "Supported" : "Not Supported")"),
       .init(title: "Accelerometer", value: checkSensorAvailability(.accelerometer)),
       .init(title: "Gyroscope", value: checkSensorAvailability(.gyroscope)),
       .init(title: "Proximity Sensor", value: "Supported"),
@@ -88,12 +85,20 @@ extension SpecificationView {
   
   // MARK: - Helper Methods
   
+  func hasFaceID() -> Bool {
+      return AVCaptureDevice.default(.builtInTrueDepthCamera, for: .video, position: .front) != nil
+  }
+  
+  func hasTouchID() -> Bool {
+    return LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+  }
+  
   private func getDeviceIdentifier() -> String {
     return String(UIDevice.current.identifierForVendor?.uuidString.prefix(5) ?? "-")
   }
   
   private func formatScreenSize(_ size: CGSize) -> String {
-    return "\(size.width)x\(size.height) mm"
+    return "\(size.width.int) x \(size.height.int) mm"
   }
   
   private func check3DTouchSupport() -> String {
@@ -125,5 +130,11 @@ extension SpecificationView {
         String(validatingUTF8: $0) ?? "Unknown"
       }
     }
+  }
+}
+
+extension CGFloat {
+  var int: Int {
+    Int(self)
   }
 }

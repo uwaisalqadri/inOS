@@ -1,5 +1,5 @@
 //
-//  DeviceInfoAssessment.swift
+//  DeviceAssessment.swift
 //  DeviceAssessment
 //
 //  Created by Uwais Alqadri on 15/12/23.
@@ -9,7 +9,7 @@ import DeviceKit
 import Foundation
 import UIKit
 
-public class DeviceInfoAssessment: AssessmentDriver {
+public class DeviceAssessment: AssessmentDriver {
   private var processInfo = ProcessInfo.processInfo
   private var device = UIDevice.current
   
@@ -67,7 +67,7 @@ public class DeviceInfoAssessment: AssessmentDriver {
   }
 }
 
-public extension DeviceInfoAssessment {
+public extension DeviceAssessment {
   var isJailbroken: Bool {
     #if targetEnvironment(simulator)
     return false

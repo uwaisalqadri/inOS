@@ -39,9 +39,13 @@ struct FunctionalityView: View {
                   VStack(spacing: 12) {
                     ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { index, item in
                       let isPassed = presenter.state.passedAssessments[item]
-                      FunctionalityRow(item: item, isPassed: isPassed, onTestFunction: {
-                        presenter.send(.start(assessment: item))
-                      })
+                      FunctionalityRow(
+                        item: item,
+                        isPassed: isPassed,
+                        onTestFunction: {
+                          presenter.send(.start(assessment: item))
+                        }
+                      )
                       .id(Double(index))
                       .contextMenu {
                         Button {
@@ -138,6 +142,9 @@ struct FunctionalityView: View {
     }
     .fullScreenCover(isPresented: $presenter.state.isDeadpixelPresented) {
       DeadpixelFunctionalityView()
+    }
+    .fullScreenCover(isPresented: $presenter.state.isCompassPresented) {
+      CompassFunctionalityView()
     }
     .toast(
       isPresenting: $presenter.state.currentAssessment.isRunning,

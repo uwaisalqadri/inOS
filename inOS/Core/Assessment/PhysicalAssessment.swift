@@ -1,5 +1,5 @@
 //
-//  PhysicalActivityAssessment.swift
+//  PhysicalAssessment.swift
 //  DeviceAssessment
 //
 //  Created by Uwais Alqadri on 25/12/23.
@@ -13,7 +13,7 @@ import LocalAuthentication
 import notify
 import UIKit
 
-public class PhysicalActivityAssessment: NSObject, AssessmentDriver {
+public class PhysicalAssessment: NSObject, AssessmentDriver {
   private var motionManager = CMMotionManager()
   private var biometricAuth = BiometricAuthentication()
   
@@ -195,7 +195,7 @@ public class PhysicalActivityAssessment: NSObject, AssessmentDriver {
   }
 }
 
-extension PhysicalActivityAssessment {
+extension PhysicalAssessment {
   @objc func proximityChanged(_ notification: Notification) {
     onProximityDetected?(notification.object != nil)
   }

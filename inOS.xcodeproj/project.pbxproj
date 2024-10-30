@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		86985E292C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86985E282C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift */; };
 		91011DCA2CCE90E700725E46 /* DashboardStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DC92CCE90E700725E46 /* DashboardStatusView.swift */; };
+		91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */; };
+		91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */; };
+		91011DD82CD1688400725E46 /* TimerCountdownText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD72CD1688400725E46 /* TimerCountdownText.swift */; };
 		91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CCC2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift */; };
 		91778CD02CCDE0EC00B70FF4 /* CameraFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CCF2CCDE0EC00B70FF4 /* CameraFunctionalityView.swift */; };
 		91778CD22CCDE1CE00B70FF4 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CD12CCDE1CE00B70FF4 /* Delay.swift */; };
@@ -34,9 +37,9 @@
 		CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADC32B2BD4D300F76E3C /* MainApp.swift */; };
 		CE40ADCF2B2BD4D300F76E3C /* FunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADC52B2BD4D300F76E3C /* FunctionalityView.swift */; };
 		CE40ADD12B2BDB8700F76E3C /* AssessmentTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADD02B2BDB8700F76E3C /* AssessmentTester.swift */; };
-		CE40ADD42B2BE60000F76E3C /* DeviceInfoAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADD32B2BE60000F76E3C /* DeviceInfoAssessment.swift */; };
+		CE40ADD42B2BE60000F76E3C /* DeviceAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADD32B2BE60000F76E3C /* DeviceAssessment.swift */; };
 		CE40ADD62B2BE61D00F76E3C /* ConnectivityAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADD52B2BE61D00F76E3C /* ConnectivityAssessment.swift */; };
-		CE6CCA6E2B39A0E100F28F2A /* PhysicalActivityAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6CCA6D2B39A0E100F28F2A /* PhysicalActivityAssessment.swift */; };
+		CE6CCA6E2B39A0E100F28F2A /* PhysicalAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6CCA6D2B39A0E100F28F2A /* PhysicalAssessment.swift */; };
 		CE7592AC2BAB9DA300D59361 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7592AB2BAB9DA300D59361 /* SpeechSynthesizer.swift */; };
 		CE766A262C8DB56600B54877 /* ScreenFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A252C8DB56600B54877 /* ScreenFunctionalityView.swift */; };
 		CE766A282C8DB62700B54877 /* ScreenFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A272C8DB62700B54877 /* ScreenFunctionalityPresenter.swift */; };
@@ -68,6 +71,9 @@
 /* Begin PBXFileReference section */
 		86985E282C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+StateAction.swift"; sourceTree = "<group>"; };
 		91011DC92CCE90E700725E46 /* DashboardStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStatusView.swift; sourceTree = "<group>"; };
+		91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityView.swift; sourceTree = "<group>"; };
+		91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityPresenter.swift; sourceTree = "<group>"; };
+		91011DD72CD1688400725E46 /* TimerCountdownText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownText.swift; sourceTree = "<group>"; };
 		91778CCC2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearModifier.swift; sourceTree = "<group>"; };
 		91778CCF2CCDE0EC00B70FF4 /* CameraFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFunctionalityView.swift; sourceTree = "<group>"; };
 		91778CD12CCDE1CE00B70FF4 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
@@ -92,10 +98,10 @@
 		CE40ADC32B2BD4D300F76E3C /* MainApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		CE40ADC52B2BD4D300F76E3C /* FunctionalityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalityView.swift; sourceTree = "<group>"; };
 		CE40ADD02B2BDB8700F76E3C /* AssessmentTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentTester.swift; sourceTree = "<group>"; };
-		CE40ADD32B2BE60000F76E3C /* DeviceInfoAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoAssessment.swift; sourceTree = "<group>"; };
+		CE40ADD32B2BE60000F76E3C /* DeviceAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAssessment.swift; sourceTree = "<group>"; };
 		CE40ADD52B2BE61D00F76E3C /* ConnectivityAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityAssessment.swift; sourceTree = "<group>"; };
 		CE5725912B294BE1000E4EC2 /* inOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE6CCA6D2B39A0E100F28F2A /* PhysicalActivityAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalActivityAssessment.swift; sourceTree = "<group>"; };
+		CE6CCA6D2B39A0E100F28F2A /* PhysicalAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAssessment.swift; sourceTree = "<group>"; };
 		CE7592AB2BAB9DA300D59361 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		CE766A252C8DB56600B54877 /* ScreenFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFunctionalityView.swift; sourceTree = "<group>"; };
 		CE766A272C8DB62700B54877 /* ScreenFunctionalityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFunctionalityPresenter.swift; sourceTree = "<group>"; };
@@ -143,6 +149,26 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		91011DCB2CD1182400725E46 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				91011DCC2CD1197600725E46 /* Compass */,
+				91778CCE2CCDE0E200B70FF4 /* Camera */,
+				CE766A2F2C8DD9B900B54877 /* Deadpixel */,
+				CE766A232C8DB43700B54877 /* Screen */,
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
+		91011DCC2CD1197600725E46 /* Compass */ = {
+			isa = PBXGroup;
+			children = (
+				91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */,
+				91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */,
+			);
+			path = Compass;
+			sourceTree = "<group>";
+		};
 		91778CCE2CCDE0E200B70FF4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,11 +202,9 @@
 		CE066E302BAB2E6D007C7014 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				91778CCE2CCDE0E200B70FF4 /* Camera */,
-				CE766A2F2C8DD9B900B54877 /* Deadpixel */,
 				CE766A222C8DB42000B54877 /* Functional */,
-				CE766A232C8DB43700B54877 /* Screen */,
 				919632E92CCD6CE300B84F3C /* Specification */,
+				91011DCB2CD1182400725E46 /* Testing */,
 				CE766A2D2C8DD99300B54877 /* Utils */,
 			);
 			path = Feature;
@@ -210,10 +234,10 @@
 			isa = PBXGroup;
 			children = (
 				CE40ADD02B2BDB8700F76E3C /* AssessmentTester.swift */,
-				CE40ADD32B2BE60000F76E3C /* DeviceInfoAssessment.swift */,
+				CE40ADD32B2BE60000F76E3C /* DeviceAssessment.swift */,
 				CE40ADD52B2BE61D00F76E3C /* ConnectivityAssessment.swift */,
 				CEE4ADE42B381FAE007D54E9 /* PowerAssessment.swift */,
-				CE6CCA6D2B39A0E100F28F2A /* PhysicalActivityAssessment.swift */,
+				CE6CCA6D2B39A0E100F28F2A /* PhysicalAssessment.swift */,
 				CE066E132BAB2A7F007C7014 /* Assessment.swift */,
 			);
 			path = Assessment;
@@ -280,6 +304,7 @@
 				91778CCC2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift */,
 				91778CD12CCDE1CE00B70FF4 /* Delay.swift */,
 				91778CD32CCE8ACF00B70FF4 /* Blur.swift */,
+				91011DD72CD1688400725E46 /* TimerCountdownText.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -438,12 +463,14 @@
 				CE8C78D52B4989B5003139E1 /* CommonUtils.swift in Sources */,
 				CE766A352C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift in Sources */,
 				919632F12CCD73C000B84F3C /* Bundle.swift in Sources */,
-				CE6CCA6E2B39A0E100F28F2A /* PhysicalActivityAssessment.swift in Sources */,
+				CE6CCA6E2B39A0E100F28F2A /* PhysicalAssessment.swift in Sources */,
+				91011DD82CD1688400725E46 /* TimerCountdownText.swift in Sources */,
 				CE766A2A2C8DC5B100B54877 /* Notifications.swift in Sources */,
 				CE066E2F2BAB2E16007C7014 /* BiometricAuthentication.swift in Sources */,
+				91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */,
 				CE766A262C8DB56600B54877 /* ScreenFunctionalityView.swift in Sources */,
 				CE066E142BAB2A7F007C7014 /* Assessment.swift in Sources */,
-				CE40ADD42B2BE60000F76E3C /* DeviceInfoAssessment.swift in Sources */,
+				CE40ADD42B2BE60000F76E3C /* DeviceAssessment.swift in Sources */,
 				919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */,
 				91011DCA2CCE90E700725E46 /* DashboardStatusView.swift in Sources */,
 				CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */,
@@ -457,6 +484,7 @@
 				CE066E162BAB2B13007C7014 /* SpeechRecognizer.swift in Sources */,
 				CE066E1E2BAB2B8B007C7014 /* CPUInformation.swift in Sources */,
 				CE766A332C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift in Sources */,
+				91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */,
 				CE066E2A2BAB2BF5007C7014 /* BiometricFailedReason.swift in Sources */,
 				CE766A312C8DD9F600B54877 /* DeadpixelFunctionalityView.swift in Sources */,
 				CE066E242BAB2BB6007C7014 /* Device+Ext.swift in Sources */,

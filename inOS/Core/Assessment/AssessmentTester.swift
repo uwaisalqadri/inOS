@@ -32,10 +32,10 @@ public struct AssessmentTester {
     switch driver {
     case .connectivity:
       self.driver = ConnectivityAssessment()
-    case .deviceInfo:
-      self.driver = DeviceInfoAssessment()
-    case .physicalActivity:
-      self.driver = PhysicalActivityAssessment()
+    case .device:
+      self.driver = DeviceAssessment()
+    case .physical:
+      self.driver = PhysicalAssessment()
     case .power:
       self.driver = PowerAssessment()
     }
@@ -43,8 +43,8 @@ public struct AssessmentTester {
   
   public enum AssessmentDriverType {
     case connectivity
-    case deviceInfo
-    case physicalActivity
+    case device
+    case physical
     case power
   }
 }

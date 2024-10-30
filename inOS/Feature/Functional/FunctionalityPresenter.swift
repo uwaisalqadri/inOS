@@ -17,7 +17,7 @@ class FunctionalityPresenter: ObservableObject {
   @Published var state = State()
 
   private lazy var drivers: [AssessmentTester.AssessmentDriverType: AssessmentDriver] = {
-    let types: [AssessmentTester.AssessmentDriverType] = [.physicalActivity, .deviceInfo, .connectivity, .power]
+    let types: [AssessmentTester.AssessmentDriverType] = [.physical, .device, .connectivity, .power]
     return Dictionary(uniqueKeysWithValues: types.map { type in
       (type, AssessmentTester(driver: type).driver)
     })
@@ -57,6 +57,8 @@ class FunctionalityPresenter: ObservableObject {
         state.isDeadpixelPresented = isPresented
       case .touchscreen:
         state.isTouchscreenPresented = isPresented
+      case .compass:
+        state.isCompassPresented = isPresented
       default:
         break
       }
@@ -105,14 +107,14 @@ extension FunctionalityPresenter {
     return AsyncThrowingStream { continuation in
       switch assessment {
       case .cpu:
-        if let cpu = drivers[.deviceInfo]?.assessments[assessment] as? CPUInformation {
+        if let cpu = drivers[.device]?.assessments[assessment] as? CPUInformation {
           continuation.yield(cpu.model?.isEmpty != true)
           continuation.finish()
         }
 
       case .storage:
-        drivers[.deviceInfo]?.startAssessment(for: assessment) { [drivers] in
-          if let storage = drivers[.deviceInfo]?.assessments[assessment] as? Storage {
+        drivers[.device]?.startAssessment(for: assessment) { [drivers] in
+          if let storage = drivers[.device]?.assessments[assessment] as? Storage {
             continuation.yield(storage.totalSpace?.isEmpty != true)
             continuation.finish()
           }
@@ -127,31 +129,31 @@ extension FunctionalityPresenter {
         }
 
       case .jailbreak:
-        continuation.yield(drivers[.deviceInfo]?.hasAssessmentPassed[assessment] ?? false)
+        continuation.yield(drivers[.device]?.hasAssessmentPassed[assessment] ?? false)
         continuation.finish()
 
       case .volumeUp, .volumeDown, .biometric, .proximity, .accelerometer, .microphone:
-        drivers[.physicalActivity]?.startAssessment(for: assessment) { [drivers] in
-          if let reason = drivers[.physicalActivity]?.assessments[.biometric] as? BiometricFailedReason {
+        drivers[.physical]?.startAssessment(for: assessment) { [drivers] in
+          if let reason = drivers[.physical]?.assessments[.biometric] as? BiometricFailedReason {
             continuation.finish(throwing: reason)
             return
           }
 
-          if let failure = drivers[.physicalActivity]?.assessments[.microphone] as? PermissionFailed {
+          if let failure = drivers[.physical]?.assessments[.microphone] as? PermissionFailed {
             continuation.finish(throwing: failure)
             return
           }
 
-          continuation.yield(self.drivers[.physicalActivity]?.hasAssessmentPassed[assessment] ?? false)
+          continuation.yield(self.drivers[.physical]?.hasAssessmentPassed[assessment] ?? false)
           continuation.finish()
-          drivers[.physicalActivity]?.stopAssessment(for: assessment)
+          drivers[.physical]?.stopAssessment(for: assessment)
         }
 
       case .silentSwitch:
-        drivers[.physicalActivity]?.startAssessment(for: assessment) { [drivers] in
-          continuation.yield(self.drivers[.physicalActivity]?.hasAssessmentPassed[assessment] ?? false)
+        drivers[.physical]?.startAssessment(for: assessment) { [drivers] in
+          continuation.yield(self.drivers[.physical]?.hasAssessmentPassed[assessment] ?? false)
           continuation.finish()
-          drivers[.physicalActivity]?.stopAssessment(for: assessment)
+          drivers[.physical]?.stopAssessment(for: assessment)
         }
 
       case .powerButton:
@@ -207,10 +209,10 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
 
       case .mainSpeaker, .earSpeaker, .vibration:
-        drivers[.physicalActivity]?.startAssessment(for: assessment) {
+        drivers[.physical]?.startAssessment(for: assessment) {
           continuation.yield(true)
           continuation.finish()
-          self.drivers[.physicalActivity]?.stopAssessment(for: assessment)
+          self.drivers[.physical]?.stopAssessment(for: assessment)
         }
 
       case .deadpixel:
@@ -241,7 +243,16 @@ extension FunctionalityPresenter {
         break
         
       case .compass:
-        break
+        send(.shouldShow(assessment: assessment, isPresented: true))
+
+        NotificationCenter.default.publisher(for: Notifications.didCompassPassed)
+          .sink { notification in
+            guard let isPassed = notification.object as? Bool else { return }
+            continuation.yield(isPassed)
+            continuation.finish()
+            self.send(.shouldShow(assessment: assessment, isPresented: false))
+          }
+          .store(in: &cancellables)
         
       case .connector:
         break
@@ -255,12 +266,12 @@ extension FunctionalityPresenter {
   private func loadDeviceStatus() {
     state.deviceStatuses = []
     
-    if let cpu = drivers[.deviceInfo]?.assessments[.cpu] as? CPUInformation {
+    if let cpu = drivers[.device]?.assessments[.cpu] as? CPUInformation {
       state.deviceStatuses.append(.init(.cpu, value: cpu.frequency ?? "-"))
     }
     
-    drivers[.deviceInfo]?.startAssessment(for: .storage) { [drivers] in
-      if let storage = drivers[.deviceInfo]?.assessments[.storage] as? Storage {
+    drivers[.device]?.startAssessment(for: .storage) { [drivers] in
+      if let storage = drivers[.device]?.assessments[.storage] as? Storage {
         self.state.deviceStatuses.append(.init(.memory, value: storage.totalRAM ?? "-"))
         self.state.deviceStatuses.append(.init(.storage, value: storage.remainingSpace ?? "-"))
       }

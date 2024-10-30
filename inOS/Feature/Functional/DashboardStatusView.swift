@@ -24,9 +24,9 @@ struct DashboardStatusView: View {
         }) {
           VStack(spacing: 4) {
             Image(systemName: status.spec.icon)
-              .font(.system(size: 20))
+              .font(.system(size: 24))
               .foregroundColor(.blue)
-            Text(status.value)
+            Text(status.value.replacingOccurrences(of: " ", with: ""))
               .font(.system(size: 12))
               .bold()
           }

@@ -28,7 +28,13 @@ public class PowerAssessment: NSObject, AssessmentDriver {
       guard UIDevice.current.isBatteryMonitoringEnabled else { return }
       
       batteryLevel = UIDevice.current.batteryLevel
-      timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(measureAgain), userInfo: nil, repeats: false)
+      timer = Timer.scheduledTimer(
+        timeInterval: 20,
+        target: self,
+        selector: #selector(measureAgain),
+        userInfo: nil,
+        repeats: false
+      )
       
       assessments[.batteryStatus] = Battery(
         remainingTime: "\(remainingTimeInMinutes)",
@@ -37,7 +43,7 @@ public class PowerAssessment: NSObject, AssessmentDriver {
       completion?()
       
     default:
-       break
+      break
     }
   }
   
@@ -50,9 +56,9 @@ public class PowerAssessment: NSObject, AssessmentDriver {
 
 extension PowerAssessment {
   @objc func measureAgain() {
-      let batteryAfterInterval = UIDevice.current.batteryLevel
-      let difference = batteryAfterInterval - batteryLevel
-      let remainingPercentage = 100.0 - batteryAfterInterval
-      remainingTimeInMinutes = remainingPercentage / difference
+    let batteryAfterInterval = UIDevice.current.batteryLevel
+    let difference = batteryAfterInterval - batteryLevel
+    let remainingPercentage = 100.0 - batteryAfterInterval
+    remainingTimeInMinutes = remainingPercentage / difference
   }
 }

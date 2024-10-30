@@ -37,7 +37,7 @@ public enum Assessment: String, CaseIterable, Codable {
   case microphone
   case connector
   case wirelessCharging
-
+  
   public static var allCases: [Assessment] {
     let allCases: [Assessment] = [
       .cpu,
@@ -51,26 +51,26 @@ public enum Assessment: String, CaseIterable, Codable {
       .vibration,
       .camera,
       .touchscreen,
-//      .multitouch,
+      .multitouch,
       .cellular,
       .wifi,
       .biometric,
       .accelerometer,
-//      .barometer,
+      .barometer,
       .bluetooth,
       .gps,
-//      .compass,
-//      .homeButton,
+      .compass,
+      //.homeButton,
       .mainSpeaker,
       .earSpeaker,
       .proximity,
       .deadpixel,
       .rotation,
       .microphone,
-//      .connector,
-//      .wirelessCharging
+      .connector,
+      .wirelessCharging
     ]
-
+    
     return allCases
   }
 }
