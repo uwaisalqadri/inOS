@@ -152,6 +152,7 @@
 		91011DCB2CD1182400725E46 /* Testing */ = {
 			isa = PBXGroup;
 			children = (
+				91011DD92CD2968700725E46 /* Multitouch */,
 				91011DCC2CD1197600725E46 /* Compass */,
 				91778CCE2CCDE0E200B70FF4 /* Camera */,
 				CE766A2F2C8DD9B900B54877 /* Deadpixel */,
@@ -167,6 +168,13 @@
 				91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */,
 			);
 			path = Compass;
+			sourceTree = "<group>";
+		};
+		91011DD92CD2968700725E46 /* Multitouch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Multitouch;
 			sourceTree = "<group>";
 		};
 		91778CCE2CCDE0E200B70FF4 /* Camera */ = {

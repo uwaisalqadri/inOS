@@ -7,12 +7,14 @@
 
 import Foundation
 import UIKit
+import Combine
 
 public class PowerAssessment: NSObject, AssessmentDriver {
-  var batteryLevel: Float = 0.0
-  var remainingTimeInMinutes: Float = 0.0
-  var timer = Timer()
-  
+  private var batteryLevel: Float = 0.0
+  private var remainingTimeInMinutes: Float = 0.0
+  private var timer = Timer()
+  private var cancellables = Set<AnyCancellable>()
+
   public override init() {}
   
   public var hasAssessmentPassed: [Assessment: Bool] {
@@ -22,11 +24,19 @@ public class PowerAssessment: NSObject, AssessmentDriver {
   public var assessments: [Assessment: Any] = [:]
   
   public func startAssessment(for type: Assessment, completion: (() -> Void)? = nil) {
+    UIDevice.current.isBatteryMonitoringEnabled = true
+    guard UIDevice.current.isBatteryMonitoringEnabled else { return }
+    
     switch type {
-    case .batteryStatus:
-      UIDevice.current.isBatteryMonitoringEnabled = true
-      guard UIDevice.current.isBatteryMonitoringEnabled else { return }
+    case .connector:
+      NotificationCenter.default.publisher(for: UIDevice.batteryStateDidChangeNotification)
+        .sink { [weak self] notification in
+          self?.assessments[.connector] = UIDevice.current.batteryState == .charging
+          completion?()
+        }
+        .store(in: &cancellables)
       
+    case .batteryStatus:
       batteryLevel = UIDevice.current.batteryLevel
       timer = Timer.scheduledTimer(
         timeInterval: 20,

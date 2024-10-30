@@ -290,6 +290,8 @@ extension Assessment {
       return "Cover your screen"
     case .rotation:
       return "Rotate to landscape"
+    case .connector:
+      return "Connect cable to power source"
     default:
       return ""
     }

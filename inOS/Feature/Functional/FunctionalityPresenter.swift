@@ -255,7 +255,12 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
         
       case .connector:
-        break
+        drivers[.power]?.startAssessment(for: assessment) { [drivers] in
+          if let isCharging = drivers[.power]?.assessments[assessment] as? Bool {
+            continuation.yield(isCharging)
+            continuation.finish()
+          }
+        }
         
       case .wirelessCharging:
         break
