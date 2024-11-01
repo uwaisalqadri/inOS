@@ -59,6 +59,8 @@ class FunctionalityPresenter: ObservableObject {
         state.isTouchscreenPresented = isPresented
       case .compass:
         state.isCompassPresented = isPresented
+      case .multitouch:
+        state.isMultitouchPresented = isPresented
       default:
         break
       }
@@ -237,8 +239,17 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
 
       case .multitouch:
-        break
-        
+        send(.shouldShow(assessment: assessment, isPresented: true))
+
+        NotificationCenter.default.publisher(for: Notifications.didMultitouchPassed)
+          .sink { notification in
+            guard let isPassed = notification.object as? Bool else { return }
+            continuation.yield(isPassed)
+            continuation.finish()
+            self.send(.shouldShow(assessment: assessment, isPresented: false))
+          }
+          .store(in: &cancellables)
+
       case .barometer:
         break
         
@@ -278,13 +289,13 @@ extension FunctionalityPresenter {
     drivers[.device]?.startAssessment(for: .storage) { [drivers] in
       if let storage = drivers[.device]?.assessments[.storage] as? Storage {
         self.state.deviceStatuses.append(.init(.memory, value: storage.totalRAM ?? "-"))
-        self.state.deviceStatuses.append(.init(.storage, value: storage.remainingSpace ?? "-"))
+        self.state.deviceStatuses.append(.init(.storage, value: storage.totalSpace ?? "-"))
       }
     }
     
     drivers[.power]?.startAssessment(for: .batteryStatus) { [drivers] in
       if let battery = drivers[.power]?.assessments[.batteryStatus] as? Battery {
-        self.state.deviceStatuses.append(.init(.battery, value: battery.percentage ?? "-"))
+        self.state.deviceStatuses.append(.init(.battery(percentage: battery.percentage ?? 0.0), value: battery.percentage?.toPercentage() ?? "-"))
       }
     }
     

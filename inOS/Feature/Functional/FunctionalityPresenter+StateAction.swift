@@ -17,6 +17,7 @@ extension FunctionalityPresenter {
     var isDeadpixelPresented = false
     var isCompassPresented = false
     var isSpecificationPresented = false
+    var isMultitouchPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false
     var scrollIndex: Double = 0
@@ -59,15 +60,36 @@ extension FunctionalityPresenter {
       self.spec = spec
       self.value = value
     }
-    
-    enum Specs {
+
+    enum Specs: Equatable {
       case phone
       case cpu
       case memory
       case storage
-      case battery
+      case battery(percentage: Float)
       case other
-      
+
+      static func == (lhs: Specs, rhs: Specs) -> Bool {
+        lhs.description == rhs.description
+      }
+
+      var description: String {
+        switch self {
+        case .phone:
+          return "Phone Specification"
+        case .cpu:
+          return "CPU Specification"
+        case .memory:
+          return "Memory Specification"
+        case .storage:
+          return "Storage Specification"
+        case .battery:
+          return "Battery Specification"
+        case .other:
+          return "Other Specification"
+        }
+      }
+
       var icon: String {
         switch self {
         case .phone:
@@ -85,8 +107,15 @@ extension FunctionalityPresenter {
           return "memorychip"
         case .storage:
           return "internaldrive"
-        case .battery:
-          return "battery.100"
+        case let .battery(percentage):
+          switch percentage {
+          case ..<30:
+            return "battery.25"
+          case 30...70:
+            return "battery.50"
+          default:
+            return "battery.100"
+          }
         case .other:
           return "square.split.2x2.fill"
         }

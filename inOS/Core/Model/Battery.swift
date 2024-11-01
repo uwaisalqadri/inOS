@@ -9,7 +9,7 @@ public struct Battery {
   public var voltage: String?
   public var technology: String?
   public var remainingTime: String?
-  public var percentage: String?
+  public var percentage: Float?
   public var health: String?
   public var temperature: String?
   
@@ -17,7 +17,7 @@ public struct Battery {
     voltage: String? = nil,
     technology: String? = nil,
     remainingTime: String? = nil,
-    percentage: String? = nil,
+    percentage: Float? = nil,
     health: String? = nil,
     temperature: String? = nil
   ) {

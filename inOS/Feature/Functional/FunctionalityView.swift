@@ -137,6 +137,9 @@ struct FunctionalityView: View {
     .fullScreenCover(isPresented: $presenter.state.isTouchscreenPresented) {
       ScreenFunctionalityView()
     }
+    .fullScreenCover(isPresented: $presenter.state.isMultitouchPresented) {
+      MultitouchFunctionalityView()
+    }
     .fullScreenCover(isPresented: $presenter.state.isCameraPresented) {
       CameraFunctionalityView()
     }
