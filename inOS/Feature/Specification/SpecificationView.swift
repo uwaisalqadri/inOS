@@ -60,6 +60,18 @@ struct SpecificationView: View {
             .font(.system(size: 14, weight: .semibold))
         }
       }
+      
+      ToolbarItem(placement: .topBarTrailing) {
+        Button(action: {
+          if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+          }
+        }) {
+          Image(systemName: "gear")
+            .font(.system(size: 20))
+            .foregroundColor(.blue)
+        }
+      }
     }
   }
 }
