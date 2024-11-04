@@ -41,7 +41,8 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
       .microphone,
       .earSpeaker,
       .mainSpeaker,
-      .vibration
+      .vibration,
+      .torch
     ]
     
     for type in assessmentTypes {
@@ -62,7 +63,8 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
     .microphone: false,
     .earSpeaker: false,
     .mainSpeaker: false,
-    .vibration: false
+    .vibration: false,
+    .torch: false
   ]
   
   public func startAssessment(for type: Assessment, completion: (() -> Void)? = nil) {
@@ -142,6 +144,40 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
         self.assessments[.microphone] = PermissionFailed.microphoneNotPermitted
         completion?()
       })
+    case .accelerometer:
+      self.assessments[.accelerometer] = motionManager.isAccelerometerAvailable
+      completion?()
+      
+    case .torch:
+      guard let device = AVCaptureDevice.default(for: .video), device.hasTorch else {
+        self.assessments[.torch] = false
+        completion?()
+        return
+      }
+
+      do {
+        try device.lockForConfiguration()
+        device.torchMode = .on
+        self.assessments[.torch] = true
+
+        delay(bySeconds: 1.5) {
+          device.torchMode = .off
+          device.unlockForConfiguration()
+          completion?()
+        }
+
+      } catch {
+        self.assessments[.torch] = error
+        completion?()
+      }
+
+    default:
+      break
+    }
+  }
+
+  public func startAssessment(for type: Assessment, completion: ((Any?) -> Void)? = nil) {
+    switch type {
     case .vibration:
       let randomCount = Int.random(in: 1...4)
       for index in stride(from: 1, through: randomCount, by: 1) {
@@ -156,31 +192,27 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
               AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate)
             }
           }
-          
-          completion?()
+
+          completion?(randomCount)
         }
       }
     case .mainSpeaker:
       let randomCount = Int.random(in: 1...4)
       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         SpeechSynthesizer.shared.speak("\(randomCount)", useEarSpeaker: false)
-        completion?()
+        completion?(randomCount)
       }
     case .earSpeaker:
       let randomCount = Int.random(in: 1...4)
       DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         SpeechSynthesizer.shared.speak("\(randomCount)", useEarSpeaker: true)
-        completion?()
+        completion?(randomCount)
       }
-    case .accelerometer:
-      self.assessments[.accelerometer] = motionManager.isAccelerometerAvailable
-      completion?()
-      
     default:
       break
     }
   }
-  
+
   public func stopAssessment(for type: Assessment) {
     switch type {
     case .silentSwitch:

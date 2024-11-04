@@ -211,11 +211,19 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
 
       case .mainSpeaker, .earSpeaker, .vibration:
-        drivers[.physical]?.startAssessment(for: assessment) {
-          continuation.yield(true)
-          continuation.finish()
-          self.drivers[.physical]?.stopAssessment(for: assessment)
+        drivers[.physical]?.startAssessment(for: assessment) { value in
+          guard let number = value as? Int else { return }
+          self.state.randomCount = number
         }
+
+        NotificationCenter.default.publisher(for: Notifications.didInputConfirmation)
+          .sink { notification in
+            guard let number = notification.object as? Int else { return }
+            continuation.yield(self.state.randomCount == number)
+            continuation.finish()
+            self.drivers[.physical]?.stopAssessment(for: assessment)
+          }
+          .store(in: &cancellables)
 
       case .deadpixel:
         send(.shouldShow(assessment: assessment, isPresented: true))
@@ -275,6 +283,15 @@ extension FunctionalityPresenter {
         
       case .wirelessCharging:
         break
+
+      case .torch:
+        drivers[.physical]?.startAssessment(for: assessment) { [drivers] in
+          if let isTorching = drivers[.physical]?.assessments[assessment] as? Bool {
+            continuation.yield(isTorching)
+            continuation.finish()
+          }
+        }
+
       }
     }
   }

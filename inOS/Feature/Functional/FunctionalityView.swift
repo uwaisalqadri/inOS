@@ -16,7 +16,9 @@ struct FunctionalityView: View {
   @StateObject var presenter: FunctionalityPresenter
   @AppStorage("isIntroduction") var isIntroduction: Bool = true
   @AppStorage("isDarkMode") var isDarkMode: Bool = false
-  
+
+  @Environment(\.presentationMode) var presentationMode
+
   init() {
     _presenter = StateObject(
       wrappedValue: FunctionalityPresenter()
@@ -134,6 +136,15 @@ struct FunctionalityView: View {
     .alert(isPresented: $presenter.state.isConfirmSerial) {
       serialConfirmAlert()
     }
+    .textFieldAlert(
+      isPresented: isFunctionalityPresented(in: [.vibration, .mainSpeaker, .earSpeaker]),
+      title: "How many times?",
+      text: $presenter.state.inputValue,
+      placeholder: "Enter your number",
+      action: { string in
+        Notifications.didInputConfirmation.post(with: Int(string))
+      }
+    )
     .fullScreenCover(isPresented: $presenter.state.isTouchscreenPresented) {
       ScreenFunctionalityView()
     }
@@ -162,7 +173,22 @@ struct FunctionalityView: View {
       )
     }
   }
-  
+
+  private func isFunctionalityPresented(in functions: [Assessment]) -> Binding<Bool> {
+    return Binding(
+      get: {
+        functions.contains {
+          presenter.state.currentAssessment == ($0, true)
+        }
+      },
+      set: { value in
+        functions.forEach {
+          presenter.state.currentAssessment = ($0, value)
+        }
+      }
+    )
+  }
+
   private func serialConfirmAlert() -> Alert {
     Alert(
       title: Text("Serial Tests"),

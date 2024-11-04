@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		861A053D2CD4D3B100B60D35 /* MultitouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchView.swift */; };
+		861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */; };
 		86985E292C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86985E282C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift */; };
+		86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */; };
 		91011DCA2CCE90E700725E46 /* DashboardStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DC92CCE90E700725E46 /* DashboardStatusView.swift */; };
 		91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */; };
 		91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */; };
@@ -70,8 +71,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		861A053C2CD4D3B100B60D35 /* MultitouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchView.swift; sourceTree = "<group>"; };
+		861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchFunctionalityView.swift; sourceTree = "<group>"; };
 		86985E282C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+StateAction.swift"; sourceTree = "<group>"; };
+		86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
 		91011DC92CCE90E700725E46 /* DashboardStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStatusView.swift; sourceTree = "<group>"; };
 		91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityView.swift; sourceTree = "<group>"; };
 		91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityPresenter.swift; sourceTree = "<group>"; };
@@ -146,7 +148,7 @@
 		861A053B2CD4D34F00B60D35 /* Multitouch */ = {
 			isa = PBXGroup;
 			children = (
-				861A053C2CD4D3B100B60D35 /* MultitouchView.swift */,
+				861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */,
 			);
 			path = Multitouch;
 			sourceTree = "<group>";
@@ -281,6 +283,7 @@
 				CE40ADC52B2BD4D300F76E3C /* FunctionalityView.swift */,
 				919632EE2CCD714D00B84F3C /* IntroductionView.swift */,
 				91011DC92CCE90E700725E46 /* DashboardStatusView.swift */,
+				86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */,
 			);
 			path = Functional;
 			sourceTree = "<group>";
@@ -482,9 +485,10 @@
 				CE766A262C8DB56600B54877 /* ScreenFunctionalityView.swift in Sources */,
 				CE066E142BAB2A7F007C7014 /* Assessment.swift in Sources */,
 				CE40ADD42B2BE60000F76E3C /* DeviceAssessment.swift in Sources */,
-				861A053D2CD4D3B100B60D35 /* MultitouchView.swift in Sources */,
+				861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */,
 				919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */,
 				91011DCA2CCE90E700725E46 /* DashboardStatusView.swift in Sources */,
+				86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */,
 				CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */,
 				CE91C21D2B4E9DC700E1C413 /* FunctionalityRow.swift in Sources */,
 				CE766A2C2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift in Sources */,

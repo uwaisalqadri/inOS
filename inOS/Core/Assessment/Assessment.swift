@@ -18,6 +18,7 @@ public enum Assessment: String, CaseIterable, Codable {
   case powerButton
   case vibration
   case camera
+  case torch
   case touchscreen
   case multitouch
   case cellular
@@ -50,6 +51,7 @@ public enum Assessment: String, CaseIterable, Codable {
       .powerButton,
       .vibration,
       .camera,
+      .torch,
       .touchscreen,
       .multitouch,
       .cellular,

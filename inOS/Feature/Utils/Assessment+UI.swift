@@ -68,6 +68,8 @@ extension Assessment {
       return "cable.connector.horizontal"
     case .wirelessCharging:
       return "bolt.circle.fill"
+    case .torch:
+      return "flashlight.on.fill"
     }
   }
   
@@ -131,6 +133,8 @@ extension Assessment {
       return "Connector"
     case .wirelessCharging:
       return "Wireless Charging"
+    case .torch:
+      return "Flash"
     }
   }
   
@@ -194,6 +198,8 @@ extension Assessment {
       return "Check if the physical connector is functioning"
     case .wirelessCharging:
       return "Verify the wireless charging capability"
+    case .torch:
+      return "Check Device's Flash"
     }
   }
   
@@ -257,6 +263,8 @@ extension Assessment {
       return "Connector is functional!"
     case .wirelessCharging:
       return "Wireless charging works correctly!"
+    default:
+      return ""
     }
   }
   

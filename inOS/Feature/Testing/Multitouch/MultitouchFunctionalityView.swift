@@ -1,8 +1,8 @@
 //
-//  MultitouchView.swift
+//  MultitouchFunctionalityView.swift
 //  inOS
 //
-//  Created by Aleph-WQ05D on 01/11/24.
+//  Created by Uwais Alqadri on 01/11/24.
 //
 
 import SwiftUI

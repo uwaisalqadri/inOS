@@ -40,7 +40,8 @@ struct FunctionalityRow: View {
         Text(item.title)
           .bold()
           .padding(.top, 16)
-        
+          .lineLimit(2)
+
         Text(item.value)
           .font(.system(size: 12))
           .padding(.top, 3)

@@ -13,6 +13,7 @@ struct Notifications {
   static let didCameraPassed = NSNotification.Name(rawValue: "didCameraPassed")
   static let didCompassPassed = NSNotification.Name(rawValue: "didCompassPassed")
   static let didMultitouchPassed = NSNotification.Name(rawValue: "didMultitouchPassed")
+  static let didInputConfirmation = NSNotification.Name(rawValue: "didInputConfirmation")
 }
 
 extension NSNotification.Name {

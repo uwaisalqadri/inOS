@@ -13,11 +13,13 @@ public protocol AssessmentDriver {
   var assessments: [Assessment: Any] { get }
   
   func startAssessment(for type: Assessment, completion: (() -> Void)?)
+  func startAssessment(for type: Assessment, completion: ((Any?) -> Void)?)
   func stopAssessment(for type: Assessment)
 }
 
 public extension AssessmentDriver {
   func startAssessment(for type: Assessment, completion: (() -> Void)? = nil) { completion?() }
+  func startAssessment(for type: Assessment, completion: ((Any?) -> Void)? = nil) { completion?(nil) }
   func stopAssessment(for type: Assessment) {}
 }
 

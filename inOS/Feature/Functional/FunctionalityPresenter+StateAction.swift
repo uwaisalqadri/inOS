@@ -20,6 +20,8 @@ extension FunctionalityPresenter {
     var isMultitouchPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false
+    var inputValue = ""
+    var randomCount = 0
     var scrollIndex: Double = 0
     var allAssessments: [Assessment] = Assessment.allCases
     var passedAssessments: [Assessment: Bool] = [:] {
@@ -73,22 +75,7 @@ extension FunctionalityPresenter {
         lhs.description == rhs.description
       }
 
-      var description: String {
-        switch self {
-        case .phone:
-          return "Phone Specification"
-        case .cpu:
-          return "CPU Specification"
-        case .memory:
-          return "Memory Specification"
-        case .storage:
-          return "Storage Specification"
-        case .battery:
-          return "Battery Specification"
-        case .other:
-          return "Other Specification"
-        }
-      }
+      var description: String { String(describing: Self.self) }
 
       var icon: String {
         switch self {
