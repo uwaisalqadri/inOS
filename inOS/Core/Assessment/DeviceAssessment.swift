@@ -69,9 +69,9 @@ public class DeviceAssessment: AssessmentDriver {
 
 public extension DeviceAssessment {
   var isJailbroken: Bool {
-    #if targetEnvironment(simulator)
+  #if targetEnvironment(simulator)
     return false
-    #else
+  #else
     let fileManager = FileManager.default
     
     if fileManager.fileExists(atPath: "/bin/bash") ||
@@ -84,7 +84,7 @@ public extension DeviceAssessment {
     } else {
       return false
     }
-    #endif
+  #endif
   }
   
   func measureStorageSpeed(completion: ((write: Double, speed: Double)) -> Void) {
@@ -105,7 +105,7 @@ public extension DeviceAssessment {
     let writeEndTime = Date()
     let writeTime = writeEndTime.timeIntervalSince(writeStartTime)
     let writeSpeed = Double(writeData.count) / writeTime / 1024 / 1024 // MB/s
-          
+    
     // Measure read speed
     let readStartTime = Date()
     do {
@@ -116,7 +116,7 @@ public extension DeviceAssessment {
     let readEndTime = Date()
     let readTime = readEndTime.timeIntervalSince(readStartTime)
     let readSpeed = Double(writeData.count) / readTime / 1024 / 1024 // MB/s
-                
+    
     // Clean up
     do {
       try fileManager.removeItem(at: writeURL)
@@ -141,7 +141,7 @@ extension UIDevice {
     
     return space
   }
-
+  
   var freeDiskSpaceInBytes: Int64 {
     if #available(iOS 11.0, *) {
       if let space = try? URL(fileURLWithPath: NSHomeDirectory() as String).resourceValues(forKeys: [
@@ -187,24 +187,17 @@ extension Device.CPU {
     case .a15Bionic: return "3.23 GHz"
     case .a16Bionic: return "3.46 GHz"
     case .a17Pro: return "3.78 GHz"
-    case .m1: return "M1"
-    case .m2: return "M2"
+    case .a18: return "3.8 GHz" // Hypothetical value
+    case .a18Pro: return "4.0 GHz" // Hypothetical value
+    case .m1: return "Apple M1"
+    case .m2: return "Apple M2"
+    case .m3: return "Apple M3" // Placeholder for next-generation M3 chip
+    case .m4: return "Apple M4" // Placeholder for next-generation M4 chip
     case .unknown: return "unknown"
     }
-    #elseif os(watchOS)
-    switch self {
-    case .s1: return "S1"
-    case .s1P: return "S1P"
-    case .s2: return "S2"
-    case .s3: return "S3"
-    case .s4: return "S4"
-    case .s5: return "S5"
-    case .s6: return "S6"
-    case .s7: return "S7"
-    case .s8: return "S8"
-    case .s9: return "S9"
-    case .unknown: return "unknown"
-    }
+    #else
+    return "N/A"
     #endif
   }
+  
 }

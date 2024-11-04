@@ -13,9 +13,19 @@ extension View {
     title: String,
     text: Binding<String>,
     placeholder: String = "",
-    action: @escaping (String) -> Void
+    onSubmit: @escaping (String) -> Void,
+    onRepeat: @escaping () -> Void
   ) -> some View {
-    self.modifier(TextFieldAlert(isPresented: isPresented, title: title, text: text, placeholder: placeholder, action: action))
+    self.modifier(
+      TextFieldAlert(
+        isPresented: isPresented,
+        title: title,
+        text: text,
+        placeholder: placeholder,
+        onSubmit: onSubmit,
+        onRepeat: onRepeat
+      )
+    )
   }
 }
 
@@ -24,58 +34,67 @@ struct TextFieldAlert: ViewModifier {
   let title: String
   @Binding var text: String
   let placeholder: String
-  let action: (String) -> Void
+  let onSubmit: (String) -> Void
+  let onRepeat: () -> Void
 
   func body(content: Content) -> some View {
-    ZStack(alignment: .center) {
+    ZStack(alignment: .top) {
       content.disabled(isPresented)
 
       if isPresented {
-        VStack {
+        VStack(spacing: 0) {
           Text(title)
             .font(.headline)
-            .padding()
+            .padding([.top, .horizontal], 20)
 
           TextField(placeholder, text: $text)
+            .multilineTextAlignment(.center)
             .keyboardType(.decimalPad)
             .textFieldStyle(.roundedBorder)
-            .padding()
-
+            .padding(.top, 18)
+            .padding(.horizontal, 12)
+            .padding(.bottom, 20)
+          
           Divider()
 
           HStack {
             Spacer()
-            Button {
-              withAnimation {
-                isPresented.toggle()
-              }
-            } label: {
-              Text("Cancel")
+            Button(action: {
+              onRepeat()
+            }) {
+              Text("Repeat")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .contentShape(.rect)
             }
-
             Spacer()
+            
             Divider()
+            
             Spacer()
-
-            Button() {
-              action(text)
+            Button(action: {
+              dismissKeyboard()
+              onSubmit(text)
               withAnimation {
                 isPresented.toggle()
               }
-            } label: {
+            }) {
               Text("Done")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .contentShape(.rect)
             }
             Spacer()
-          }
+          }.frame(height: 50)
         }
         .background(Blur())
-        .frame(width: 300, height: 200)
+        .frame(width: 300)
         .cornerRadius(20)
         .overlay(
           RoundedRectangle(cornerRadius: 20)
             .stroke(lineWidth: 0.5)
             .foregroundColor(.init(.lightGray).opacity(0.5))
         )
+        .padding(.top, 200)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
       }
     }
     .animation(.easeInOut, value: isPresented)
@@ -83,4 +102,26 @@ struct TextFieldAlert: ViewModifier {
       text = ""
     }
   }
+  
+  private func dismissKeyboard() {
+    UIView.animate(withDuration: 0.3) {
+      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+  }
+}
+
+#Preview {
+  Text("TIME")
+    .textFieldAlert(
+      isPresented: .constant(true),
+      title: "How many times?",
+      text: .constant("8"),
+      placeholder: "Enter your number",
+      onSubmit: { string in
+        print(string)
+      },
+      onRepeat: {
+        print("retry")
+      }
+    )
 }

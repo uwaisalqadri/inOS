@@ -275,14 +275,19 @@ extension FunctionalityPresenter {
         
       case .connector:
         drivers[.power]?.startAssessment(for: assessment) { [drivers] in
-          if let isCharging = drivers[.power]?.assessments[assessment] as? Bool {
+          if let isCharging = drivers[.power]?.hasAssessmentPassed[assessment] {
             continuation.yield(isCharging)
             continuation.finish()
           }
         }
         
       case .wirelessCharging:
-        break
+        drivers[.power]?.startAssessment(for: assessment) { [drivers] in
+          if let isCharging = drivers[.power]?.hasAssessmentPassed[assessment] {
+            continuation.yield(isCharging)
+            continuation.finish()
+          }
+        }
 
       case .torch:
         drivers[.physical]?.startAssessment(for: assessment) { [drivers] in

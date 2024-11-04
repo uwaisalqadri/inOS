@@ -300,6 +300,8 @@ extension Assessment {
       return "Rotate to landscape"
     case .connector:
       return "Connect cable to power source"
+    case .wirelessCharging:
+      return "Please charge with MagSafe"
     default:
       return ""
     }

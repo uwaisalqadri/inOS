@@ -140,9 +140,13 @@ struct FunctionalityView: View {
       isPresented: isFunctionalityPresented(in: [.vibration, .mainSpeaker, .earSpeaker]),
       title: "How many times?",
       text: $presenter.state.inputValue,
-      placeholder: "Enter your number",
-      action: { string in
+      placeholder: "Input here",
+      onSubmit: { string in
         Notifications.didInputConfirmation.post(with: Int(string))
+      },
+      onRepeat: {
+        let currentAssessment = presenter.state.currentAssessment.assessment
+        presenter.send(.start(assessment: currentAssessment))
       }
     )
     .fullScreenCover(isPresented: $presenter.state.isTouchscreenPresented) {

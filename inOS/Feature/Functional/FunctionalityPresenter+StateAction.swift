@@ -96,12 +96,12 @@ extension FunctionalityPresenter {
           return "internaldrive"
         case let .battery(percentage):
           switch percentage {
-          case ..<30:
-            return "battery.25"
-          case 30...70:
-            return "battery.50"
+//          case ..<30:
+//            return "battery.25"
+//          case 30...70:
+//            return "battery.50"
           default:
-            return "battery.100"
+            return "battery.0"
           }
         case .other:
           return "square.split.2x2.fill"

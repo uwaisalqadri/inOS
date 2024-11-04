@@ -58,7 +58,7 @@ public enum Assessment: String, CaseIterable, Codable {
       .wifi,
       .biometric,
       .accelerometer,
-      .barometer,
+//      .barometer,
       .bluetooth,
       .gps,
       .compass,

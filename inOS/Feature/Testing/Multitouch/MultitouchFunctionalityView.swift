@@ -10,54 +10,57 @@ import SwiftUI
 struct MultitouchFunctionalityView: View {
   @State private var circle1Color = Color.red
   @State private var circle2Color = Color.blue
-  @State private var message = "Touch both circles 3 times simultaneously"
-  @State private var touchCount = 0.0
-  @State private var combinations: [Side] = []
-
+  @State private var isCircle1Pressing = false
+  @State private var isCircle2Pressing = false
+  
   @StateObject private var timerPresenter = TimerCountdownPresenter()
-
+  
   var isPassed: Bool {
-    touchCount == 3.0 && combinations == [.left, .right, .left, .right, .left, .right]
+    isCircle1Pressing && isCircle2Pressing &&
+    [circle1Color, circle2Color] == [.green, .yellow]
   }
-
+  
   var body: some View {
     VStack {
       Spacer()
-
-      Text(message)
+      Text("Touch both circles 3 times simultaneously")
         .font(.headline)
         .padding()
-
+      
       HStack {
-        Button(action: {
-          touchCount += 0.5
-          combinations.append(.left)
-          checkIfBothTouched()
-          if touchCount == 1.5 {
+        Circle()
+          .fill(circle1Color)
+          .frame(width: 100, height: 100)
+          .scaleEffect(isCircle1Pressing ? 0.9 : 1.0)
+          .animation(.easeInOut(duration: 0.2), value: isCircle1Pressing)
+          .onLongPressGesture(minimumDuration: 4.0) {
+            circle1Color = .red
+          } onPressingChanged: { isPressing in
             circle1Color = .green
+            isCircle1Pressing = isPressing
+            checkIfBothTouched()
+            timerPresenter.isTimerPaused = isPressing
           }
-        }) {
-          Circle()
-            .fill(circle1Color)
-            .frame(width: 100, height: 100)
-        }
-
-        Button(action: {
-          touchCount += 0.5
-          combinations.append(.right)
-          checkIfBothTouched()
-          if touchCount == 3.0 {
+        
+        Spacer()
+        
+        Circle()
+          .fill(circle2Color)
+          .frame(width: 100, height: 100)
+          .scaleEffect(isCircle2Pressing ? 0.9 : 1.0)
+          .animation(.easeInOut(duration: 0.2), value: isCircle2Pressing)
+          .onLongPressGesture(minimumDuration: 4.0) {
+            circle2Color = .blue
+          } onPressingChanged: { isPressing in
             circle2Color = .yellow
+            isCircle2Pressing = isPressing
+            checkIfBothTouched()
+            timerPresenter.isTimerPaused = isPressing
           }
-        }) {
-          Circle()
-            .fill(circle2Color)
-            .frame(width: 100, height: 100)
-        }
-      }
-
+      }.padding([.top, .horizontal], 20)
+      
       Spacer()
-
+      
       TimerCountdownText(
         presenter: timerPresenter,
         successCondition: isPassed,
@@ -70,18 +73,20 @@ struct MultitouchFunctionalityView: View {
       )
       .countdown(10)
       .padding(.bottom, 18)
-
+      
     }
   }
-
+  
   private func checkIfBothTouched() {
-    print("TOUCHED \(touchCount)")
-    if isPassed {
-      message = "Both circles touched!"
-      Notifications.didMultitouchPassed.post(with: true)
+    delay(bySeconds: 2.0) {
+      if isPassed {
+        Notifications.didMultitouchPassed.post(with: isPassed)
+      }
     }
   }
+}
 
+extension MultitouchFunctionalityView {
   enum Side {
     case right
     case left

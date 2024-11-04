@@ -29,7 +29,7 @@ struct TimerCountdownText: View {
   var body: some View {
     Text("\(countdown)")
       .font(.system(size: presenter.fontSize, weight: .bold))
-      .foregroundColor(Color.black.opacity(0.4))
+      .opacity(0.4)
       .onDisappear {
         presenter.timer?.invalidate()
       }

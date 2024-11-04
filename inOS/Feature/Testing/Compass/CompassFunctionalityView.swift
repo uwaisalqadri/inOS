@@ -16,7 +16,6 @@ struct CompassFunctionalityView: View {
       VStack {
         Text("Rotate Full Circle")
           .font(.system(size: 20, weight: .bold))
-          .foregroundColor(.black)
           .frame(maxWidth: .infinity)
           .padding(.horizontal)
           .padding(.top, 40)

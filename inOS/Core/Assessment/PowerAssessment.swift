@@ -17,9 +17,11 @@ public class PowerAssessment: NSObject, AssessmentDriver {
 
   public override init() {}
   
-  public var hasAssessmentPassed: [Assessment: Bool] {
-    return [.batteryStatus: true]
-  }
+  public var hasAssessmentPassed: [Assessment: Bool] = [
+    .batteryStatus: false,
+    .connector: false,
+    .wirelessCharging: false
+  ]
   
   public var assessments: [Assessment: Any] = [:]
   
@@ -31,7 +33,7 @@ public class PowerAssessment: NSObject, AssessmentDriver {
     case .connector:
       NotificationCenter.default.publisher(for: UIDevice.batteryStateDidChangeNotification)
         .sink { [weak self] notification in
-          self?.assessments[.connector] = UIDevice.current.batteryState == .charging
+          self?.hasAssessmentPassed[.connector] = UIDevice.current.batteryState == .charging
           completion?()
         }
         .store(in: &cancellables)
@@ -51,6 +53,15 @@ public class PowerAssessment: NSObject, AssessmentDriver {
         percentage: batteryLevel
       )
       completion?()
+      
+    case .wirelessCharging:
+      let batteryState = UIDevice.current.batteryState
+      NotificationCenter.default.publisher(for: UIDevice.batteryStateDidChangeNotification)
+        .sink { [weak self] notification in
+          self?.hasAssessmentPassed[.wirelessCharging] = batteryState == .charging && batteryState == .unplugged
+          completion?()
+        }
+        .store(in: &cancellables)
       
     default:
       break
