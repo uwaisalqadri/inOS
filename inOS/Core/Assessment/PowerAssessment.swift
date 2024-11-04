@@ -13,6 +13,7 @@ public class PowerAssessment: NSObject, AssessmentDriver {
   private var batteryLevel: Float = 0.0
   private var remainingTimeInMinutes: Float = 0.0
   private var timer = Timer()
+  private var onBatteryUpdated: (() -> Void)?
   private var cancellables = Set<AnyCancellable>()
 
   public override init() {}
@@ -28,6 +29,8 @@ public class PowerAssessment: NSObject, AssessmentDriver {
   public func startAssessment(for type: Assessment, completion: (() -> Void)? = nil) {
     UIDevice.current.isBatteryMonitoringEnabled = true
     guard UIDevice.current.isBatteryMonitoringEnabled else { return }
+    
+    self.onBatteryUpdated = completion
     
     switch type {
     case .connector:
@@ -85,6 +88,7 @@ extension PowerAssessment {
     if var battery = assessments[.batteryStatus] as? Battery {
       battery.remainingTime = "\(remainingTimeInMinutes)"
       battery.percentage = batteryAfterInterval
+//      onBatteryUpdated?()
     }
   }
 }

@@ -302,7 +302,7 @@ extension FunctionalityPresenter {
   }
   
   private func loadDeviceStatus() {
-    state.deviceStatuses = []
+    state.deviceStatuses.removeAll()
     
     if let cpu = drivers[.device]?.assessments[.cpu] as? CPUInformation {
       state.deviceStatuses.append(.init(.cpu, value: cpu.frequency ?? "-"))

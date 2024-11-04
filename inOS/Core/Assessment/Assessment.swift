@@ -70,7 +70,7 @@ public enum Assessment: String, CaseIterable, Codable {
       .rotation,
       .microphone,
       .connector,
-      .wirelessCharging
+//      .wirelessCharging
     ]
     
     return allCases

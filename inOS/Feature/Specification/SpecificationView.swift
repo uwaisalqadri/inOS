@@ -28,10 +28,11 @@ struct SpecificationView: View {
           .fontWeight(.bold)
           .frame(maxWidth: .infinity, alignment: .leading)
       }
-      .padding()
+      .padding(.horizontal, 16)
       .background(Color.gray.opacity(0.1))
       .clipShape(RoundedRectangle(cornerRadius: 14))
       .frame(height: 50)
+      .padding(.horizontal, 16)
       
       List(models) { model in
         HStack {
@@ -41,11 +42,12 @@ struct SpecificationView: View {
             .bold()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding(.horizontal, 16)
         .padding(.vertical, 4)
       }
       .listStyle(.plain)
     }
-    .padding(16)
+    .padding(.top, 16)
     .navigationTitle(Device.current.safeDescription)
   }
 }

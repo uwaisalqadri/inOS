@@ -59,7 +59,7 @@ extension Assessment {
     case .microphone:
       return "mic.fill"
     case .multitouch:
-      return "hand.raised.fill"
+      return "hand.raised"
     case .barometer:
       return "speedometer"
     case .compass:
@@ -134,7 +134,7 @@ extension Assessment {
     case .wirelessCharging:
       return "Wireless Charging"
     case .torch:
-      return "Flash"
+      return "Torch"
     }
   }
   
@@ -199,7 +199,7 @@ extension Assessment {
     case .wirelessCharging:
       return "Verify the wireless charging capability"
     case .torch:
-      return "Check Device's Flash"
+      return "Test the device torch"
     }
   }
   
