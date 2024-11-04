@@ -27,6 +27,7 @@ struct SpecificationView: View {
         Text("Specification")
           .fontWeight(.bold)
           .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(.leading, 10)
       }
       .padding(.horizontal, 16)
       .background(Color.gray.opacity(0.1))
@@ -41,6 +42,7 @@ struct SpecificationView: View {
           Text(model.value)
             .bold()
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 10)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 4)
@@ -48,7 +50,17 @@ struct SpecificationView: View {
       .listStyle(.plain)
     }
     .padding(.top, 16)
-    .navigationTitle(Device.current.safeDescription)
+    .toolbar {
+      ToolbarItem(placement: .principal) {
+        HStack(spacing: 4) {
+          Image(systemName: FunctionalityPresenter.Status.Specs.phone.icon)
+            .font(.system(size: 20))
+            .foregroundColor(.blue)
+          Text(Device.current.safeDescription)
+            .font(.system(size: 14, weight: .semibold))
+        }
+      }
+    }
   }
 }
 

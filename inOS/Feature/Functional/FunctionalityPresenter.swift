@@ -15,6 +15,7 @@ import Foundation
 class FunctionalityPresenter: ObservableObject {
 
   @Published var state = State()
+  private var assessmentTask: Task<Void, Never>?
 
   private lazy var drivers: [AssessmentTester.AssessmentDriverType: AssessmentDriver] = {
     let types: [AssessmentTester.AssessmentDriverType] = [.physical, .device, .connectivity, .power]
@@ -31,7 +32,7 @@ class FunctionalityPresenter: ObservableObject {
       loadDeviceStatus()
       
     case let .start(assessment):
-      Task {
+      assessmentTask = Task {
         await beginAssessment(for: assessment, isSerial: false)
       }
 
@@ -40,14 +41,16 @@ class FunctionalityPresenter: ObservableObject {
 
     case .runSerial:
       state.passedAssessments.removeAll()
-      Task {
+      assessmentTask = Task {
         await startAssessmentsSerialized()
       }
       
     case .terminateSerial:
-      cancellables.removeAll()
+      assessmentTask?.cancel()
+      assessmentTask = nil
       state.isSerialRunning = false
       state.currentAssessment.isRunning = false
+      state.scrollIndex = 0
       
     case let .shouldShow(assessment, isPresented):
       switch assessment {
@@ -74,6 +77,7 @@ extension FunctionalityPresenter {
 
     for assessment in Assessment.allCases {
       await beginAssessment(for: assessment, isSerial: true)
+      if Task.isCancelled { break }
     }
 
     state.isSerialRunning = false

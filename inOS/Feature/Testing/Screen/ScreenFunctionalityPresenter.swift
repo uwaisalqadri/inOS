@@ -15,6 +15,9 @@ class ScreenFunctionalityPresenter: ObservableObject {
 
   func send(_ action: Action) {
     switch action {
+    case let .onAppear(darkmode):
+      state.isDarkMode = darkmode
+      
     case let .handleDragGesture(gesture, geometry, onUpdateTimer, onResetTimer):
       handleDragGesture(
         gesture,
@@ -47,7 +50,7 @@ extension ScreenFunctionalityPresenter {
   private func handleTap(row: Int, column: Int, onResetTimer: () -> Void) {
     let index = indexFor(row: row, column: column)
     if state.boxes[index] == .blue {
-      state.boxes[index] = .white
+      state.boxes[index] = state.touchedColor
       onResetTimer()
     }
   }
@@ -62,7 +65,7 @@ extension ScreenFunctionalityPresenter {
     let boxIndex = self.indexFor(row: yPosition, column: xPosition)
 
     if state.boxes[boxIndex] == .blue {
-      state.boxes[boxIndex] = .white
+      state.boxes[boxIndex] = state.touchedColor
       onResetTimer()
     } else {
       onUpdateTimer()

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ScreenFunctionalityView: View {
+  @AppStorage("isDarkMode") var isDarkMode: Bool = false
   @StateObject var presenter = ScreenFunctionalityPresenter()
   @StateObject var timerPresenter = TimerCountdownPresenter()
 
@@ -35,7 +36,9 @@ struct ScreenFunctionalityView: View {
           }
         }
       }
-      .background(Color.white)
+      .onAppear {
+        presenter.send(.onAppear(darkmode: isDarkMode))
+      }
       .gesture(
         DragGesture(minimumDistance: 0)
           .onChanged { gesture in
@@ -61,7 +64,7 @@ struct ScreenFunctionalityView: View {
     .overlay(
       TimerCountdownText(
         presenter: timerPresenter,
-        successCondition: presenter.state.boxes.allSatisfy({ $0 == .white }),
+        successCondition: presenter.state.boxes.allSatisfy({ $0 == presenter.state.touchedColor }),
         onSuccess: {
           presenter.send(.success)
         },
