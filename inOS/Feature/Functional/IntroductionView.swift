@@ -12,6 +12,12 @@ struct IntroductionView: View {
   
   var body: some View {
     VStack(spacing: 20) {
+      Capsule()
+        .fill(Color(.lightGray))
+        .frame(width: 100, height: 6)
+        .opacity(0.2)
+        .padding(.bottom, -20)
+      
       if let icon = Bundle.main.icon {
         Image(uiImage: icon)
           .resizable()
@@ -32,6 +38,8 @@ struct IntroductionView: View {
       Text("Easily run tests to make sure your device is in top shape!")
         .font(.body)
         .multilineTextAlignment(.center)
+        .lineLimit(nil)
+        .fixedSize(horizontal: false, vertical: true)
         .padding(.horizontal)
         .padding(.top, -16)
       
