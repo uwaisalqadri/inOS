@@ -22,6 +22,7 @@
 		919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EA2CCD6CF300B84F3C /* SpecificationView.swift */; };
 		919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EE2CCD714D00B84F3C /* IntroductionView.swift */; };
 		919632F12CCD73C000B84F3C /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632F02CCD73C000B84F3C /* Bundle.swift */; };
+		91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */; };
 		CE066E142BAB2A7F007C7014 /* Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E132BAB2A7F007C7014 /* Assessment.swift */; };
 		CE066E162BAB2B13007C7014 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */; };
 		CE066E182BAB2B25007C7014 /* VolumeButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E172BAB2B25007C7014 /* VolumeButtonHandler.swift */; };
@@ -87,6 +88,7 @@
 		919632EA2CCD6CF300B84F3C /* SpecificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationView.swift; sourceTree = "<group>"; };
 		919632EE2CCD714D00B84F3C /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 		919632F02CCD73C000B84F3C /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFunctionalityViewController.swift; sourceTree = "<group>"; };
 		CE066E132BAB2A7F007C7014 /* Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assessment.swift; sourceTree = "<group>"; };
 		CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		CE066E172BAB2B25007C7014 /* VolumeButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeButtonHandler.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				91778CCF2CCDE0EC00B70FF4 /* CameraFunctionalityView.swift */,
+				91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */,
 				CE066E202BAB2B98007C7014 /* Storage.swift in Sources */,
 				86985E292C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift in Sources */,
+				91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */,
 				919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */,
 				CE40ADD12B2BDB8700F76E3C /* AssessmentTester.swift in Sources */,
 			);

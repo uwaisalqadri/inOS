@@ -29,7 +29,7 @@ class DeadpixelFunctionalityPresenter: ObservableObject {
 extension DeadpixelFunctionalityPresenter {
   private func setTimer() {
     var timer: Timer?
-    timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+    timer = Timer.scheduledTimer(withTimeInterval: 8, repeats: true) { _ in
       if self.state.index < 4 {
         self.state.index += 1
       } else {

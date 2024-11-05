@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct DeadpixelFunctionalityView: View {
   @StateObject var presenter: DeadpixelFunctionalityPresenter
@@ -39,6 +40,18 @@ struct DeadpixelFunctionalityView: View {
     }
     .onTapGesture {
       presenter.send(.failed)
+    }
+    .toast(
+      isPresenting: .constant(true),
+      duration: .infinity,
+      tapToDismiss: true,
+      offsetY: 60
+    ) {
+      AlertToast(
+        displayMode: .hud,
+        type: .regular,
+        title: "Tap if you spot any deadpixel"
+      )
     }
   }
 }
