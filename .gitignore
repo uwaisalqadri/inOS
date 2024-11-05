@@ -223,3 +223,6 @@ Framework
 Pods/*
 *.xcodeproj/
 *.xcworkspace/
+
+*.xcodeproj/*
+*.xcworkspace/*

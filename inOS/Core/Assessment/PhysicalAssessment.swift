@@ -70,7 +70,7 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
   public func startAssessment(for type: Assessment, completion: (() -> Void)? = nil) {
     switch type {
     case .silentSwitch:
-      Mute.shared = Mute()
+      Mute.shared = .init()
       Mute.shared.notify = { [weak self] muteStatus in
         guard let self = self else { return }
         if let currentMuteStatus = self.currentMuteStatus, currentMuteStatus != muteStatus {
@@ -86,12 +86,14 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
       Mute.shared.check()
       
     case .volumeUp:
+      VolumeButtonHandler.shared = .init()
       VolumeButtonHandler.shared.volumeUpHandler = { [weak self] in
         self?.assessments[.volumeUp] = true
         completion?()
       }
       
     case .volumeDown:
+      VolumeButtonHandler.shared = .init()
       VolumeButtonHandler.shared.volumeDownHandler = { [weak self] in
         self?.assessments[.volumeDown] = true
         completion?()
@@ -215,8 +217,10 @@ public class PhysicalAssessment: NSObject, AssessmentDriver {
 
   public func stopAssessment(for type: Assessment) {
     switch type {
+    case .volumeUp, .volumeDown:
+      VolumeButtonHandler.shared = .init()
     case .silentSwitch:
-      Mute.shared = Mute()
+      Mute.shared = .init()
     case .proximity:
       UIDevice.current.isProximityMonitoringEnabled = false
     case .microphone:

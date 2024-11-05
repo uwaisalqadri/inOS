@@ -9,7 +9,7 @@ import AVFoundation
 import Foundation
 
 class VolumeButtonHandler: NSObject {
-  static let shared = VolumeButtonHandler()
+  static var shared = VolumeButtonHandler()
   
   private var audioLevel: Float = 0.0
   

@@ -203,6 +203,18 @@
 			path = Specification;
 			sourceTree = "<group>";
 		};
+		91CC41D52CDA8F5800D26AC0 /* Functional */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E5E842B49735B007EC804 /* Mute.swift */,
+				CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */,
+				CE066E172BAB2B25007C7014 /* VolumeButtonHandler.swift */,
+				CE066E2E2BAB2E16007C7014 /* BiometricAuthentication.swift */,
+				CE7592AB2BAB9DA300D59361 /* SpeechSynthesizer.swift */,
+			);
+			path = Functional;
+			sourceTree = "<group>";
+		};
 		CE066E1A2BAB2B71007C7014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,12 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				CE40ADD22B2BE5E800F76E3C /* Assessment */,
+				91CC41D52CDA8F5800D26AC0 /* Functional */,
 				CE066E1A2BAB2B71007C7014 /* Model */,
-				CE8E5E842B49735B007EC804 /* Mute.swift */,
-				CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */,
-				CE066E172BAB2B25007C7014 /* VolumeButtonHandler.swift */,
-				CE066E2E2BAB2E16007C7014 /* BiometricAuthentication.swift */,
-				CE7592AB2BAB9DA300D59361 /* SpeechSynthesizer.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
