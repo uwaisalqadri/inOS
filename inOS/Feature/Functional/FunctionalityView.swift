@@ -13,9 +13,9 @@ import AlertToast
 
 struct FunctionalityView: View {
 
-  @StateObject var presenter: FunctionalityPresenter
-  @AppStorage("isIntroduction") var isIntroduction: Bool = true
-  @AppStorage("isDarkMode") var isDarkMode: Bool = false
+  @StateObject private var presenter: FunctionalityPresenter
+  @State private var isIntroduction: Bool = true
+  @AppStorage("isDarkMode") private var isDarkMode: Bool = false
 
   @Environment(\.presentationMode) var presentationMode
 
@@ -71,17 +71,12 @@ struct FunctionalityView: View {
           }
         }
         
-        let rotation: Double = presenter.state.isSerialRunning ? 360 : 0
-        Image(systemName: "goforward")
-          .font(.system(size: 40))
-          .foregroundColor(.blue)
-          .rotationEffect(.degrees(rotation))
-          .animation(
-            presenter.state.isSerialRunning ? .linear(duration: 1).repeatForever(autoreverses: false) : .default,
-            value: rotation
-          )
+        ActivityIndicator(style: .large)
           .padding(16)
-          .background(Blur(style: .systemThinMaterial).clipShape(.circle))
+          .background(
+            Blur(style: .systemThinMaterial)
+              .clipShape(.rect(cornerRadius: 12))
+          )
           .padding(.trailing, 20)
           .padding(.bottom, 10)
           .opacity(presenter.state.isSerialRunning ? 1.0 : 0.0)
