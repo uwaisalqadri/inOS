@@ -22,6 +22,11 @@
 		919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EA2CCD6CF300B84F3C /* SpecificationView.swift */; };
 		919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EE2CCD714D00B84F3C /* IntroductionView.swift */; };
 		919632F12CCD73C000B84F3C /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632F02CCD73C000B84F3C /* Bundle.swift */; };
+		91B3C4112CF7763D00DE15A1 /* BenchmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4102CF7763D00DE15A1 /* BenchmarkView.swift */; };
+		91B3C4132CF7764500DE15A1 /* BenchmarkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4122CF7764500DE15A1 /* BenchmarkPresenter.swift */; };
+		91B3C4152CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift */; };
+		91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */; };
+		91B3C41A2CF7789700DE15A1 /* ForceUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4192CF7789700DE15A1 /* ForceUpdateView.swift */; };
 		91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */; };
 		CE066E142BAB2A7F007C7014 /* Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E132BAB2A7F007C7014 /* Assessment.swift */; };
 		CE066E162BAB2B13007C7014 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */; };
@@ -88,6 +93,11 @@
 		919632EA2CCD6CF300B84F3C /* SpecificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationView.swift; sourceTree = "<group>"; };
 		919632EE2CCD714D00B84F3C /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 		919632F02CCD73C000B84F3C /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		91B3C4102CF7763D00DE15A1 /* BenchmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkView.swift; sourceTree = "<group>"; };
+		91B3C4122CF7764500DE15A1 /* BenchmarkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkPresenter.swift; sourceTree = "<group>"; };
+		91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BenchmarkPresenter+StateAction.swift"; sourceTree = "<group>"; };
+		91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceView.swift; sourceTree = "<group>"; };
+		91B3C4192CF7789700DE15A1 /* ForceUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateView.swift; sourceTree = "<group>"; };
 		91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFunctionalityViewController.swift; sourceTree = "<group>"; };
 		CE066E132BAB2A7F007C7014 /* Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assessment.swift; sourceTree = "<group>"; };
 		CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
@@ -203,6 +213,25 @@
 			path = Specification;
 			sourceTree = "<group>";
 		};
+		91B3C40F2CF7762800DE15A1 /* Benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				91B3C4102CF7763D00DE15A1 /* BenchmarkView.swift */,
+				91B3C4122CF7764500DE15A1 /* BenchmarkPresenter.swift */,
+				91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift */,
+			);
+			path = Benchmark;
+			sourceTree = "<group>";
+		};
+		91B3C4162CF7787F00DE15A1 /* Maintenance */ = {
+			isa = PBXGroup;
+			children = (
+				91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */,
+				91B3C4192CF7789700DE15A1 /* ForceUpdateView.swift */,
+			);
+			path = Maintenance;
+			sourceTree = "<group>";
+		};
 		91CC41D52CDA8F5800D26AC0 /* Functional */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +261,8 @@
 		CE066E302BAB2E6D007C7014 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				91B3C4162CF7787F00DE15A1 /* Maintenance */,
+				91B3C40F2CF7762800DE15A1 /* Benchmark */,
 				CE766A222C8DB42000B54877 /* Functional */,
 				919632E92CCD6CE300B84F3C /* Specification */,
 				91011DCB2CD1182400725E46 /* Testing */,
@@ -499,17 +530,22 @@
 				91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */,
 				CE766A262C8DB56600B54877 /* ScreenFunctionalityView.swift in Sources */,
 				CE066E142BAB2A7F007C7014 /* Assessment.swift in Sources */,
+				91B3C4112CF7763D00DE15A1 /* BenchmarkView.swift in Sources */,
 				CE40ADD42B2BE60000F76E3C /* DeviceAssessment.swift in Sources */,
+				91B3C4132CF7764500DE15A1 /* BenchmarkPresenter.swift in Sources */,
 				861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */,
+				91B3C4152CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift in Sources */,
 				919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */,
 				91011DCA2CCE90E700725E46 /* DashboardStatusView.swift in Sources */,
 				86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */,
 				CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */,
+				91B3C41A2CF7789700DE15A1 /* ForceUpdateView.swift in Sources */,
 				CE91C21D2B4E9DC700E1C413 /* FunctionalityRow.swift in Sources */,
 				CE766A2C2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift in Sources */,
 				CE066E282BAB2BD1007C7014 /* PermissionFailed.swift in Sources */,
 				CE066E182BAB2B25007C7014 /* VolumeButtonHandler.swift in Sources */,
 				CE066E262BAB2BC2007C7014 /* DeviceBasicInformation.swift in Sources */,
+				91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */,
 				CE8E5E8C2B497FD5007EC804 /* FunctionalityPresenter.swift in Sources */,
 				CE40ADD62B2BE61D00F76E3C /* ConnectivityAssessment.swift in Sources */,
 				CE066E162BAB2B13007C7014 /* SpeechRecognizer.swift in Sources */,

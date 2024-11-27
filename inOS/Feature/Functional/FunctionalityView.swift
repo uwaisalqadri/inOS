@@ -86,13 +86,18 @@ struct FunctionalityView: View {
       }
       .toolbar {
         ToolbarItem(placement: .topBarLeading) {
-          let device = presenter.state.deviceStatus
-          HStack(spacing: 4) {
-            Image(systemName: device.spec.icon)
-              .font(.system(size: 20))
-              .foregroundColor(.blue)
-            Text(device.value)
-              .font(.system(size: 14, weight: .semibold))
+          Menu(content: {
+            Label("Benchmark", systemImage: "chart.bar")
+              .buttonStyle(.plain)
+          }) {
+            let device = presenter.state.deviceStatus
+            HStack(spacing: 4) {
+              Image(systemName: device.spec.icon)
+                .font(.system(size: 20))
+                .foregroundColor(.blue)
+              Text(device.value)
+                .font(.system(size: 14, weight: .semibold))
+            }
           }
         }
         
