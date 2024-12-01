@@ -9,13 +9,16 @@ import Foundation
 
 extension Float {
   func toPercentage() -> String {
-    // Ensure the value is within the valid range
     let clampedValue = max(0.0, min(1.0, self))
-    
-    // Convert to percentage
     let percentage = Int(clampedValue * 100)
-    
-    // Create a string representation with the percentage symbol
+    return "\(percentage)%"
+  }
+}
+
+extension Double {
+  func toPercentage() -> String {
+    let clampedValue = max(0.0, min(1.0, self))
+    let percentage = Int(clampedValue * 100)
     return "\(percentage)%"
   }
 }

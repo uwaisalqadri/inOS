@@ -55,8 +55,3 @@ struct FunctionalityRow: View {
     }.buttonStyle(.plain)
   }
 }
-
-#Preview {
-  FunctionalityRow(item: .batteryStatus, isPassed: false)
-    .frame(width: 200)
-}

@@ -77,7 +77,3 @@ struct ScreenFunctionalityView: View {
     )
   }
 }
-
-#Preview {
-  ScreenFunctionalityView()
-}

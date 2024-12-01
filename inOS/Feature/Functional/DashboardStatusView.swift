@@ -32,14 +32,6 @@ struct DashboardStatusView: View {
           }
         }
         .buttonStyle(.plain)
-        .background(
-          NavigationLink(
-            destination: SpecificationView(),
-            isActive: $isSpecificationPresented
-          ) {
-            EmptyView()
-          }
-        )
         
         if deviceStatuses.last != status {
           Spacer(minLength: 0)

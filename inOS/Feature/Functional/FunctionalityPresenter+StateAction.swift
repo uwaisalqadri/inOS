@@ -17,9 +17,11 @@ extension FunctionalityPresenter {
     var isDeadpixelPresented = false
     var isCompassPresented = false
     var isSpecificationPresented = false
+    var isBenchmarkPresented = false
     var isMultitouchPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false
+    var isIntroduction = true
     var inputValue = ""
     var randomCount = 0
     var scrollIndex: Double = 0

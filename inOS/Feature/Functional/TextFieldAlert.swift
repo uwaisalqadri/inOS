@@ -109,19 +109,3 @@ struct TextFieldAlert: ViewModifier {
     }
   }
 }
-
-#Preview {
-  Text("TIME")
-    .textFieldAlert(
-      isPresented: .constant(true),
-      title: "How many times?",
-      text: .constant("8"),
-      placeholder: "Enter your number",
-      onSubmit: { string in
-        print(string)
-      },
-      onRepeat: {
-        print("retry")
-      }
-    )
-}

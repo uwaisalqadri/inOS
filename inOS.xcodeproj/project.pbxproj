@@ -10,6 +10,8 @@
 		861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */; };
 		86985E292C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86985E282C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift */; };
 		86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */; };
+		86FF94812CF96D5F008F1FA6 /* NavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */; };
+		86FF94842CF9743C008F1FA6 /* Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF94822CF973C3008F1FA6 /* Previews.swift */; };
 		91011DCA2CCE90E700725E46 /* DashboardStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DC92CCE90E700725E46 /* DashboardStatusView.swift */; };
 		91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */; };
 		91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */; };
@@ -27,6 +29,7 @@
 		91B3C4152CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift */; };
 		91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */; };
 		91B3C41A2CF7789700DE15A1 /* ForceUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4192CF7789700DE15A1 /* ForceUpdateView.swift */; };
+		91B3C41C2CFCBDC800DE15A1 /* ProcessorUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C41B2CFCBDC800DE15A1 /* ProcessorUsage.swift */; };
 		91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */; };
 		CE066E142BAB2A7F007C7014 /* Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E132BAB2A7F007C7014 /* Assessment.swift */; };
 		CE066E162BAB2B13007C7014 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */; };
@@ -81,6 +84,8 @@
 		861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchFunctionalityView.swift; sourceTree = "<group>"; };
 		86985E282C86FF8900253A8A /* FunctionalityPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+StateAction.swift"; sourceTree = "<group>"; };
 		86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
+		86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModifier.swift; sourceTree = "<group>"; };
+		86FF94822CF973C3008F1FA6 /* Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Previews.swift; sourceTree = "<group>"; };
 		91011DC92CCE90E700725E46 /* DashboardStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStatusView.swift; sourceTree = "<group>"; };
 		91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityView.swift; sourceTree = "<group>"; };
 		91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityPresenter.swift; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 		91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BenchmarkPresenter+StateAction.swift"; sourceTree = "<group>"; };
 		91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceView.swift; sourceTree = "<group>"; };
 		91B3C4192CF7789700DE15A1 /* ForceUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateView.swift; sourceTree = "<group>"; };
+		91B3C41B2CFCBDC800DE15A1 /* ProcessorUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessorUsage.swift; sourceTree = "<group>"; };
 		91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFunctionalityViewController.swift; sourceTree = "<group>"; };
 		CE066E132BAB2A7F007C7014 /* Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assessment.swift; sourceTree = "<group>"; };
 		CE066E152BAB2B13007C7014 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 		86985E2C2C87072F00253A8A /* App */ = {
 			isa = PBXGroup;
 			children = (
+				86FF94822CF973C3008F1FA6 /* Previews.swift */,
 				CE40ADC32B2BD4D300F76E3C /* MainApp.swift */,
 			);
 			path = App;
@@ -254,6 +261,7 @@
 				CE066E252BAB2BC2007C7014 /* DeviceBasicInformation.swift */,
 				CE066E272BAB2BD1007C7014 /* PermissionFailed.swift */,
 				CE066E292BAB2BF5007C7014 /* BiometricFailedReason.swift */,
+				91B3C41B2CFCBDC800DE15A1 /* ProcessorUsage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				91778CD32CCE8ACF00B70FF4 /* Blur.swift */,
 				91011DD72CD1688400725E46 /* TimerCountdownText.swift */,
 				916F2A102CD9947D00CE3BFD /* ActivityIndicator.swift */,
+				86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -513,6 +522,7 @@
 				CE7592AC2BAB9DA300D59361 /* SpeechSynthesizer.swift in Sources */,
 				CE11C48A2BB1105700EC3028 /* Assessment+UI.swift in Sources */,
 				CE066E1C2BAB2B7E007C7014 /* Battery.swift in Sources */,
+				91B3C41C2CFCBDC800DE15A1 /* ProcessorUsage.swift in Sources */,
 				CE766A282C8DB62700B54877 /* ScreenFunctionalityPresenter.swift in Sources */,
 				CE8E5E852B49735B007EC804 /* Mute.swift in Sources */,
 				91778CD02CCDE0EC00B70FF4 /* CameraFunctionalityView.swift in Sources */,
@@ -548,7 +558,9 @@
 				91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */,
 				CE8E5E8C2B497FD5007EC804 /* FunctionalityPresenter.swift in Sources */,
 				CE40ADD62B2BE61D00F76E3C /* ConnectivityAssessment.swift in Sources */,
+				86FF94812CF96D5F008F1FA6 /* NavigationModifier.swift in Sources */,
 				CE066E162BAB2B13007C7014 /* SpeechRecognizer.swift in Sources */,
+				86FF94842CF9743C008F1FA6 /* Previews.swift in Sources */,
 				CE066E1E2BAB2B8B007C7014 /* CPUInformation.swift in Sources */,
 				CE766A332C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift in Sources */,
 				91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */,
@@ -732,7 +744,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uwaisalqadri.device.functionality;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uwaisalqadri.device.functionalities;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -777,7 +789,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.uwaisalqadri.device.functionality;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uwaisalqadri.device.functionalities;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

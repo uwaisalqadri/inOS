@@ -81,8 +81,7 @@ struct IntroductionView: View {
         
         Image(systemName: "arrow.right")
           .font(.system(size: 20))
-          .foregroundColor(.black)
-        
+
         Image(systemName: "faceid")
           .font(.system(size: 30))
           .foregroundColor(.blue)
@@ -95,21 +94,29 @@ struct IntroductionView: View {
       
       Spacer()
       
-      Button(action: onStart) {
-        Text("Get Started")
-          .font(.system(size: 18, weight: .medium))
-          .foregroundColor(.white)
-          .padding(.vertical, 12)
-          .frame(maxWidth: .infinity)
-          .background(Color.blue)
-          .clipShape(.capsule)
-      }
+      PrimaryButton(
+        title: "Get Started",
+        onClick: onStart
+      )
       .padding(.top, 20)
     }
     .padding()
   }
 }
 
-#Preview {
-  IntroductionView { }
+struct PrimaryButton: View {
+  var title: String
+  var onClick: () -> Void
+
+  var body: some View {
+    Button(action: onClick) {
+      Text(title)
+        .font(.system(size: 18, weight: .semibold))
+        .foregroundColor(.white)
+        .padding(.vertical, 12)
+        .frame(maxWidth: .infinity)
+        .background(Color.blue)
+        .clipShape(.capsule)
+    }
+  }
 }

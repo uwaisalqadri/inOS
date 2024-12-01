@@ -55,7 +55,3 @@ struct DeadpixelFunctionalityView: View {
     }
   }
 }
-
-#Preview {
-  DeadpixelFunctionalityView()
-}

@@ -14,7 +14,6 @@ import AlertToast
 struct FunctionalityView: View {
 
   @StateObject private var presenter: FunctionalityPresenter
-  @State private var isIntroduction: Bool = true
   @AppStorage("isDarkMode") private var isDarkMode: Bool = false
 
   @Environment(\.presentationMode) var presentationMode
@@ -69,6 +68,12 @@ struct FunctionalityView: View {
               proxy.scrollTo(index)
             }
           }
+          .navigation(isPresented: $presenter.state.isSpecificationPresented) {
+            SpecificationView()
+          }
+          .navigation(isPresented: $presenter.state.isBenchmarkPresented) {
+            BenchmarkView()
+          }
         }
         
         ActivityIndicator(style: .large)
@@ -86,10 +91,11 @@ struct FunctionalityView: View {
       }
       .toolbar {
         ToolbarItem(placement: .topBarLeading) {
-          Menu(content: {
-            Label("Benchmark", systemImage: "chart.bar")
-              .buttonStyle(.plain)
-          }) {
+          Menu {
+            Button("Benchmark", systemImage: "speedometer") {
+              presenter.state.isBenchmarkPresented = true
+            }
+          } label: {
             let device = presenter.state.deviceStatus
             HStack(spacing: 4) {
               Image(systemName: device.spec.icon)
@@ -98,7 +104,7 @@ struct FunctionalityView: View {
               Text(device.value)
                 .font(.system(size: 14, weight: .semibold))
             }
-          }
+          }.foregroundColor(isDarkMode ? .white : .black)
         }
         
         ToolbarItem(placement: .topBarTrailing) {
@@ -128,9 +134,9 @@ struct FunctionalityView: View {
         }
       }
     }
-    .sheet(isPresented: $isIntroduction) {
+    .sheet(isPresented: $presenter.state.isIntroduction) {
       IntroductionView(onStart: {
-        isIntroduction = false
+        presenter.state.isIntroduction = false
       })
     }
     .alert(isPresented: $presenter.state.isConfirmSerial) {
