@@ -56,41 +56,27 @@ struct BenchmarkView: View {
   }
   
   var body: some View {
-    ScrollView(.vertical) {
-      VStack(spacing: 0) {
-        ForEach(benchmarks, id: \.self) { benchmark in
-          VStack {
-            Image(systemName: benchmark.icon)
-              .font(.system(size: 50))
-              .foregroundColor(.blue)
-            
-            if let cpu = assessment.driver.assessments[.cpu] as? CPUInformation, let usage = cpu.usage {
-              Text(usage.system.toPercentage())
-                .font(.system(size: 24, weight: .bold))
-                .padding(.top, 6)
-            } else {
-              Text("nil")
-                .font(.system(size: 24, weight: .bold))
-                .padding(.top, 6)
-            }
-            
-            Text(benchmark.title)
-              .font(.system(size: 16, weight: .medium))
-          }
-          .frame(maxWidth: .infinity, minHeight: 200)
-          .padding()
-          .background(
-            Blur().cornerRadius(12)
-          )
+    VStack(spacing: 0) {
+      ForEach(benchmarks, id: \.self) { benchmark in
+        VStack {
+          Image(systemName: benchmark.icon)
+            .font(.system(size: 50))
+            .foregroundColor(.blue)
+          
+          Text(benchmark.value)
+            .font(.system(size: 24, weight: .bold))
+            .padding(.top, 6)
+          
+          Text(benchmark.title)
+            .font(.system(size: 16, weight: .medium))
         }
-        .padding([.top, .horizontal], 12)
-        
-  //        PrimaryButton(title: "Perform Intense Test") {
-  //
-  //        }
-  //        .padding(.horizontal, 20)
-  //        .padding(.bottom, 20)
+        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height / 3)
+        .padding()
+        .background(
+          Blur().cornerRadius(12)
+        )
       }
+      .padding([.top, .horizontal], 12)
     }
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {

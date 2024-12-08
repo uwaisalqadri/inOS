@@ -17,8 +17,7 @@ extension Float {
 
 extension Double {
   func toPercentage() -> String {
-    let clampedValue = max(0.0, min(1.0, self))
-    let percentage = Int(clampedValue * 100)
+    let percentage = self * 100
     return "\(percentage)%"
   }
 }
