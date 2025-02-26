@@ -35,6 +35,8 @@ extension FunctionalityPresenter {
     var isCompassPresented = false
     var isSpecificationPresented = false
     var isBenchmarkPresented = false
+    var isHealthPresented = false
+    var isDroidMonitorPresented = false
     var isMultitouchPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false

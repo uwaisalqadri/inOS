@@ -22,6 +22,7 @@ struct DeviceView: View {
       Text(Device.current.safeDescription)
         .font(.system(size: 14, weight: .semibold))
     }
+    .foregroundColor(isDarkMode ? .white : .black)
     .padding(.all, 3)
     .overlay(
       Group {

@@ -73,6 +73,12 @@ struct FunctionalityView: View {
           .navigation(isPresented: $presenter.state.isBenchmarkPresented) {
             BenchmarkView()
           }
+          .navigation(isPresented: $presenter.state.isDroidMonitorPresented) {
+            MonitorView()
+          }
+          .navigation(isPresented: $presenter.state.isHealthPresented) {
+            MonitorView()
+          }
         }
         
         ActivityIndicator(style: .large)
@@ -90,12 +96,19 @@ struct FunctionalityView: View {
       }
       .toolbar {
         ToolbarItem(placement: .topBarLeading) {
-          DeviceView(
-            isShimmer: true,
-            onTapGesture: {
+          Menu {
+            Button("Benchmark", systemImage: "speedometer") {
               presenter.state.isBenchmarkPresented = true
             }
-          )
+            Button("Health", systemImage: "stethoscope") {
+              presenter.state.isHealthPresented = true
+            }
+            Button("Android Monitor", systemImage: "robotic.vacuum") {
+              presenter.state.isDroidMonitorPresented = true
+            }
+          } label: {
+            DeviceView(isShimmer: true)
+          }.buttonStyle(.plain)
         }
         
         ToolbarItem(placement: .topBarTrailing) {
