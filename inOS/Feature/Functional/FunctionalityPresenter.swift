@@ -87,15 +87,22 @@ extension FunctionalityPresenter {
   }
 
   func beginAssessment(for assessment: Assessment, isSerial: Bool) async {
-    state.currentAssessment = CurrentAssessment(assessment, !assessment.testingMessage.isEmpty, true)
+    withAnimation(.easeIn) {
+      state.currentAssessment = CurrentAssessment(assessment, !assessment.testingMessage.isEmpty, true)
+    }
     state.isAssessmentPassed = false
     state.isSerialRunning = true
 
     do {
-      try await Task.sleep(nanoseconds: 2_000_000_000)
+      if state.undelayedAssessments.contains(assessment) == false {
+        try await Task.sleep(nanoseconds: 2_000_000_000)
+      }
+      
       for try await isAssessmentPassed in streamAssessment(for: assessment) {
-        state.currentAssessment = CurrentAssessment(assessment, false, false)
-        state.isAssessmentPassed = isAssessmentPassed
+        withAnimation(.easeOut) {
+          state.currentAssessment = CurrentAssessment(assessment, false, false)
+          state.isAssessmentPassed = isAssessmentPassed
+        }
         state.passedAssessments[assessment] = isAssessmentPassed
       }
     } catch {

@@ -52,6 +52,7 @@ extension FunctionalityPresenter {
     var allAssessments: [Assessment] {
       Assessment.allEnabledCases(remoteConfig: remoteConfig)
     }
+    var undelayedAssessments: [Assessment] = [.volumeUp, .volumeDown, .silentSwitch, .camera, .vibration, .mainSpeaker, .earSpeaker, .microphone, .connector]
     var toastContents: (finished: String, testing: String) {
       let assessment = currentAssessment.assessment
       return (assessment.finishedMessage, assessment.testingMessage)
