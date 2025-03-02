@@ -10,14 +10,14 @@ import DeviceKit
 import CoreMotion
 import Combine
 import AlertToast
+import inCore
 
 struct FunctionalityView: View {
 
   @StateObject private var presenter: FunctionalityPresenter
   @AppStorage("isDarkMode") private var isDarkMode: Bool = false
-
   @Environment(\.presentationMode) var presentationMode
-
+  
   init() {
     _presenter = StateObject(
       wrappedValue: FunctionalityPresenter()
@@ -40,8 +40,10 @@ struct FunctionalityView: View {
                   VStack(spacing: 12) {
                     ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { index, item in
                       let isPassed = presenter.state.passedAssessments[item]
+                      let currentAssessment = presenter.state.currentAssessment
                       FunctionalityRow(
                         item: item,
+                        isTesting: currentAssessment.isRunning && currentAssessment.assessment != item,
                         isPassed: isPassed,
                         onTestFunction: {
                           presenter.send(.start(assessment: item))
@@ -162,7 +164,7 @@ struct FunctionalityView: View {
       CompassFunctionalityView()
     }
     .toast(
-      isPresenting: $presenter.state.currentAssessment.isRunning,
+      isPresenting: $presenter.state.currentAssessment.isTesting,
       duration: .infinity,
       tapToDismiss: true,
       offsetY: 60

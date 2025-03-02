@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 extension View {
   public func textFieldAlert(
@@ -49,11 +50,12 @@ struct TextFieldAlert: ViewModifier {
 
           TextField(placeholder, text: $text)
             .multilineTextAlignment(.center)
-            .keyboardType(.decimalPad)
+            .keyboardType(.numberPad)
             .textFieldStyle(.roundedBorder)
             .padding(.top, 18)
             .padding(.horizontal, 12)
             .padding(.bottom, 20)
+            .onReceive(Just(text)) { _ in limitText(1) }
           
           Divider()
 
@@ -97,9 +99,16 @@ struct TextFieldAlert: ViewModifier {
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
       }
     }
+    .background(Color.clear)
     .animation(.easeInOut, value: isPresented)
     .onChange(of: isPresented) { _ in
       text = ""
+    }
+  }
+  
+  private func limitText(_ upper: Int) {
+    if text.count > upper {
+      text = String(text.prefix(upper))
     }
   }
   

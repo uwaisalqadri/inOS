@@ -52,6 +52,7 @@ class FunctionalityPresenter: ObservableObject {
       assessmentTask = nil
       state.isSerialRunning = false
       state.currentAssessment.isRunning = false
+      state.currentAssessment.isTesting = false
       state.scrollIndex = 0
       
     case let .shouldShow(assessment, isPresented):
@@ -86,26 +87,30 @@ extension FunctionalityPresenter {
   }
 
   func beginAssessment(for assessment: Assessment, isSerial: Bool) async {
-    state.currentAssessment = (assessment, !assessment.testingMessage.isEmpty)
+    state.currentAssessment = CurrentAssessment(assessment, !assessment.testingMessage.isEmpty, true)
     state.isAssessmentPassed = false
+    state.isSerialRunning = true
 
     do {
+      try await Task.sleep(nanoseconds: 2_000_000_000)
       for try await isAssessmentPassed in streamAssessment(for: assessment) {
-        state.currentAssessment = (assessment, false)
+        state.currentAssessment = CurrentAssessment(assessment, false, false)
         state.isAssessmentPassed = isAssessmentPassed
         state.passedAssessments[assessment] = isAssessmentPassed
       }
     } catch {
+      state.isAssessmentPassed = false
       state.passedAssessments[assessment] = false
     }
+    
+    state.isSerialRunning = false
     
     UserDefaults.standard.set(state.passedAssessments.map {
       AssessmentPersisted(assessmentKey: $0.key.rawValue, isPassed: $0.value)
     }.toJSON(), forKey: "passed_assessments")
-    
+
     if isSerial {
       scrollWithFeedback()
-      try? await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
     }
   }
   
@@ -385,12 +390,12 @@ extension FunctionalityPresenter {
     return Binding(
       get: {
         functions.contains {
-          self.state.currentAssessment == ($0, true)
+          self.state.currentAssessment == CurrentAssessment($0, true, true)
         }
       },
       set: { value in
         functions.forEach {
-          self.state.currentAssessment = ($0, value)
+          self.state.currentAssessment = CurrentAssessment($0, value, value)
         }
       }
     )

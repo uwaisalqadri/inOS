@@ -27,7 +27,7 @@ extension Assessment {
 
 extension FunctionalityPresenter {
   struct State {
-    var currentAssessment: (assessment: Assessment, isRunning: Bool) = (.cpu, false)
+    var currentAssessment: CurrentAssessment = .empty
     var isAssessmentPassed = false
     var isTouchscreenPresented = false
     var isCameraPresented = false
@@ -43,6 +43,7 @@ extension FunctionalityPresenter {
     var randomCount = 0
     var scrollIndex: Double = 0
     var passedAssessments: [Assessment: Bool] = [:]
+    var assessmentFrame: [Assessment: CGRect] = [:]
     var deviceStatuses: [Status] = []
     var deviceStatus: Status {
       .init(.phone, value: Device.current.safeDescription)
@@ -54,6 +55,20 @@ extension FunctionalityPresenter {
     var toastContents: (finished: String, testing: String) {
       let assessment = currentAssessment.assessment
       return (assessment.finishedMessage, assessment.testingMessage)
+    }
+  }
+  
+  struct CurrentAssessment: Equatable {
+    var assessment: Assessment
+    var isTesting: Bool
+    var isRunning: Bool
+    
+    static var empty: Self = .init(.cpu, false, false)
+    
+    init(_ assessment: Assessment, _ isTesting: Bool, _ isRunning: Bool) {
+      self.assessment = assessment
+      self.isTesting = isTesting
+      self.isRunning = isRunning
     }
   }
   

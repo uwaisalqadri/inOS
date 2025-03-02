@@ -45,7 +45,7 @@ struct DeadpixelFunctionalityView: View {
     .onAppear {
       presenter.send(.setTimer)
     }
-    .onTapGesture {
+    .onTapGesture(count: 2) {
       presenter.send(.failed)
     }
     .toast(
@@ -57,7 +57,7 @@ struct DeadpixelFunctionalityView: View {
       AlertToast(
         displayMode: .hud,
         type: .regular,
-        title: "Tap if you spot any deadpixel"
+        title: "Double tap if you spot any deadpixel"
       )
     }
   }

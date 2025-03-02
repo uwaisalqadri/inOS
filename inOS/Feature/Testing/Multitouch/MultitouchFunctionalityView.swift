@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import inCore
 
 struct MultitouchFunctionalityView: View {
   @State private var circle1Color = Color.red
@@ -23,11 +24,12 @@ struct MultitouchFunctionalityView: View {
   var body: some View {
     VStack {
       Spacer()
-      Text("Touch both circles 3 times simultaneously")
+      Text("Hold press both circles 3 seconds")
         .font(.headline)
         .padding()
       
       HStack {
+        Spacer()
         Circle()
           .fill(circle1Color)
           .frame(width: 100, height: 100)
@@ -41,9 +43,7 @@ struct MultitouchFunctionalityView: View {
             checkIfBothTouched()
             timerPresenter.isTimerPaused = isPressing
           }
-        
         Spacer()
-        
         Circle()
           .fill(circle2Color)
           .frame(width: 100, height: 100)
@@ -57,6 +57,7 @@ struct MultitouchFunctionalityView: View {
             checkIfBothTouched()
             timerPresenter.isTimerPaused = isPressing
           }
+        Spacer()
       }.padding([.top, .horizontal], 20)
       
       Spacer()

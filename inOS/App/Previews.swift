@@ -13,11 +13,6 @@ import inCore
 }
 
 #Preview {
-  FunctionalityRow(item: .batteryStatus, isPassed: false)
-    .frame(width: 200)
-}
-
-#Preview {
   IntroductionView { }
 }
 
