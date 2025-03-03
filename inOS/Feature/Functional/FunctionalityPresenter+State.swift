@@ -88,7 +88,7 @@ extension FunctionalityPresenter {
     let spec: Specs
     let value: String
     var isOther: Bool {
-      return spec == .other
+      return spec == .other && value == "Specs"
     }
     
     init(_ spec: Specs, value: String) {

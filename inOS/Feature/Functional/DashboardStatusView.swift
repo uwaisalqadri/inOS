@@ -32,8 +32,8 @@ struct DashboardStatusView: View {
               .font(.system(size: 11))
               .bold()
           }
-          .contentShape(.rect)
           .frame(width: 50, height: 30, alignment: .center)
+          .contentShape(.rect)
         }
         .buttonStyle(.plain)
         .padding(.top, 8)
