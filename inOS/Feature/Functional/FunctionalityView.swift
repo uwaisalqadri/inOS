@@ -19,6 +19,7 @@ struct FunctionalityView: View {
   @Environment(\.presentationMode) var presentationMode
   
   init() {
+    UIScrollView.appearance().bounces = false
     _presenter = StateObject(
       wrappedValue: FunctionalityPresenter()
     )
@@ -28,7 +29,7 @@ struct FunctionalityView: View {
     NavigationView {
       ZStack(alignment: .bottomTrailing) {
         ScrollViewReader { proxy in
-          ScrollView {
+          ScrollView(.vertical) {
             VStack(spacing: 12) {
               DashboardStatusView(
                 deviceStatuses: presenter.state.deviceStatuses,

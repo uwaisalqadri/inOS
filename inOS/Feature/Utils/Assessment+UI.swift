@@ -204,7 +204,7 @@ extension Assessment {
     case .wirelessCharging:
       return "Verify the wireless charging capability"
     case .torch:
-      return "Test the device torch"
+      return "Test the device torch is working properly"
     case .nfc:
       return "Check the NFC sensor using your physical card"
     }

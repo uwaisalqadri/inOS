@@ -35,12 +35,12 @@ struct DeadpixelFunctionalityView: View {
         onSuccess: {},
         onFailed: {}
       )
-      .countdown(8)
+      .countdown(Int(presenter.state.totalCount))
       .foregroundColor(colors[presenter.state.index] == .black ? .white : .black)
     }
     .edgesIgnoringSafeArea(.all)
     .onChange(of: presenter.state.index) { _ in
-      timerPresenter.startCountdown(8)
+      timerPresenter.startCountdown(Int(presenter.state.totalCount))
     }
     .onAppear {
       presenter.send(.setTimer)

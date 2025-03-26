@@ -12,6 +12,7 @@ extension DeadpixelFunctionalityPresenter {
     var index = 0
     var isDialogShown = false
     var retryCount = 3
+    var totalCount: Double = 5
   }
 
   enum Action {
