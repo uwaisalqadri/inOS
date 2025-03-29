@@ -11,7 +11,7 @@ import SwiftUI
 public struct Blur: UIViewRepresentable {
   @State var style: UIBlurEffect.Style
   
-  public init(style: UIBlurEffect.Style = .systemMaterial) {
+  public init(style: UIBlurEffect.Style = .prominent) {
     self.style = style
   }
   

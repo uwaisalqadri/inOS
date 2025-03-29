@@ -33,7 +33,7 @@ struct FunctionalityRow: View {
       ZStack(alignment: .topTrailing) {
         if let isPassed {
           Image(systemName: isPassed ? "checkmark" : "xmark")
-            .font(.system(size: 20))
+            .font(.system(size: 18))
             .frame(maxWidth: .infinity, alignment: .trailing)
             .foregroundColor(isPassed ? .green : .red)
             .padding(.top, 10)
@@ -42,7 +42,7 @@ struct FunctionalityRow: View {
         
         VStack(alignment: .leading, spacing: 0) {
           Image(systemName: item.icon)
-            .font(.system(size: 30))
+            .font(.system(size: 25))
             .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundColor(iconColor)
             .padding(.top, 10)
@@ -64,7 +64,15 @@ struct FunctionalityRow: View {
       .frame(height: 130)
       .padding(14)
       .background(
-        Blur().cornerRadius(12)
+        ZStack(alignment: .topLeading) {
+          Image(systemName: "square.and.arrow.down.fill")
+            .font(.system(size: 30))
+            .padding(.leading, 20)
+            .padding(.top, 30)
+            .foregroundColor(iconColor)
+            .opacity(isTesting ? 0.0 : 1.0)
+          Blur().cornerRadius(Theme.current.cornerRadius)
+        }
       )
     }
     .buttonStyle(.plain)

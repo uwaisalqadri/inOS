@@ -82,7 +82,7 @@ struct FunctionalityView: View {
           .padding(16)
           .background(
             Blur(style: .systemThinMaterial)
-              .clipShape(.rect(cornerRadius: 12))
+              .clipShape(.rect(cornerRadius: Theme.current.cornerRadius))
           )
           .padding(.trailing, 20)
           .padding(.bottom, 10)

@@ -35,7 +35,13 @@ struct BenchmarkView: View {
         .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height / 3)
         .padding()
         .background(
-          Blur().cornerRadius(12)
+          ZStack(alignment: .top) {
+            Image(systemName: "square.and.arrow.down.fill")
+              .font(.system(size: 60))
+              .padding(.top, 45)
+              .foregroundColor(.blue)
+            Blur().cornerRadius(Theme.current.cornerRadius)
+          }
         )
       }
       .padding([.top, .horizontal], 12)

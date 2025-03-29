@@ -10,6 +10,10 @@
 		860560682D3E4E0600BDF866 /* Benchmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860560672D3E4E0600BDF866 /* Benchmark.swift */; };
 		861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */; };
 		861FE6D72D413683002DB5E2 /* MaintenancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861FE6D62D413683002DB5E2 /* MaintenancePresenter.swift */; };
+		8641AFC42D9893A2004DA414 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 8641AFC32D9893A2004DA414 /* SwiftUIIntrospect */; };
+		8641AFC62D989495004DA414 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8641AFC52D989494004DA414 /* AppUtility.swift */; };
+		8641AFC82D98957C004DA414 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8641AFC72D98957C004DA414 /* AppDelegate.swift */; };
+		8641AFCA2D989B12004DA414 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8641AFC92D989B12004DA414 /* Theme.swift */; };
 		866392352D47191200AF6D50 /* SpecificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866392342D47191200AF6D50 /* SpecificationPresenter.swift */; };
 		869808DC2D43BAD6005647E6 /* IOSSecuritySuite in Frameworks */ = {isa = PBXBuildFile; productRef = 869808DB2D43BAD6005647E6 /* IOSSecuritySuite */; };
 		869808E22D449333005647E6 /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869808E12D449333005647E6 /* DeviceView.swift */; };
@@ -69,6 +73,9 @@
 		860560672D3E4E0600BDF866 /* Benchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmark.swift; sourceTree = "<group>"; };
 		861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchFunctionalityView.swift; sourceTree = "<group>"; };
 		861FE6D62D413683002DB5E2 /* MaintenancePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenancePresenter.swift; sourceTree = "<group>"; };
+		8641AFC52D989494004DA414 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		8641AFC72D98957C004DA414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8641AFC92D989B12004DA414 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		866392342D47191200AF6D50 /* SpecificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationPresenter.swift; sourceTree = "<group>"; };
 		869808E12D449333005647E6 /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
 		86985E282C86FF8900253A8A /* FunctionalityPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+State.swift"; sourceTree = "<group>"; };
@@ -121,6 +128,7 @@
 				CE066E2D2BAB2DE7007C7014 /* DeviceKit in Frameworks */,
 				CEEE205D2BAC0C7300E74937 /* AlertToast in Frameworks */,
 				86CC2FA92D6F0E1B0021B5AF /* inCore in Frameworks */,
+				8641AFC42D9893A2004DA414 /* SwiftUIIntrospect in Frameworks */,
 				869808DC2D43BAD6005647E6 /* IOSSecuritySuite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,8 +161,9 @@
 		86985E2C2C87072F00253A8A /* App */ = {
 			isa = PBXGroup;
 			children = (
-				86FF94822CF973C3008F1FA6 /* Previews.swift */,
+				8641AFC72D98957C004DA414 /* AppDelegate.swift */,
 				CE40ADC32B2BD4D300F76E3C /* MainApp.swift */,
+				86FF94822CF973C3008F1FA6 /* Previews.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -316,6 +325,8 @@
 				91011DD72CD1688400725E46 /* TimerCountdownText.swift */,
 				916F2A102CD9947D00CE3BFD /* ActivityIndicator.swift */,
 				86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */,
+				8641AFC52D989494004DA414 /* AppUtility.swift */,
+				8641AFC92D989B12004DA414 /* Theme.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -359,6 +370,7 @@
 				CEEE205C2BAC0C7300E74937 /* AlertToast */,
 				869808DB2D43BAD6005647E6 /* IOSSecuritySuite */,
 				86CC2FA82D6F0E1B0021B5AF /* inCore */,
+				8641AFC32D9893A2004DA414 /* SwiftUIIntrospect */,
 			);
 			productName = SpecAsessment;
 			productReference = CE5725912B294BE1000E4EC2 /* inOS.app */;
@@ -416,6 +428,7 @@
 				CEEE205B2BAC0C7200E74937 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				861FE6DA2D431D2E002DB5E2 /* XCRemoteSwiftPackageReference "IOSSecuritySuite" */,
 				86CC2FA72D6F0DE50021B5AF /* XCRemoteSwiftPackageReference "inCore" */,
+				8641AFC22D9893A2004DA414 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 			);
 			productRefGroup = CE5725922B294BE1000E4EC2 /* Products */;
 			projectDirPath = "";
@@ -455,6 +468,7 @@
 				869808E22D449333005647E6 /* DeviceView.swift in Sources */,
 				CE11C48A2BB1105700EC3028 /* Assessment+UI.swift in Sources */,
 				CE766A282C8DB62700B54877 /* ScreenFunctionalityPresenter.swift in Sources */,
+				8641AFC82D98957C004DA414 /* AppDelegate.swift in Sources */,
 				91778CD02CCDE0EC00B70FF4 /* CameraFunctionalityView.swift in Sources */,
 				91778CD42CCE8ACF00B70FF4 /* Blur.swift in Sources */,
 				CE40ADCF2B2BD4D300F76E3C /* FunctionalityView.swift in Sources */,
@@ -477,12 +491,14 @@
 				860560682D3E4E0600BDF866 /* Benchmark.swift in Sources */,
 				CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */,
 				CE91C21D2B4E9DC700E1C413 /* FunctionalityRow.swift in Sources */,
+				8641AFCA2D989B12004DA414 /* Theme.swift in Sources */,
 				CE766A2C2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift in Sources */,
 				91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */,
 				CE8E5E8C2B497FD5007EC804 /* FunctionalityPresenter.swift in Sources */,
 				86FF94812CF96D5F008F1FA6 /* NavigationModifier.swift in Sources */,
 				86FF94842CF9743C008F1FA6 /* Previews.swift in Sources */,
 				CE766A332C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift in Sources */,
+				8641AFC62D989495004DA414 /* AppUtility.swift in Sources */,
 				91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */,
 				CE766A312C8DD9F600B54877 /* DeadpixelFunctionalityView.swift in Sources */,
 				91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */,
@@ -806,6 +822,14 @@
 				version = 2.1.0;
 			};
 		};
+		8641AFC22D9893A2004DA414 /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/swiftui-introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 		86CC2FA72D6F0DE50021B5AF /* XCRemoteSwiftPackageReference "inCore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uwaisalqadri/inCore.git";
@@ -833,6 +857,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8641AFC32D9893A2004DA414 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8641AFC22D9893A2004DA414 /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = SwiftUIIntrospect;
+		};
 		869808DB2D43BAD6005647E6 /* IOSSecuritySuite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 861FE6DA2D431D2E002DB5E2 /* XCRemoteSwiftPackageReference "IOSSecuritySuite" */;

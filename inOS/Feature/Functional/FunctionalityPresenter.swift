@@ -122,9 +122,8 @@ extension FunctionalityPresenter {
   }
   
   private func scrollWithFeedback() {
-    let successSoundId: SystemSoundID = 1075
-    AudioServicesPlayAlertSoundWithCompletion(successSoundId) {
-      AudioServicesDisposeSystemSoundID(successSoundId)
+    AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
+      AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate)
     }
     state.scrollIndex += 0.5
   }

@@ -304,7 +304,7 @@ extension Assessment {
     case .proximity:
       return "Cover your screen"
     case .rotation:
-      return "Rotate to landscape"
+      return "Allow in Control Center\n Rotate to landscape"
     case .connector:
       return "Connect cable to power source"
     case .wirelessCharging:

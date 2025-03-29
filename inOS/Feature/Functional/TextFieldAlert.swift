@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import SwiftUIIntrospect
 
 extension View {
   public func textFieldAlert(
@@ -31,6 +32,7 @@ extension View {
 }
 
 struct TextFieldAlert: ViewModifier {
+  @State private var isFieldFocused: Bool = false
   @Binding var isPresented: Bool
   let title: String
   @Binding var text: String
@@ -52,6 +54,13 @@ struct TextFieldAlert: ViewModifier {
             .multilineTextAlignment(.center)
             .keyboardType(.numberPad)
             .textFieldStyle(.roundedBorder)
+            .introspect(.textField, on: .iOS(.v13, .v14, .v15, .v16, .v17, .v18)) { textField in
+              if isFieldFocused {
+                textField.becomeFirstResponder()
+              } else {
+                textField.resignFirstResponder()
+              }
+            }
             .padding(.top, 18)
             .padding(.horizontal, 12)
             .padding(.bottom, 20)
@@ -103,6 +112,12 @@ struct TextFieldAlert: ViewModifier {
     .animation(.easeInOut, value: isPresented)
     .onChange(of: isPresented) { _ in
       text = ""
+    }
+    .onAppear {
+      isFieldFocused = true
+    }
+    .onDisappear {
+      isFieldFocused = false
     }
   }
   

@@ -30,7 +30,7 @@ struct SpecificationView: View {
       }
       .padding(.horizontal, 16)
       .background(Color.gray.opacity(0.1))
-      .clipShape(RoundedRectangle(cornerRadius: 14))
+      .clipShape(.rect(cornerRadius: Theme.current.cornerRadius))
       .frame(height: 50)
       .padding(.horizontal, 16)
       

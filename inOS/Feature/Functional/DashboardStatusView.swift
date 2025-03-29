@@ -46,7 +46,7 @@ struct DashboardStatusView: View {
     .padding(.horizontal)
     .frame(maxWidth: .infinity, minHeight: 60, alignment: .center)
     .background(
-      Blur().cornerRadius(12)
+      Blur().cornerRadius(Theme.current.cornerRadius)
     )
   }
 }
