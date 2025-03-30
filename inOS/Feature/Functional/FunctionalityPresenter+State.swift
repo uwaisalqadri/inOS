@@ -88,7 +88,7 @@ extension FunctionalityPresenter {
     let spec: Specs
     let value: String
     var isOther: Bool {
-      return spec == .other && value == "Specs"
+      return spec == .other && value == "More"
     }
     
     init(_ spec: Specs, value: String) {
@@ -130,7 +130,7 @@ extension FunctionalityPresenter {
         case .battery:
           return "battery.0"
         case .other:
-          return "square.split.2x2.fill"
+          return "chevron.up.square.fill"
         }
       }
     }

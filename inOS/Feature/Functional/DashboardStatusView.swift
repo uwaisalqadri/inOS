@@ -20,8 +20,6 @@ struct DashboardStatusView: View {
       ) { _, status in
         Button(action: {
           if status.isOther {
-            isSpecificationPresented.toggle()
-          } else {
             isBenchmarkPresented.toggle()
           }
         }) {
@@ -49,7 +47,13 @@ struct DashboardStatusView: View {
     .padding(.horizontal)
     .frame(maxWidth: .infinity, minHeight: 60, alignment: .center)
     .background(
-      Blur().cornerRadius(Theme.current.cornerRadius)
+      ZStack(alignment: .topLeading) {
+        Image(systemName: "square.and.arrow.down.fill")
+          .font(.system(size: 30))
+          .padding(.leading, 20)
+          .foregroundColor(.blue)
+        Blur().cornerRadius(Theme.current.cornerRadius)
+      }
     )
   }
 }

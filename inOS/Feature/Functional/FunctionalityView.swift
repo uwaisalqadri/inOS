@@ -77,7 +77,7 @@ struct FunctionalityView: View {
           .navigation(isPresented: $presenter.state.isSpecificationPresented) {
             SpecificationView()
           }
-          .navigation(isPresented: $presenter.state.isBenchmarkPresented) {
+          .sheet(isPresented: $presenter.state.isBenchmarkPresented) {
             BenchmarkView()
           }
         }
@@ -100,7 +100,7 @@ struct FunctionalityView: View {
           DeviceView(
             isShimmer: true,
             onTapGesture: {
-              presenter.state.isBenchmarkPresented = true
+              presenter.state.isSpecificationPresented = true
             }
           )
         }
