@@ -10,6 +10,7 @@ import SwiftUI
 struct DashboardStatusView: View {
   var deviceStatuses: [FunctionalityPresenter.Status]
   @Binding var isSpecificationPresented: Bool
+  @Binding var isBenchmarkPresented: Bool
   
   var body: some View {
     HStack(alignment: .center, spacing: 0) {
@@ -20,6 +21,8 @@ struct DashboardStatusView: View {
         Button(action: {
           if status.isOther {
             isSpecificationPresented.toggle()
+          } else {
+            isBenchmarkPresented.toggle()
           }
         }) {
           VStack(alignment: .center, spacing: 10) {
@@ -60,6 +63,7 @@ struct DashboardStatusView: View {
       .init(.battery, value: "20%"),
       .init(.other, value: "Specs"),
     ],
-    isSpecificationPresented: .constant(false)
+    isSpecificationPresented: .constant(false),
+    isBenchmarkPresented: .constant(false)
   )
 }

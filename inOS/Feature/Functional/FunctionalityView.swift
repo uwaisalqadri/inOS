@@ -18,6 +18,10 @@ struct FunctionalityView: View {
   @AppStorage("isDarkMode") private var isDarkMode: Bool = false
   @Environment(\.presentationMode) var presentationMode
   
+  var currentAssessment: FunctionalityPresenter.CurrentAssessment {
+    presenter.state.currentAssessment
+  }
+  
   init() {
     UIScrollView.appearance().bounces = false
     _presenter = StateObject(
@@ -33,15 +37,15 @@ struct FunctionalityView: View {
             VStack(spacing: 12) {
               DashboardStatusView(
                 deviceStatuses: presenter.state.deviceStatuses,
-                isSpecificationPresented: $presenter.state.isSpecificationPresented
-              )
+                isSpecificationPresented: $presenter.state.isSpecificationPresented,
+                isBenchmarkPresented: $presenter.state.isBenchmarkPresented
+              ).opacity(currentAssessment.isRunning ? 0.2 : 1.0)
               
               HStack(alignment: .top, spacing: 12) {
                 ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
                   VStack(spacing: 12) {
                     ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { index, item in
                       let isPassed = presenter.state.passedAssessments[item]
-                      let currentAssessment = presenter.state.currentAssessment
                       FunctionalityRow(
                         item: item,
                         isTesting: currentAssessment.isRunning && currentAssessment.assessment != item,
@@ -145,8 +149,7 @@ struct FunctionalityView: View {
         Notifications.didInputConfirmation.post(with: Int(string))
       },
       onRepeat: {
-        let currentAssessment = presenter.state.currentAssessment.assessment
-        presenter.send(.start(assessment: currentAssessment))
+        presenter.send(.start(assessment: currentAssessment.assessment))
       }
     )
     .fullScreenCover(isPresented: $presenter.state.isTouchscreenPresented) {
