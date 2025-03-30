@@ -302,7 +302,7 @@ extension Assessment {
     case .vibration:
       return "Check if the device vibrates"
     case .proximity:
-      return "Cover your screen"
+      return "Put Your Phone Like a Call"
     case .rotation:
       return "Allow in Control Center\n Rotate to landscape"
     case .connector:

@@ -22,12 +22,12 @@ final class BenchmarkPresenter: ObservableObject {
     case .onAppear:
       startMonitoring()
       if #available(iOS 16.2, *) {
-        LiveActivityManager.startLiveActivity(for: "Benchmark")
+        LiveActivityManager.startLiveActivity(with: "Connecting...")
       }
     case .onDisappear:
       state.timer?.invalidate()
       if #available(iOS 16.2, *) {
-        LiveActivityManager.endLiveActivity(for: "Benchmark")
+        LiveActivityManager.endLiveActivity(with: "Stopped")
       }
     }
   }
@@ -71,6 +71,9 @@ private extension BenchmarkPresenter {
     Benchmarker.default.internetSpeed { speed in
       DispatchQueue.main.async { [weak self] in
         self?.state.internetSpeed = speed
+        if #available(iOS 16.2, *) {
+          LiveActivityManager.updateLiveActivity(with: speed)
+        }
       }
     }
   }

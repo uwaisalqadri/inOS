@@ -13,39 +13,36 @@ import inCore
 struct InOSWidgetLiveActivity: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: InOSWidgetAttributes.self) { context in
-      // Lock screen/banner UI goes here
-      VStack {
-        Text("Hell")
-      }
-      .activityBackgroundTint(Color.cyan)
-      .activitySystemActionForegroundColor(Color.black)
+      widgetBody(context)
+        .activityBackgroundTint(Color.black)
+        .activitySystemActionForegroundColor(Color.blue)
       
     } dynamicIsland: { context in
       DynamicIsland {
-        DynamicIslandExpandedRegion(.leading) {
-          Text("Leading")
-        }
-        DynamicIslandExpandedRegion(.trailing) {
-          Text("Trailing")
-        }
         DynamicIslandExpandedRegion(.bottom) {
-          Text("Bottom")
+          widgetBody(context)
         }
       } compactLeading: {
-        Text(" 80.30 Mbps")
-          .bold()
-        
-      } compactTrailing: {
         Image(systemName: "wifi")
           .foregroundColor(.blue)
-        
+      } compactTrailing: {
+        Text("\(context.state.benchmark)")
+          .bold()
+          .frame(width: 100)
       } minimal: {
         Image(systemName: "wifi")
           .foregroundColor(.blue)
-        
       }
-      .widgetURL(URL(string: "http://www.apple.com"))
-      .keylineTint(Color.red)
+    }
+  }
+  
+  @ViewBuilder
+  func widgetBody(_ context: ActivityViewContext<InOSWidgetAttributes>) -> some View {
+    HStack {
+      Image(systemName: "wifi")
+        .foregroundColor(.blue)
+      Text("\(context.state.benchmark)")
+        .font(.system(size: 20, weight: .heavy))
     }
   }
 }

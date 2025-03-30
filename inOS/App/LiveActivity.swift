@@ -17,7 +17,7 @@ public struct InOSWidgetAttributes: ActivityAttributes {
 
 @available(iOS 16.2, *)
 public struct LiveActivityManager {
-  public static func startLiveActivity(for benchmark: String) {
+  public static func startLiveActivity(with benchmark: String) {
     let attributes = InOSWidgetAttributes(name: benchmark)
     let state = InOSWidgetAttributes.ContentState(benchmark: benchmark)
     let content = ActivityContent(state: state, staleDate: nil)
@@ -35,7 +35,21 @@ public struct LiveActivityManager {
     }
   }
   
-  public static func endLiveActivity(for benchmark: String) {
+  public static func updateLiveActivity(with benchmark: String) {
+    guard LiveActivityManager.isLiveActivityActive() else { return }
+    
+    Task {
+      let state = InOSWidgetAttributes.ContentState(benchmark: benchmark)
+      let content = ActivityContent(state: state, staleDate: nil)
+      
+      for activity in Activity<InOSWidgetAttributes>.activities {
+        await activity.update(content)
+        print("Live Activity updated!")
+      }
+    }
+  }
+  
+  public static func endLiveActivity(with benchmark: String) {
     let state = InOSWidgetAttributes.ContentState(benchmark: benchmark)
     let content = ActivityContent(state: state, staleDate: nil)
     

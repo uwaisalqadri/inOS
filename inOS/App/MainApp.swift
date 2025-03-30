@@ -45,7 +45,7 @@ struct MainApp: App {
       .preferredColorScheme(isDarkMode ? .dark : .light)
       .onReceive(Notifications.didBenchmarkEnabled.publisher()) { _ in
         if #available(iOS 16.2, *) {
-          LiveActivityManager.startLiveActivity(for: "Benchmark")
+          LiveActivityManager.startLiveActivity(with: "Connecting...")
         }
       }
     }
