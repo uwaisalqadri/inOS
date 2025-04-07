@@ -133,7 +133,7 @@ extension Assessment {
     case .compass:
       return "Compass"
     case .connector:
-      return "Connector"
+      return "Cable"
     case .wirelessCharging:
       return "Wireless"
     case .torch:
@@ -267,7 +267,7 @@ extension Assessment {
     case .compass:
       return "Compass is calibrated and accurate!"
     case .connector:
-      return "Connector is functional!"
+      return "Cable is functional!"
     case .wirelessCharging:
       return "Wireless charging works correctly!"
     default:
@@ -290,7 +290,7 @@ extension Assessment {
     case .cellular:
       return "Turn On Cellular"
     case .bluetooth:
-      return "Turn On/Off Bluetooth"
+      return "Turn On Bluetooth"
     case .gps:
       return "Check GPS signal"
     case .microphone:

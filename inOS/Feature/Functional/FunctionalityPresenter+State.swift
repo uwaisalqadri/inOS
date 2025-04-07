@@ -18,6 +18,9 @@ extension Assessment {
       if Device.current.isPad && [.vibration, .nfc, .cellular, .wirelessCharging].contains(assessment) {
         return nil
       }
+      if Device.current.hasActionButton && [.silentSwitch].contains(assessment) {
+        return nil
+      }
       return assessment
     }
     
@@ -38,6 +41,8 @@ extension FunctionalityPresenter {
     var isMultitouchPresented = false
     var isSerialRunning = false
     var isConfirmSerial = false
+    var isNeedConfirmAssessment = false
+    var isRunAssessmentConfirmed = false
     var isIntroduction = true
     var inputValue = ""
     var randomCount = 0
@@ -52,7 +57,8 @@ extension FunctionalityPresenter {
     var allAssessments: [Assessment] {
       Assessment.allEnabledCases(remoteConfig: remoteConfig)
     }
-    var undelayedAssessments: [Assessment] = [.volumeUp, .volumeDown, .silentSwitch, .camera, .vibration, .mainSpeaker, .earSpeaker, .microphone, .connector]
+    var undelayedAssessments: [Assessment] = [.volumeUp, .volumeDown, .silentSwitch, .connector, .touchscreen, .compass]
+    var needConfirmationAssessments: [Assessment] = [.camera, .touchscreen, .multitouch, .cellular, .wifi, .compass, .deadpixel]
     var toastContents: (finished: String, testing: String) {
       let assessment = currentAssessment.assessment
       return (assessment.finishedMessage, assessment.testingMessage)
@@ -76,10 +82,11 @@ extension FunctionalityPresenter {
   enum Action {
     case loadStatus
     case start(assessment: Assessment)
-    case shouldConfirmSerial(_ state: Bool)
+    case showConfirmSerial(_ state: Bool)
     case runSerial
     case terminateSerial
     case shouldShow(assessment: Assessment, isPresented: Bool)
+    case runConfirmation(_ state: Bool)
   }
 }
 

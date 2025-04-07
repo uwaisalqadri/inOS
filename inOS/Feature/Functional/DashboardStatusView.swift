@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DashboardStatusView: View {
   var deviceStatuses: [FunctionalityPresenter.Status]
+  var isTesting: Bool
   @Binding var isSpecificationPresented: Bool
   @Binding var isBenchmarkPresented: Bool
   
@@ -52,9 +53,11 @@ struct DashboardStatusView: View {
           .font(.system(size: 30))
           .padding(.leading, 20)
           .foregroundColor(.blue)
-        Blur().cornerRadius(Theme.current.cornerRadius)
+          .opacity(isTesting ? 0.0 : 1.0)
+        Blur(style: .systemMaterial).cornerRadius(Theme.current.cornerRadius)
       }
     )
+    .opacity(isTesting ? 0.2 : 1.0)
   }
 }
 
@@ -67,6 +70,7 @@ struct DashboardStatusView: View {
       .init(.battery, value: "20%"),
       .init(.other, value: "Specs"),
     ],
+    isTesting: false,
     isSpecificationPresented: .constant(false),
     isBenchmarkPresented: .constant(false)
   )

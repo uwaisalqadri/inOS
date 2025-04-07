@@ -40,7 +40,7 @@ struct BenchmarkView: View {
               .font(.system(size: 60))
               .padding(.top, 45)
               .foregroundColor(.blue)
-            Blur().cornerRadius(Theme.current.cornerRadius)
+            Blur(style: .systemMaterial).cornerRadius(Theme.current.cornerRadius)
           }
         )
       }

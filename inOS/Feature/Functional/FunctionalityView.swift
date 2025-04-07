@@ -37,9 +37,10 @@ struct FunctionalityView: View {
             VStack(spacing: 12) {
               DashboardStatusView(
                 deviceStatuses: presenter.state.deviceStatuses,
+                isTesting: currentAssessment.isRunning,
                 isSpecificationPresented: $presenter.state.isSpecificationPresented,
                 isBenchmarkPresented: $presenter.state.isBenchmarkPresented
-              ).opacity(currentAssessment.isRunning ? 0.2 : 1.0)
+              )
               
               HStack(alignment: .top, spacing: 12) {
                 ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
@@ -82,15 +83,42 @@ struct FunctionalityView: View {
           }
         }
         
-        ActivityIndicator(style: .large)
-          .padding(16)
-          .background(
-            Blur(style: .systemThinMaterial)
-              .clipShape(.rect(cornerRadius: Theme.current.cornerRadius))
-          )
-          .padding(.trailing, 20)
-          .padding(.bottom, 10)
-          .opacity(presenter.state.isSerialRunning ? 1.0 : 0.0)
+        VStack(spacing: 24) {
+          Button(action: {
+            if presenter.state.isSerialRunning {
+              presenter.send(.terminateSerial)
+            } else {
+              presenter.send(.showConfirmSerial(true))
+            }
+          }) {
+            Image(systemName: presenter.state.isSerialRunning ? "stop.fill" : "play.fill")
+              .font(.system(size: 25))
+              .contentShape(.rect)
+          }.frame(width: 40, height: 40)
+          
+          if presenter.state.isSerialRunning {
+            Button(action: {
+              print("SKIP")
+            }) {
+              Image(systemName: "forward.fill")
+                .font(.system(size: 25))
+                .contentShape(.rect)
+            }.frame(width: 40, height: 40)
+            
+            ActivityIndicator(style: .large)
+          }
+        }
+        .padding(16)
+        .background(
+          Blur()
+            .clipShape(.rect(cornerRadius: Theme.current.cornerRadius))
+        )
+        .overlay(
+          RoundedRectangle(cornerRadius: Theme.current.cornerRadius)
+            .stroke(Color(.lightGray), lineWidth: 0.8)
+        )
+        .padding(.trailing, 20)
+        .padding(.bottom, 10)
       }
       .onFirstAppear {
         presenter.send(.loadStatus)
@@ -112,20 +140,7 @@ struct FunctionalityView: View {
               .rootViewController?
               .overrideUserInterfaceStyle = isDarkMode ? .dark : .light
           }) {
-            Image(systemName: isDarkMode ? "moon.stars" : "sun.min")
-              .font(.system(size: 20))
-          }
-        }
-        
-        ToolbarItem(placement: .topBarTrailing) {
-          Button(action: {
-            if presenter.state.isSerialRunning {
-              presenter.send(.terminateSerial)
-            } else {
-              presenter.send(.shouldConfirmSerial(true))
-            }
-          }) {
-            Image(systemName: presenter.state.isSerialRunning ? "stop" : "play")
+            Image(systemName: isDarkMode ? "moon.stars.fill" : "sun.min.fill")
               .font(.system(size: 20))
           }
         }
@@ -139,6 +154,9 @@ struct FunctionalityView: View {
     }
     .alert(isPresented: $presenter.state.isConfirmSerial) {
       serialConfirmAlert()
+    }
+    .alert(isPresented: $presenter.state.isNeedConfirmAssessment) {
+      runConfirmAlert()
     }
     .textFieldAlert(
       isPresented: presenter.isFunctionalityPresenting(for: [.vibration, .mainSpeaker, .earSpeaker]),
@@ -186,11 +204,26 @@ struct FunctionalityView: View {
     Alert(
       title: Text("Serial Tests"),
       message: Text("This is a serial tests, all test will automatically start one after another"),
-      primaryButton: .default(Text("Start")) {
-        presenter.send(.runSerial)
-        presenter.send(.shouldConfirmSerial(false))
+      primaryButton: .default(Text("Cancel")) {
+        presenter.send(.showConfirmSerial(false))
       },
-      secondaryButton: .cancel()
+      secondaryButton: .default(Text("Start")) {
+        presenter.send(.runSerial)
+        presenter.send(.showConfirmSerial(false))
+      }
+    )
+  }
+  
+  private func runConfirmAlert() -> Alert {
+    Alert(
+      title: Text("Run Test?"),
+      message: Text("Are you sure you want to run this test now?"),
+      primaryButton: .default(Text("Cancel")) {
+        presenter.send(.runConfirmation(false))
+      },
+      secondaryButton: .default(Text("Run")) {
+        presenter.send(.runConfirmation(true))
+      }
     )
   }
 }

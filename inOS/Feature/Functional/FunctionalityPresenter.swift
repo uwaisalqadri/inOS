@@ -38,7 +38,7 @@ class FunctionalityPresenter: ObservableObject {
         await beginAssessment(for: assessment, isSerial: false)
       }
 
-    case let .shouldConfirmSerial(bool):
+    case let .showConfirmSerial(bool):
       state.isConfirmSerial = bool
 
     case .runSerial:
@@ -70,32 +70,55 @@ class FunctionalityPresenter: ObservableObject {
       default:
         break
       }
+      
+    case let .runConfirmation(bool):
+      if bool {
+        state.isRunAssessmentConfirmed = true
+        state.isNeedConfirmAssessment = false
+      } else {
+        state.isRunAssessmentConfirmed = false
+        state.isNeedConfirmAssessment = false
+      }
     }
   }
 }
 
 extension FunctionalityPresenter {
   func startAssessmentsSerialized() async {
-    state.isSerialRunning = true
+    withAnimation { state.isSerialRunning = true }
 
     for assessment in Assessment.allEnabledCases(remoteConfig: state.remoteConfig) {
       await beginAssessment(for: assessment, isSerial: true)
       if Task.isCancelled { break }
     }
 
-    state.isSerialRunning = false
+    withAnimation { state.isSerialRunning = false }
   }
 
   func beginAssessment(for assessment: Assessment, isSerial: Bool) async {
     withAnimation(.easeIn) {
       state.currentAssessment = CurrentAssessment(assessment, !assessment.testingMessage.isEmpty, true)
     }
+    
     state.isAssessmentPassed = false
     state.isSerialRunning = true
 
     do {
-      if state.undelayedAssessments.contains(assessment) == false {
+      if !state.undelayedAssessments.contains(assessment) {
         try await Task.sleep(nanoseconds: 2_000_000_000)
+      }
+      
+      if state.needConfirmationAssessments.contains(assessment) {
+        state.isNeedConfirmAssessment = true
+        
+        while state.isNeedConfirmAssessment {
+          try await Task.sleep(nanoseconds: 100_000_000)
+        }
+        
+        if !state.isRunAssessmentConfirmed {
+          send(.terminateSerial)
+          return
+        }
       }
       
       for try await isAssessmentPassed in streamAssessment(for: assessment) {
@@ -105,6 +128,7 @@ extension FunctionalityPresenter {
         }
         state.passedAssessments[assessment] = isAssessmentPassed
       }
+      
     } catch {
       state.isAssessmentPassed = false
       state.passedAssessments[assessment] = false
@@ -117,15 +141,8 @@ extension FunctionalityPresenter {
     }.toJSON(), forKey: "passed_assessments")
 
     if isSerial {
-      scrollWithFeedback()
+      state.scrollIndex += 0.8
     }
-  }
-  
-  private func scrollWithFeedback() {
-    AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
-      AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate)
-    }
-    state.scrollIndex += 0.5
   }
 
   @MainActor
@@ -196,10 +213,7 @@ extension FunctionalityPresenter {
         
         foregroundPublisher
           .sink { _ in
-            let oldBrightness = UIScreen.main.brightness
-            let newBrightness = max(0.01, min(1.0, oldBrightness + (oldBrightness <= 0.01 ? 0.01 : -0.01)))
-            UIScreen.main.brightness = newBrightness
-            continuation.yield(isTurnedOff && abs(oldBrightness - newBrightness) > 0.001)
+            continuation.yield(isTurnedOff)
             continuation.finish()
             isTurnedOff = false
           }
