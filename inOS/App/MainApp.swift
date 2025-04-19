@@ -39,15 +39,14 @@ struct MainApp: App {
           MaintenanceView(type: .secured)
           
         default:
-          FunctionalityView()
+          if #available(iOS 17.0, *) {
+            MainView()
+          } else {
+            FunctionalityView()
+          }
         }
       }
       .preferredColorScheme(isDarkMode ? .dark : .light)
-      .onReceive(Notifications.didBenchmarkEnabled.publisher()) { _ in
-        if #available(iOS 16.2, *) {
-          LiveActivityManager.startLiveActivity(with: "Connecting...")
-        }
-      }
     }
   }
 }

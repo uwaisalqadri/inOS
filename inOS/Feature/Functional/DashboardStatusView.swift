@@ -22,6 +22,8 @@ struct DashboardStatusView: View {
         Button(action: {
           if status.isOther {
             isBenchmarkPresented.toggle()
+          } else if let url = URL(string: UIApplication.openSettingsURLString), status.isSettings {
+            UIApplication.shared.open(url)
           }
         }) {
           VStack(alignment: .center, spacing: 10) {
@@ -58,6 +60,7 @@ struct DashboardStatusView: View {
       }
     )
     .opacity(isTesting ? 0.2 : 1.0)
+    .padding(.top, 20)
   }
 }
 

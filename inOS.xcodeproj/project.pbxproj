@@ -24,6 +24,8 @@
 		869808DC2D43BAD6005647E6 /* IOSSecuritySuite in Frameworks */ = {isa = PBXBuildFile; productRef = 869808DB2D43BAD6005647E6 /* IOSSecuritySuite */; };
 		869808E22D449333005647E6 /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869808E12D449333005647E6 /* DeviceView.swift */; };
 		86985E292C86FF8900253A8A /* FunctionalityPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86985E282C86FF8900253A8A /* FunctionalityPresenter+State.swift */; };
+		86AC30D72DB3A8530072772A /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AC30D62DB3A8530072772A /* View+Conditional.swift */; };
+		86AC30DA2DB3BD170072772A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AC30D92DB3BD160072772A /* MainView.swift */; };
 		86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */; };
 		86CC2FA92D6F0E1B0021B5AF /* inCore in Frameworks */ = {isa = PBXBuildFile; productRef = 86CC2FA82D6F0E1B0021B5AF /* inCore */; };
 		86EE3C452D742A160021ED12 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE3C442D742A160021ED12 /* Delay.swift */; };
@@ -110,6 +112,8 @@
 		866392342D47191200AF6D50 /* SpecificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationPresenter.swift; sourceTree = "<group>"; };
 		869808E12D449333005647E6 /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
 		86985E282C86FF8900253A8A /* FunctionalityPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+State.swift"; sourceTree = "<group>"; };
+		86AC30D62DB3A8530072772A /* View+Conditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Conditional.swift"; sourceTree = "<group>"; };
+		86AC30D92DB3BD160072772A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
 		86EE3C442D742A160021ED12 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModifier.swift; sourceTree = "<group>"; };
@@ -233,6 +237,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		86AC30D82DB3BD0C0072772A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				86AC30D92DB3BD160072772A /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		91011DCB2CD1182400725E46 /* Testing */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +307,7 @@
 		CE066E302BAB2E6D007C7014 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				86AC30D82DB3BD0C0072772A /* Main */,
 				91B3C4162CF7787F00DE15A1 /* Maintenance */,
 				91B3C40F2CF7762800DE15A1 /* Benchmark */,
 				CE766A222C8DB42000B54877 /* Functional */,
@@ -394,6 +407,7 @@
 				86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */,
 				8641AFC52D989494004DA414 /* AppUtility.swift */,
 				8641AFC92D989B12004DA414 /* Theme.swift */,
+				86AC30D62DB3A8530072772A /* View+Conditional.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -583,6 +597,7 @@
 				8641AFC82D98957C004DA414 /* AppDelegate.swift in Sources */,
 				91778CD02CCDE0EC00B70FF4 /* CameraFunctionalityView.swift in Sources */,
 				91778CD42CCE8ACF00B70FF4 /* Blur.swift in Sources */,
+				86AC30DA2DB3BD170072772A /* MainView.swift in Sources */,
 				CE40ADCF2B2BD4D300F76E3C /* FunctionalityView.swift in Sources */,
 				CE8C78D52B4989B5003139E1 /* CommonUtils.swift in Sources */,
 				CE766A352C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift in Sources */,
@@ -616,6 +631,7 @@
 				91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */,
 				86985E292C86FF8900253A8A /* FunctionalityPresenter+State.swift in Sources */,
 				91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */,
+				86AC30D72DB3A8530072772A /* View+Conditional.swift in Sources */,
 				919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */,
 				866392352D47191200AF6D50 /* SpecificationPresenter.swift in Sources */,
 			);
@@ -662,7 +678,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = inOSWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -697,7 +713,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = inOSWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -859,7 +875,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -911,7 +927,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

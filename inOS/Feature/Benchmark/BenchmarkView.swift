@@ -18,6 +18,37 @@ struct BenchmarkView: View {
   }
   
   var body: some View {
+    ZStack {
+      if #available(iOS 17.0, *) {
+        benchmarkView
+      } else {
+        benchmarkView
+          .navigationBarTitleDisplayMode(.inline)
+          .toolbar {
+            ToolbarItem(placement: .principal) {
+              DeviceView()
+            }
+          }
+          .background(
+            HStack(alignment: .top) {
+              Capsule()
+                .fill(Color(.lightGray))
+                .frame(width: 100, height: 6)
+                .opacity(0.2)
+                .padding(.top, 8)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+          )
+      }
+    }
+    .onAppear {
+      presenter.send(.onAppear)
+    }
+    .onDisappear {
+      presenter.send(.onDisappear)
+    }
+  }
+  
+  var benchmarkView: some View {
     VStack(spacing: 0) {
       ForEach(presenter.state.benchmarks, id: \.self) { benchmark in
         VStack {
@@ -47,27 +78,6 @@ struct BenchmarkView: View {
       .padding([.top, .horizontal], 12)
     }
     .padding(.top, 12)
-//    .navigationBarTitleDisplayMode(.inline)
-//    .toolbar {
-//      ToolbarItem(placement: .principal) {
-//        DeviceView()
-//      }
-//    }
-    .background(
-      HStack(alignment: .top) {
-        Capsule()
-          .fill(Color(.lightGray))
-          .frame(width: 100, height: 6)
-          .opacity(0.2)
-          .padding(.top, 8)
-      }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-    )
-    .onAppear {
-      presenter.send(.onAppear)
-    }
-    .onDisappear {
-      presenter.send(.onDisappear)
-    }
   }
 }
 

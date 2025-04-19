@@ -97,6 +97,9 @@ extension FunctionalityPresenter {
     var isOther: Bool {
       return spec == .other && value == "More"
     }
+    var isSettings: Bool {
+      return spec == .settings && value == "Settings"
+    }
     
     init(_ spec: Specs, value: String) {
       self.spec = spec
@@ -109,6 +112,7 @@ extension FunctionalityPresenter {
       case memory
       case storage
       case battery
+      case settings
       case other
 
       static func == (lhs: Specs, rhs: Specs) -> Bool {
@@ -138,6 +142,8 @@ extension FunctionalityPresenter {
           return "battery.0"
         case .other:
           return "chevron.up.square.fill"
+        case .settings:
+          return "gear"
         }
       }
     }

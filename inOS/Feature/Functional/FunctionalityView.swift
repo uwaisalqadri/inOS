@@ -35,12 +35,16 @@ struct FunctionalityView: View {
         ScrollViewReader { proxy in
           ScrollView(.vertical) {
             VStack(spacing: 12) {
-              DashboardStatusView(
-                deviceStatuses: presenter.state.deviceStatuses,
-                isTesting: currentAssessment.isRunning,
-                isSpecificationPresented: $presenter.state.isSpecificationPresented,
-                isBenchmarkPresented: $presenter.state.isBenchmarkPresented
-              )
+              if #available(iOS 17.0, *) {
+                EmptyView()
+              } else {
+                DashboardStatusView(
+                  deviceStatuses: presenter.state.deviceStatuses,
+                  isTesting: currentAssessment.isRunning,
+                  isSpecificationPresented: $presenter.state.isSpecificationPresented,
+                  isBenchmarkPresented: $presenter.state.isBenchmarkPresented
+                )
+              }
               
               HStack(alignment: .top, spacing: 12) {
                 ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
@@ -61,6 +65,7 @@ struct FunctionalityView: View {
                           presenter.send(.start(assessment: item))
                         } label: { Label(item.title, systemImage: item.icon) }
                       }
+                      .zIndex(1)
                     }
                   }
                 }
@@ -75,12 +80,6 @@ struct FunctionalityView: View {
               proxy.scrollTo(index)
             }
           }
-          .navigation(isPresented: $presenter.state.isSpecificationPresented) {
-            SpecificationView()
-          }
-          .sheet(isPresented: $presenter.state.isBenchmarkPresented) {
-            BenchmarkView()
-          }
         }
         
         VStack(spacing: 24) {
@@ -88,7 +87,7 @@ struct FunctionalityView: View {
             if presenter.state.isSerialRunning {
               presenter.send(.terminateSerial)
             } else {
-              presenter.send(.showConfirmSerial(true))
+              presenter.send(.runSerial)
             }
           }) {
             Image(systemName: presenter.state.isSerialRunning ? "stop.fill" : "play.fill")
@@ -113,12 +112,13 @@ struct FunctionalityView: View {
           Blur()
             .clipShape(.rect(cornerRadius: Theme.current.cornerRadius))
         )
-        .overlay(
-          RoundedRectangle(cornerRadius: Theme.current.cornerRadius)
-            .stroke(Color(.lightGray), lineWidth: 0.8)
-        )
+//        .overlay(
+//          RoundedRectangle(cornerRadius: Theme.current.cornerRadius)
+//            .stroke(Color(.lightGray), lineWidth: 0.8)
+//        )
         .padding(.trailing, 20)
         .padding(.bottom, 10)
+        .zIndex(2)
       }
       .onFirstAppear {
         presenter.send(.loadStatus)
@@ -145,13 +145,11 @@ struct FunctionalityView: View {
           }
         }
       }
+      .navigation(isPresented: $presenter.state.isSpecificationPresented) {
+        SpecificationView()
+      }
     }
     .navigationViewStyle(.stack)
-    .sheet(isPresented: $presenter.state.isIntroduction) {
-      IntroductionView(onStart: {
-        presenter.state.isIntroduction = false
-      })
-    }
     .alert(isPresented: $presenter.state.isConfirmSerial) {
       serialConfirmAlert()
     }

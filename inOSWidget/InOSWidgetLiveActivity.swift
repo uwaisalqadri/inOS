@@ -8,8 +8,8 @@
 import ActivityKit
 import WidgetKit
 import SwiftUI
-import inCore
 
+@available(iOSApplicationExtension 17.0, *)
 struct InOSWidgetLiveActivity: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: InOSWidgetAttributes.self) { context in
@@ -36,6 +36,7 @@ struct InOSWidgetLiveActivity: Widget {
     }
   }
   
+  @available(iOSApplicationExtension 17.0, *)
   @ViewBuilder
   func widgetBody(_ context: ActivityViewContext<InOSWidgetAttributes>) -> some View {
     HStack {
@@ -63,6 +64,7 @@ extension InOSWidgetAttributes.ContentState {
   }
 }
 
+@available(iOSApplicationExtension 17.0, *)
 #Preview("Notification", as: .dynamicIsland(.compact), using: InOSWidgetAttributes.preview) {
   InOSWidgetLiveActivity()
 } contentStates: {

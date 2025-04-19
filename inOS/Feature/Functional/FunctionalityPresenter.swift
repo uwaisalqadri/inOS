@@ -372,7 +372,7 @@ extension FunctionalityPresenter {
       Status(.memory, value: "-"),
       Status(.storage, value: "-"),
       Status(.battery, value: "-"),
-      Status(.other, value: "More")
+      Status(.settings, value: "Settings")
     ]
     
     if let cpu = drivers[.device]?.assessments[.cpu] as? CPUInformation {
