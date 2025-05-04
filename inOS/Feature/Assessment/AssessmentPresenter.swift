@@ -131,12 +131,20 @@ extension AssessmentPresenter {
   }
   
   private func loadDeviceStatus() {
+    var settingsLabel: String {
+      if #available(iOS 17.0, *) {
+        return "Settings"
+      } else {
+        return "More"
+      }
+    }
+    
     state.deviceMetrics = [
       .cpu("-"),
       .memory("-"),
       .storage("-"),
       .battery("-"),
-      .settings("Settings")
+      .settings(settingsLabel)
     ]
     
     if let cpu = drivers[.device]?.assessments[.cpu] as? CPUInformation {
@@ -156,7 +164,6 @@ extension AssessmentPresenter {
         self.drivers[.power]?.startAssessment(for: .batteryStatus) {
           if let battery = self.drivers[.power]?.assessments[.batteryStatus] as? Battery {
             self.state.deviceMetrics[3] = .battery("~\(battery.percentage?.toPercentage() ?? "-")")
-            print("DEBUG: onChange(of: status.value) \(self.state.deviceMetrics[3])")
           }
         }
       }

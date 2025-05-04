@@ -22,7 +22,11 @@ enum DeviceMetric: Equatable, Hashable {
   
   var isSettings: Bool {
     if case let .settings(string) = self {
-      return string == "Settings"
+      if #available(iOS 17.0, *) {
+        return string == "Settings"
+      } else {
+        return string == "More"
+      }
     }
     return false
   }
@@ -64,7 +68,11 @@ enum DeviceMetric: Equatable, Hashable {
     case .battery:
       return "battery.0"
     case .settings:
-      return "gear"
+      if #available(iOS 17.0, *) {
+        return "gear"
+      } else {
+        return "square.grid.2x2.fill"
+      }
     }
   }
 }

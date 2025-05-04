@@ -21,10 +21,11 @@ struct DashboardMetricView: View {
         id: \.offset
       ) { _, status in
         Button(action: {
-          if status.isSettings {
-            isBenchmarkPresented.toggle()
-          } else if let url = URL(string: UIApplication.openSettingsURLString), status.isSettings {
+          guard status.isSettings else { return }
+          if let url = URL(string: UIApplication.openSettingsURLString), #available(iOS 17.0, *) {
             UIApplication.shared.open(url)
+          } else {
+            isBenchmarkPresented.toggle()
           }
         }) {
           VStack(alignment: .center, spacing: 10) {
@@ -47,9 +48,6 @@ struct DashboardMetricView: View {
           Spacer(minLength: 0)
         }
       }
-    }
-    .onReceive(Just(deviceMetrics)) { _ in
-      print("DEBUG: deviceMetrics \(deviceMetrics)")
     }
     .padding(.horizontal)
     .frame(maxWidth: .infinity, minHeight: 60, alignment: .center)
