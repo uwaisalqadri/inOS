@@ -9,7 +9,8 @@ import inCore
 import DeviceKit
 
 extension Assessment {
-  static func allEnabledCases(remoteConfig: RemoteConfig) -> [Assessment] {
+  static func allEnabledCases() -> [Assessment] {
+    let remoteConfig = RemoteConfig()
     let enabledCases: [Assessment] = allCases.compactMap { assessment in
       if !remoteConfig.isAssessmentEnabled(assessment) {
         return nil

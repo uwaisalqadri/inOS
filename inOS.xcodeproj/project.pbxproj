@@ -21,9 +21,7 @@
 		8641AFEE2D9923DF004DA414 /* LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8641AFEA2D991EF8004DA414 /* LiveActivity.swift */; };
 		8641AFEF2D993937004DA414 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A292C8DC5B100B54877 /* Notifications.swift */; };
 		866392352D47191200AF6D50 /* SpecificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866392342D47191200AF6D50 /* SpecificationPresenter.swift */; };
-		8670C2AF2DC31C0B00F4F4F5 /* AssessmentPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2AE2DC31C0900F4F4F5 /* AssessmentPresentation.swift */; };
 		8670C2B12DC31C3E00F4F4F5 /* AssessmentPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2B02DC31C3E00F4F4F5 /* AssessmentPhase.swift */; };
-		8670C2B32DC31C5D00F4F4F5 /* SerialAssessmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2B22DC31C5D00F4F4F5 /* SerialAssessmentControl.swift */; };
 		8670C2B52DC31C9F00F4F4F5 /* AssessmentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2B42DC31C9F00F4F4F5 /* AssessmentResult.swift */; };
 		8670C2B72DC31CE500F4F4F5 /* PassedAssessmentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2B62DC31CE500F4F4F5 /* PassedAssessmentCollection.swift */; };
 		8670C2BA2DC31D0500F4F4F5 /* DeviceMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2B92DC31D0500F4F4F5 /* DeviceMetric.swift */; };
@@ -123,9 +121,7 @@
 		8641AFD22D98A3A9004DA414 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8641AFEA2D991EF8004DA414 /* LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivity.swift; sourceTree = "<group>"; };
 		866392342D47191200AF6D50 /* SpecificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationPresenter.swift; sourceTree = "<group>"; };
-		8670C2AE2DC31C0900F4F4F5 /* AssessmentPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPresentation.swift; sourceTree = "<group>"; };
 		8670C2B02DC31C3E00F4F4F5 /* AssessmentPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPhase.swift; sourceTree = "<group>"; };
-		8670C2B22DC31C5D00F4F4F5 /* SerialAssessmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialAssessmentControl.swift; sourceTree = "<group>"; };
 		8670C2B42DC31C9F00F4F4F5 /* AssessmentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentResult.swift; sourceTree = "<group>"; };
 		8670C2B62DC31CE500F4F4F5 /* PassedAssessmentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassedAssessmentCollection.swift; sourceTree = "<group>"; };
 		8670C2B92DC31D0500F4F4F5 /* DeviceMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMetric.swift; sourceTree = "<group>"; };
@@ -258,9 +254,7 @@
 		8670C2AD2DC31BD700F4F4F5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				8670C2AE2DC31C0900F4F4F5 /* AssessmentPresentation.swift */,
 				8670C2B02DC31C3E00F4F4F5 /* AssessmentPhase.swift */,
-				8670C2B22DC31C5D00F4F4F5 /* SerialAssessmentControl.swift */,
 				8670C2B42DC31C9F00F4F4F5 /* AssessmentResult.swift */,
 				8670C2B62DC31CE500F4F4F5 /* PassedAssessmentCollection.swift */,
 				8670C2BB2DC31DDA00F4F4F5 /* UserDefaultsKey.swift */,
@@ -673,11 +667,9 @@
 				8670C2C82DC3258C00F4F4F5 /* AssessmentPresenter+Assessment.swift in Sources */,
 				91011DD82CD1688400725E46 /* TimerCountdownText.swift in Sources */,
 				86EE3C452D742A160021ED12 /* Delay.swift in Sources */,
-				8670C2AF2DC31C0B00F4F4F5 /* AssessmentPresentation.swift in Sources */,
 				CE766A2A2C8DC5B100B54877 /* Notifications.swift in Sources */,
 				8670C2C02DC321D700F4F4F5 /* CurrentAssessments.swift in Sources */,
 				91011DD52CD11BFF00725E46 /* CompassAssessmentView.swift in Sources */,
-				8670C2B32DC31C5D00F4F4F5 /* SerialAssessmentControl.swift in Sources */,
 				8670C2C22DC3220300F4F4F5 /* SerialState.swift in Sources */,
 				CE766A262C8DB56600B54877 /* ScreenAssessmentView.swift in Sources */,
 				91B3C4112CF7763D00DE15A1 /* BenchmarkView.swift in Sources */,

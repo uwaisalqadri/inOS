@@ -21,14 +21,10 @@ extension AssessmentPresenter {
     var randomCount = 0
     var scrollIndex: Double = 0
     var passedAssessments = PassedAssessmentCollection()
-    var assessmentFrame: [Assessment: CGRect] = [:]
     var deviceMetrics: [DeviceMetric] = []
-    var remoteConfig = RemoteConfig()
     var currentAssessment: CurrentAssessment = .empty
     var deviceStatus: DeviceMetric = .phone(Device.current.safeDescription)
-    var allAssessments: [Assessment] {
-      Assessment.allEnabledCases(remoteConfig: remoteConfig)
-    }
+    var allAssessments: [Assessment] = Assessment.allEnabledCases()
     var immediateAssessments: [Assessment] {
       allAssessments.filter { $0.mode == .immediate }
     }
@@ -42,7 +38,7 @@ extension AssessmentPresenter {
   }
   
   enum Action {
-    case loadStatus
+    case loadMetrics
     case start(from: Assessment)
     case terminate
     case skip

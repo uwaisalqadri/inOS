@@ -124,7 +124,7 @@ struct AssessmentView: View {
         .animation(.spring, value: currentAssessment.phase == .running)
       }
       .onFirstAppear {
-        presenter.send(.loadStatus)
+        presenter.send(.loadMetrics)
       }
       .toolbar {
         ToolbarItem(placement: .topBarLeading) {

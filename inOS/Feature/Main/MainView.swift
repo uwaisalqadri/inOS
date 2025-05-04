@@ -35,7 +35,7 @@ struct MainView: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .onAppear {
-          presenter.send(.loadStatus)
+          presenter.send(.loadMetrics)
         }
       }
     )

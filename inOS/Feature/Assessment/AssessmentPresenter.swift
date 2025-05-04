@@ -29,8 +29,8 @@ class AssessmentPresenter: ObservableObject {
 
   func send(_ action: Action) {
     switch action {
-    case .loadStatus:
-      loadDeviceStatus()
+    case .loadMetrics:
+      loadDeviceMetrics()
       
     case let .start(assessment):
       assessmentTask = Task {
@@ -130,7 +130,7 @@ extension AssessmentPresenter {
     }
   }
   
-  private func loadDeviceStatus() {
+  private func loadDeviceMetrics() {
     var settingsLabel: String {
       if #available(iOS 17.0, *) {
         return "Settings"
