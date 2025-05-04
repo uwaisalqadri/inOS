@@ -1,33 +1,34 @@
 //
-//  DashboardStatusView.swift
+//  DashboardMetricView.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 27/10/24.
 //
 
 import SwiftUI
+import Combine
 
-struct DashboardStatusView: View {
-  var deviceStatuses: [FunctionalityPresenter.Status]
-  var isTesting: Bool
+struct DashboardMetricView: View {
+  @Binding var deviceMetrics: [DeviceMetric]
+  var isRunning: Bool
   @Binding var isSpecificationPresented: Bool
   @Binding var isBenchmarkPresented: Bool
   
   var body: some View {
     HStack(alignment: .center, spacing: 0) {
       ForEach(
-        Array(deviceStatuses.enumerated()),
+        Array(deviceMetrics.enumerated()),
         id: \.offset
       ) { _, status in
         Button(action: {
-          if status.isOther {
+          if status.isSettings {
             isBenchmarkPresented.toggle()
           } else if let url = URL(string: UIApplication.openSettingsURLString), status.isSettings {
             UIApplication.shared.open(url)
           }
         }) {
           VStack(alignment: .center, spacing: 10) {
-            Image(systemName: status.spec.icon)
+            Image(systemName: status.icon)
               .font(.system(size: 24))
               .foregroundColor(.blue)
               .frame(width: 10, height: 10)
@@ -42,10 +43,13 @@ struct DashboardStatusView: View {
         .buttonStyle(.plain)
         .padding(.top, 8)
         
-        if deviceStatuses.last != status {
+        if deviceMetrics.last != status {
           Spacer(minLength: 0)
         }
       }
+    }
+    .onReceive(Just(deviceMetrics)) { _ in
+      print("DEBUG: deviceMetrics \(deviceMetrics)")
     }
     .padding(.horizontal)
     .frame(maxWidth: .infinity, minHeight: 60, alignment: .center)
@@ -55,25 +59,25 @@ struct DashboardStatusView: View {
           .font(.system(size: 30))
           .padding(.leading, 20)
           .foregroundColor(.blue)
-          .opacity(isTesting ? 0.0 : 1.0)
+          .opacity(isRunning ? 0.0 : 1.0)
         Blur(style: .systemMaterial).cornerRadius(Theme.current.cornerRadius)
       }
     )
-    .opacity(isTesting ? 0.2 : 1.0)
+    .opacity(isRunning ? 0.2 : 1.0)
     .padding(.top, 20)
   }
 }
 
 #Preview {
-  DashboardStatusView(
-    deviceStatuses: [
-      .init(.cpu, value: "2.99HZ"),
-      .init(.memory, value: "4GB"),
-      .init(.storage, value: "64GB"),
-      .init(.battery, value: "20%"),
-      .init(.other, value: "Specs"),
-    ],
-    isTesting: false,
+  DashboardMetricView(
+    deviceMetrics: .constant([
+      .cpu("2.99HZ"),
+      .memory("4GB"),
+      .storage("64GB"),
+      .battery("20%"),
+      .settings("Settings"),
+    ]),
+    isRunning: false,
     isSpecificationPresented: .constant(false),
     isBenchmarkPresented: .constant(false)
   )

@@ -15,7 +15,7 @@ import inCore
 struct MainApp: App {
   
   @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-  @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+  @AppStorage(.persistence(key: .isDarkMode)) private var isDarkMode: Bool = false
   @StateObject private var remoteConfig = RemoteConfig()
   
   var body: some Scene {

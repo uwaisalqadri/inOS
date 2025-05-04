@@ -15,10 +15,10 @@ import inCore
 struct FunctionalityView: View {
 
   @StateObject private var presenter: FunctionalityPresenter
-  @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+  @AppStorage(.persistence(key: .isDarkMode)) private var isDarkMode: Bool = false
   @Environment(\.presentationMode) var presentationMode
   
-  var currentAssessment: FunctionalityPresenter.CurrentAssessment {
+  var currentAssessment: CurrentAssessment {
     presenter.state.currentAssessment
   }
   
@@ -38,9 +38,9 @@ struct FunctionalityView: View {
               if #available(iOS 17.0, *) {
                 EmptyView()
               } else {
-                DashboardStatusView(
-                  deviceStatuses: presenter.state.deviceStatuses,
-                  isTesting: currentAssessment.isRunning,
+                DashboardMetricView(
+                  deviceMetrics: $presenter.state.deviceMetrics,
+                  isRunning: currentAssessment.phase == .running,
                   isSpecificationPresented: $presenter.state.isSpecificationPresented,
                   isBenchmarkPresented: $presenter.state.isBenchmarkPresented
                 )
@@ -53,16 +53,16 @@ struct FunctionalityView: View {
                       let isPassed = presenter.state.passedAssessments[item]
                       FunctionalityRow(
                         item: item,
-                        isTesting: currentAssessment.isRunning && currentAssessment.assessment != item,
+                        isTesting: currentAssessment.phase == .running && currentAssessment.assessment != item,
                         isPassed: isPassed,
                         onTestFunction: {
-                          presenter.send(.start(assessment: item))
+                          presenter.send(.start(from: item))
                         }
                       )
                       .id(Double(index))
                       .contextMenu {
                         Button {
-                          presenter.send(.start(assessment: item))
+                          presenter.send(.start(from: item))
                         } label: { Label(item.title, systemImage: item.icon) }
                       }
                       .zIndex(1)
@@ -75,7 +75,7 @@ struct FunctionalityView: View {
             .padding(.top, 20)
             .padding(.bottom, 40)
           }
-          .onChange(of: presenter.state.scrollIndex) { index in
+          .onChange(of: presenter.state.scrollIndex) { _, index in
             withAnimation {
               proxy.scrollTo(index)
             }
@@ -84,26 +84,28 @@ struct FunctionalityView: View {
         
         VStack(spacing: 24) {
           Button(action: {
-            if presenter.state.isSerialRunning {
-              presenter.send(.terminateSerial)
+            if currentAssessment.phase == .running {
+              presenter.send(.terminate)
             } else {
               presenter.send(.runSerial)
             }
           }) {
-            Image(systemName: presenter.state.isSerialRunning ? "stop.fill" : "play.fill")
+            Image(systemName: currentAssessment.phase == .running ? "stop.fill" : "play.fill")
               .font(.system(size: 25))
               .contentShape(.rect)
           }.frame(width: 40, height: 40)
           
-          if presenter.state.isSerialRunning {
+          if presenter.state.serialState == .running {
             Button(action: {
-              print("SKIP")
+              presenter.send(.skip)
             }) {
               Image(systemName: "forward.fill")
                 .font(.system(size: 25))
                 .contentShape(.rect)
             }.frame(width: 40, height: 40)
-            
+          }
+          
+          if currentAssessment.phase == .running {
             ActivityIndicator(style: .large)
           }
         }
@@ -112,13 +114,14 @@ struct FunctionalityView: View {
           Blur()
             .clipShape(.rect(cornerRadius: Theme.current.cornerRadius))
         )
-//        .overlay(
-//          RoundedRectangle(cornerRadius: Theme.current.cornerRadius)
-//            .stroke(Color(.lightGray), lineWidth: 0.8)
-//        )
+        .overlay(
+          RoundedRectangle(cornerRadius: Theme.current.cornerRadius)
+            .stroke(Color(.lightGray).opacity(0.5), lineWidth: 0.8)
+        )
         .padding(.trailing, 20)
         .padding(.bottom, 10)
-        .zIndex(2)
+        .animation(.spring, value: presenter.state.serialState == .running)
+        .animation(.spring, value: currentAssessment.phase == .running)
       }
       .onFirstAppear {
         presenter.send(.loadStatus)
@@ -150,14 +153,14 @@ struct FunctionalityView: View {
       }
     }
     .navigationViewStyle(.stack)
-    .alert(isPresented: $presenter.state.isConfirmSerial) {
+    .alert(isPresented: presenter.isSerialConfirmationNeeded()) {
       serialConfirmAlert()
     }
-    .alert(isPresented: $presenter.state.isNeedConfirmAssessment) {
+    .alert(isPresented: presenter.isAssessmentConfirmationNeeded()) {
       runConfirmAlert()
     }
     .textFieldAlert(
-      isPresented: presenter.isFunctionalityPresenting(for: [.vibration, .mainSpeaker, .earSpeaker]),
+      isPresented: presenter.hasAssessmentTesting(within: [.vibration, .mainSpeaker, .earSpeaker]),
       title: "How many times?",
       text: $presenter.state.inputValue,
       placeholder: "Input here",
@@ -165,26 +168,27 @@ struct FunctionalityView: View {
         Notifications.didInputConfirmation.post(with: Int(string))
       },
       onRepeat: {
-        presenter.send(.start(assessment: currentAssessment.assessment))
+        presenter.send(.start(from: currentAssessment.assessment))
       }
     )
-    .fullScreenCover(isPresented: $presenter.state.isTouchscreenPresented) {
-      ScreenFunctionalityView()
-    }
-    .fullScreenCover(isPresented: $presenter.state.isMultitouchPresented) {
-      MultitouchFunctionalityView()
-    }
-    .fullScreenCover(isPresented: $presenter.state.isCameraPresented) {
-      CameraFunctionalityView()
-    }
-    .fullScreenCover(isPresented: $presenter.state.isDeadpixelPresented) {
-      DeadpixelFunctionalityView()
-    }
-    .fullScreenCover(isPresented: $presenter.state.isCompassPresented) {
-      CompassFunctionalityView()
+    .fullScreenCover(item: $presenter.state.presentedAssessment) { assessment in
+      switch assessment {
+      case .touchscreen:
+        ScreenFunctionalityView()
+      case .multitouch:
+        MultitouchFunctionalityView()
+      case .camera:
+        CameraFunctionalityView()
+      case .deadpixel:
+        DeadpixelFunctionalityView()
+      case .compass:
+        CompassFunctionalityView()
+      default:
+        EmptyView()
+      }
     }
     .toast(
-      isPresenting: $presenter.state.currentAssessment.isTesting,
+      isPresenting: presenter.hasAssessmentTesting(within: [.vibration, .mainSpeaker, .earSpeaker]),
       duration: .infinity,
       tapToDismiss: true,
       offsetY: 60
@@ -217,10 +221,14 @@ struct FunctionalityView: View {
       title: Text("Run Test?"),
       message: Text("Are you sure you want to run this test now?"),
       primaryButton: .default(Text("Cancel")) {
-        presenter.send(.runConfirmation(false))
+        if presenter.state.serialState == .running {
+          presenter.send(.skip)
+        } else {
+          presenter.send(.runConfirmed(false))
+        }
       },
       secondaryButton: .default(Text("Run")) {
-        presenter.send(.runConfirmation(true))
+        presenter.send(.runConfirmed(true))
       }
     )
   }

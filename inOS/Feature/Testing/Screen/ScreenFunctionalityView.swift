@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScreenFunctionalityView: View {
-  @AppStorage("isDarkMode") var isDarkMode: Bool = false
+  @AppStorage(.persistence(key: .isDarkMode)) var isDarkMode: Bool = false
   @StateObject var presenter = ScreenFunctionalityPresenter()
   @StateObject var timerPresenter = TimerCountdownPresenter()
 

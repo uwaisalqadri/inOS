@@ -9,13 +9,13 @@ import SwiftUI
 import DeviceKit
 
 struct DeviceView: View {
-  @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+  @AppStorage(.persistence(key: .isDarkMode)) private var isDarkMode: Bool = false
   var isShimmer: Bool = false
   var onTapGesture: (() -> Void)? = nil
   
   var body: some View {
     HStack(spacing: 4) {
-      Image(systemName: FunctionalityPresenter.Status.Specs.phone.icon)
+      Image(systemName: DeviceMetric.phone().icon)
         .font(.system(size: 20))
         .foregroundColor(.blue)
       

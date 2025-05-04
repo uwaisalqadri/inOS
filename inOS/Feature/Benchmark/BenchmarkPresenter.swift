@@ -21,14 +21,14 @@ final class BenchmarkPresenter: ObservableObject {
     switch action {
     case .onAppear:
       startMonitoring()
-      if #available(iOS 16.2, *) {
-        LiveActivityManager.startLiveActivity(with: "Connecting...")
-      }
+//      if #available(iOS 16.2, *) {
+//        LiveActivityManager.startLiveActivity(with: "Connecting...")
+//      }
     case .onDisappear:
       state.timer?.invalidate()
-      if #available(iOS 16.2, *) {
-        LiveActivityManager.endLiveActivity(with: "Stopped")
-      }
+//      if #available(iOS 16.2, *) {
+//        LiveActivityManager.endLiveActivity(with: "Stopped")
+//      }
     }
   }
   

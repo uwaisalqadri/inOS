@@ -1,150 +1,15 @@
 //
-//  FunctionalityPresenter.swift
-//  DeviceAssessment
+//  FunctionalityPresenter+Assessment.swift
+//  inOS
 //
-//  Created by Uwais Alqadri on 6/1/24.
+//  Created by Uwais Alqadri on 01/05/25.
 //
 
-import SwiftUI
-import Combine
-import DeviceKit
-import AudioToolbox
-import Foundation
 import inCore
-
-@MainActor
-class FunctionalityPresenter: ObservableObject {
-
-  @Published var state = State()
-  private var assessmentTask: Task<Void, Never>?
-  private var batteryUpdater: Timer?
-
-  private lazy var drivers: [AssessmentTester.AssessmentDriverType: AssessmentDriver] = {
-    let types: [AssessmentTester.AssessmentDriverType] = [.physical, .device, .connectivity, .power]
-    return Dictionary(uniqueKeysWithValues: types.map { type in
-      (type, AssessmentTester(driver: type).driver)
-    })
-  }()
-
-  private var cancellables = Set<AnyCancellable>()
-
-  func send(_ action: Action) {
-    switch action {
-    case .loadStatus:
-      loadDeviceStatus()
-      
-    case let .start(assessment):
-      assessmentTask = Task {
-        await beginAssessment(for: assessment, isSerial: false)
-      }
-
-    case let .showConfirmSerial(bool):
-      state.isConfirmSerial = bool
-
-    case .runSerial:
-      state.passedAssessments.removeAll()
-      assessmentTask = Task {
-        await startAssessmentsSerialized()
-      }
-      
-    case .terminateSerial:
-      assessmentTask?.cancel()
-      assessmentTask = nil
-      state.isSerialRunning = false
-      state.currentAssessment.isRunning = false
-      state.currentAssessment.isTesting = false
-      state.scrollIndex = 0
-      
-    case let .shouldShow(assessment, isPresented):
-      switch assessment {
-      case .camera:
-        state.isCameraPresented = isPresented
-      case .deadpixel:
-        state.isDeadpixelPresented = isPresented
-      case .touchscreen:
-        state.isTouchscreenPresented = isPresented
-      case .compass:
-        state.isCompassPresented = isPresented
-      case .multitouch:
-        state.isMultitouchPresented = isPresented
-      default:
-        break
-      }
-      
-    case let .runConfirmation(bool):
-      if bool {
-        state.isRunAssessmentConfirmed = true
-        state.isNeedConfirmAssessment = false
-      } else {
-        state.isRunAssessmentConfirmed = false
-        state.isNeedConfirmAssessment = false
-      }
-    }
-  }
-}
+import Combine
+import SwiftUI
 
 extension FunctionalityPresenter {
-  func startAssessmentsSerialized() async {
-    withAnimation { state.isSerialRunning = true }
-
-    for assessment in Assessment.allEnabledCases(remoteConfig: state.remoteConfig) {
-      await beginAssessment(for: assessment, isSerial: true)
-      if Task.isCancelled { break }
-    }
-
-    withAnimation { state.isSerialRunning = false }
-  }
-
-  func beginAssessment(for assessment: Assessment, isSerial: Bool) async {
-    withAnimation(.easeIn) {
-      state.currentAssessment = CurrentAssessment(assessment, !assessment.testingMessage.isEmpty, true)
-    }
-    
-    state.isAssessmentPassed = false
-    state.isSerialRunning = true
-
-    do {
-      if !state.undelayedAssessments.contains(assessment) {
-        try await Task.sleep(nanoseconds: 2_000_000_000)
-      }
-      
-      if state.needConfirmationAssessments.contains(assessment) {
-        state.isNeedConfirmAssessment = true
-        
-        while state.isNeedConfirmAssessment {
-          try await Task.sleep(nanoseconds: 100_000_000)
-        }
-        
-        if !state.isRunAssessmentConfirmed {
-          send(.terminateSerial)
-          return
-        }
-      }
-      
-      for try await isAssessmentPassed in streamAssessment(for: assessment) {
-        withAnimation(.easeOut) {
-          state.currentAssessment = CurrentAssessment(assessment, false, false)
-          state.isAssessmentPassed = isAssessmentPassed
-        }
-        state.passedAssessments[assessment] = isAssessmentPassed
-      }
-      
-    } catch {
-      state.isAssessmentPassed = false
-      state.passedAssessments[assessment] = false
-    }
-    
-    state.isSerialRunning = false
-    
-    UserDefaults.standard.set(state.passedAssessments.map {
-      AssessmentPersisted(assessmentKey: $0.key.rawValue, isPassed: $0.value)
-    }.toJSON(), forKey: "passed_assessments")
-
-    if isSerial {
-      state.scrollIndex += 0.8
-    }
-  }
-
   @MainActor
   func streamAssessment(for assessment: Assessment) -> AsyncThrowingStream<Bool, Error> {
     return AsyncThrowingStream { continuation in
@@ -220,26 +85,26 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
 
       case .camera:
-        send(.shouldShow(assessment: assessment, isPresented: true))
+        send(.present(assessment: assessment))
         
         NotificationCenter.default.publisher(for: Notifications.didCameraPassed)
           .sink { notification in
             guard let isPassed = notification.object as? Bool else { return }
             continuation.yield(isPassed)
             continuation.finish()
-            self.send(.shouldShow(assessment: assessment, isPresented: false))
+            self.send(.present(assessment: nil))
           }
           .store(in: &cancellables)
 
       case .touchscreen:
-        send(.shouldShow(assessment: assessment, isPresented: true))
+        send(.present(assessment: assessment))
         
         NotificationCenter.default.publisher(for: Notifications.didTouchScreenPassed)
           .sink { notification in
             guard let isPassed = notification.object as? Bool else { return }
             continuation.yield(isPassed)
             continuation.finish()
-            self.send(.shouldShow(assessment: assessment, isPresented: false))
+            self.send(.present(assessment: nil))
           }
           .store(in: &cancellables)
 
@@ -275,14 +140,14 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
 
       case .deadpixel:
-        send(.shouldShow(assessment: assessment, isPresented: true))
+        send(.present(assessment: assessment))
 
         NotificationCenter.default.publisher(for: Notifications.didDeadpixelPassed)
           .sink { notification in
             guard let isPassed = notification.object as? Bool else { return }
             continuation.yield(isPassed)
             continuation.finish()
-            self.send(.shouldShow(assessment: assessment, isPresented: false))
+            self.send(.present(assessment: nil))
           }
           .store(in: &cancellables)
 
@@ -296,14 +161,14 @@ extension FunctionalityPresenter {
           .store(in: &cancellables)
 
       case .multitouch:
-        send(.shouldShow(assessment: assessment, isPresented: true))
+        send(.present(assessment: assessment))
 
         NotificationCenter.default.publisher(for: Notifications.didMultitouchPassed)
           .sink { notification in
             guard let isPassed = notification.object as? Bool else { return }
             continuation.yield(isPassed)
             continuation.finish()
-            self.send(.shouldShow(assessment: assessment, isPresented: false))
+            self.send(.present(assessment: nil))
           }
           .store(in: &cancellables)
 
@@ -319,14 +184,14 @@ extension FunctionalityPresenter {
         }
         
       case .compass:
-        send(.shouldShow(assessment: assessment, isPresented: true))
+        send(.present(assessment: assessment))
 
         NotificationCenter.default.publisher(for: Notifications.didCompassPassed)
           .sink { notification in
             guard let isPassed = notification.object as? Bool else { return }
             continuation.yield(isPassed)
             continuation.finish()
-            self.send(.shouldShow(assessment: assessment, isPresented: false))
+            self.send(.present(assessment: nil))
           }
           .store(in: &cancellables)
         
@@ -361,63 +226,9 @@ extension FunctionalityPresenter {
             continuation.finish()
           }
         }
-        
+
       }
     }
-  }
-  
-  private func loadDeviceStatus() {
-    state.deviceStatuses = [
-      Status(.cpu, value: "-"),
-      Status(.memory, value: "-"),
-      Status(.storage, value: "-"),
-      Status(.battery, value: "-"),
-      Status(.settings, value: "Settings")
-    ]
-    
-    if let cpu = drivers[.device]?.assessments[.cpu] as? CPUInformation {
-      state.deviceStatuses[0] = Status(.cpu, value: cpu.frequency ?? "-")
-    }
-    
-    drivers[.device]?.startAssessment(for: .storage) { [drivers] in
-      if let storage = drivers[.device]?.assessments[.storage] as? Storage {
-        self.state.deviceStatuses[1] = Status(.memory, value: storage.totalRAM ?? "-")
-        self.state.deviceStatuses[2] = Status(.storage, value: storage.totalSpace ?? "-")
-      }
-    }
-    
-    batteryUpdater = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-      Task { @MainActor in
-        guard let self else { return }
-        self.drivers[.power]?.startAssessment(for: .batteryStatus) {
-          if let battery = self.drivers[.power]?.assessments[.batteryStatus] as? Battery {
-            self.state.deviceStatuses[3] = Status(.battery, value: "~\(battery.percentage?.toPercentage() ?? "-")")
-          }
-        }
-      }
-    }
-        
-    if let string = UserDefaults.standard.string(forKey: "passed_assessments") {
-      AssessmentPersisted.fromJSON(string)?.forEach {
-        if let assessment = Assessment(rawValue: $0.assessmentKey) {
-          state.passedAssessments[assessment] = $0.isPassed
-        }
-      }
-    }
-  }
-  
-  func isFunctionalityPresenting(for functions: [Assessment]) -> Binding<Bool> {
-    return Binding(
-      get: {
-        functions.contains {
-          self.state.currentAssessment == CurrentAssessment($0, true, true)
-        }
-      },
-      set: { value in
-        functions.forEach {
-          self.state.currentAssessment = CurrentAssessment($0, value, value)
-        }
-      }
-    )
   }
 }
+

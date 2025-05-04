@@ -316,3 +316,19 @@ extension Assessment {
     }
   }
 }
+
+extension Assessment: @retroactive Identifiable {
+  public var id: String {
+    String(describing: Self.self)
+  }
+}
+
+extension [Assessment] {
+  func index(for assessment: Assessment) -> Int? {
+    self.firstIndex(where: { $0 == assessment })
+  }
+  
+  func isLastIndex(for assessment: Assessment) -> Bool {
+    self.index(for: assessment) == self.count - 1
+  }
+}

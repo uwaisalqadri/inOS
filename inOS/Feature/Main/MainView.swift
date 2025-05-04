@@ -26,9 +26,9 @@ struct MainView: View {
       },
       bottomMiniOverlay: {
         HStack {
-          DashboardStatusView(
-            deviceStatuses: presenter.state.deviceStatuses,
-            isTesting: false,
+          DashboardMetricView(
+            deviceMetrics: $presenter.state.deviceMetrics,
+            isRunning: false,
             isSpecificationPresented: .constant(false),
             isBenchmarkPresented: .constant(false)
           ).padding(16)

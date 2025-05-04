@@ -106,6 +106,7 @@ struct TextFieldAlert: ViewModifier {
         )
         .padding(.top, 200)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 6)
+        .zIndex(1000) // the most front
       }
     }
     .background(Color.clear)
