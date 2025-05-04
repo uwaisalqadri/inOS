@@ -10,7 +10,7 @@ import DeviceKit
 import inCore
 import SwiftUI
 
-extension FunctionalityPresenter {
+extension AssessmentPresenter {
   struct State {
     var presentedAssessment: Assessment? = nil
     var serialState: SerialState = .idle
@@ -53,7 +53,7 @@ extension FunctionalityPresenter {
   }
 }
 
-extension FunctionalityPresenter {
+extension AssessmentPresenter {
   enum GridSide: CaseIterable {
     case right, left
   }

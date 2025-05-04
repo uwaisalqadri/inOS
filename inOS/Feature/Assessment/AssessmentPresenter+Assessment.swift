@@ -9,7 +9,7 @@ import inCore
 import Combine
 import SwiftUI
 
-extension FunctionalityPresenter {
+extension AssessmentPresenter {
   @MainActor
   func streamAssessment(for assessment: Assessment) -> AsyncThrowingStream<Bool, Error> {
     return AsyncThrowingStream { continuation in

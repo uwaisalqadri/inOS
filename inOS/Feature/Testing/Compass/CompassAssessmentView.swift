@@ -1,5 +1,5 @@
 //
-//  CompassFunctionalityView.swift
+//  CompassAssessmentView.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 29/10/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CompassFunctionalityView: View {
-  @StateObject private var presenter = CompassFunctionalityPresenter()
+struct CompassAssessmentView: View {
+  @StateObject private var presenter = CompassAssessmentPresenter()
   @StateObject private var timerPresenter = TimerCountdownPresenter()
   
   var body: some View {

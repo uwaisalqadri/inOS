@@ -1,5 +1,5 @@
 //
-//  DeadpixelFunctionalityView.swift
+//  DeadpixelAssessmentView.swift
 //  DeviceFunctionality
 //
 //  Created by Uwais Alqadri on 8/9/24.
@@ -8,8 +8,8 @@
 import SwiftUI
 import AlertToast
 
-struct DeadpixelFunctionalityView: View {
-  @StateObject var presenter: DeadpixelFunctionalityPresenter
+struct DeadpixelAssessmentView: View {
+  @StateObject var presenter: DeadpixelAssessmentPresenter
   @StateObject private var timerPresenter = TimerCountdownPresenter()
 
   private let colors: [Color] = [
@@ -22,7 +22,7 @@ struct DeadpixelFunctionalityView: View {
   
   init() {
     _presenter = StateObject(
-      wrappedValue: DeadpixelFunctionalityPresenter()
+      wrappedValue: DeadpixelAssessmentPresenter()
     )
   }
 

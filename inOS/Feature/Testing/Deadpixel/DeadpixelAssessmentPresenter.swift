@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-class DeadpixelFunctionalityPresenter: ObservableObject {
+class DeadpixelAssessmentPresenter: ObservableObject {
 
   @Published var state = State()
 
@@ -26,7 +26,7 @@ class DeadpixelFunctionalityPresenter: ObservableObject {
   }
 }
 
-extension DeadpixelFunctionalityPresenter {
+extension DeadpixelAssessmentPresenter {
   private func setTimer() {
     var timer: Timer?
     timer = Timer.scheduledTimer(withTimeInterval: state.totalCount, repeats: true) { @MainActor _ in

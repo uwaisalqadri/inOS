@@ -8,7 +8,7 @@
 import SwiftUI
 import AlertToast
 
-struct CameraFunctionalityView: View {
+struct CameraAssessmentView: View {
   @State var isShowingToast = false
   @State var isCheckingFrontCamera = false
   @State var isFrontCameraUndetected = false
@@ -18,7 +18,7 @@ struct CameraFunctionalityView: View {
     ZStack {
       Color.black.ignoresSafeArea(.all)
       
-      CameraFunctionalityViewRepresentable(
+      CameraAssessmentViewRepresentable(
         isCheckingFrontCamera: $isCheckingFrontCamera,
         isFrontCameraUndetected: $isFrontCameraUndetected,
         isBackCameraUndetected: $isBackCameraUndetected

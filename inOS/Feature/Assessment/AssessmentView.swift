@@ -1,5 +1,5 @@
 //
-//  FunctionalityView.swift
+//  AssessmentView.swift
 //  SpecAsessment
 //
 //  Created by Uwais Alqadri on 13/12/23.
@@ -12,9 +12,9 @@ import Combine
 import AlertToast
 import inCore
 
-struct FunctionalityView: View {
+struct AssessmentView: View {
 
-  @StateObject private var presenter: FunctionalityPresenter
+  @StateObject private var presenter: AssessmentPresenter
   @AppStorage(.persistence(key: .isDarkMode)) private var isDarkMode: Bool = false
   @Environment(\.presentationMode) var presentationMode
   
@@ -25,7 +25,7 @@ struct FunctionalityView: View {
   init() {
     UIScrollView.appearance().bounces = false
     _presenter = StateObject(
-      wrappedValue: FunctionalityPresenter()
+      wrappedValue: AssessmentPresenter()
     )
   }
 
@@ -47,11 +47,11 @@ struct FunctionalityView: View {
               }
               
               HStack(alignment: .top, spacing: 12) {
-                ForEach(FunctionalityPresenter.GridSide.allCases, id: \.self) { side in
+                ForEach(AssessmentPresenter.GridSide.allCases, id: \.self) { side in
                   VStack(spacing: 12) {
                     ForEach(Array(presenter.splitForGrid(side: side).enumerated()), id: \.offset) { index, item in
                       let isPassed = presenter.state.passedAssessments[item]
-                      FunctionalityRow(
+                      AssessmentRow(
                         item: item,
                         isTesting: currentAssessment.phase == .running && currentAssessment.assessment != item,
                         isPassed: isPassed,
@@ -174,15 +174,15 @@ struct FunctionalityView: View {
     .fullScreenCover(item: $presenter.state.presentedAssessment) { assessment in
       switch assessment {
       case .touchscreen:
-        ScreenFunctionalityView()
+        ScreenAssessmentView()
       case .multitouch:
-        MultitouchFunctionalityView()
+        MultitouchAssessmentView()
       case .camera:
-        CameraFunctionalityView()
+        CameraAssessmentView()
       case .deadpixel:
-        DeadpixelFunctionalityView()
+        DeadpixelAssessmentView()
       case .compass:
-        CompassFunctionalityView()
+        CompassAssessmentView()
       default:
         EmptyView()
       }
@@ -234,8 +234,8 @@ struct FunctionalityView: View {
   }
 }
 
-struct FunctionalityView_Previews: PreviewProvider {
+struct AssessmentView_Previews: PreviewProvider {
   static var previews: some View {
-    FunctionalityView()
+    AssessmentView()
   }
 }

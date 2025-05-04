@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		860560682D3E4E0600BDF866 /* Benchmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860560672D3E4E0600BDF866 /* Benchmark.swift */; };
-		861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */; };
+		861A053D2CD4D3B100B60D35 /* MultitouchAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchAssessmentView.swift */; };
 		861FE6D72D413683002DB5E2 /* MaintenancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861FE6D62D413683002DB5E2 /* MaintenancePresenter.swift */; };
 		8641AFC42D9893A2004DA414 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 8641AFC32D9893A2004DA414 /* SwiftUIIntrospect */; };
 		8641AFC62D989495004DA414 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8641AFC52D989494004DA414 /* AppUtility.swift */; };
@@ -33,10 +33,10 @@
 		8670C2C22DC3220300F4F4F5 /* SerialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2C12DC3220300F4F4F5 /* SerialState.swift */; };
 		8670C2C42DC3222500F4F4F5 /* ConfirmationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2C32DC3222500F4F4F5 /* ConfirmationStatus.swift */; };
 		8670C2C62DC3228B00F4F4F5 /* AssessmentMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2C52DC3228B00F4F4F5 /* AssessmentMode.swift */; };
-		8670C2C82DC3258C00F4F4F5 /* FunctionalityPresenter+Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2C72DC3258C00F4F4F5 /* FunctionalityPresenter+Assessment.swift */; };
+		8670C2C82DC3258C00F4F4F5 /* AssessmentPresenter+Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8670C2C72DC3258C00F4F4F5 /* AssessmentPresenter+Assessment.swift */; };
 		869808DC2D43BAD6005647E6 /* IOSSecuritySuite in Frameworks */ = {isa = PBXBuildFile; productRef = 869808DB2D43BAD6005647E6 /* IOSSecuritySuite */; };
 		869808E22D449333005647E6 /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869808E12D449333005647E6 /* DeviceView.swift */; };
-		86985E292C86FF8900253A8A /* FunctionalityPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86985E282C86FF8900253A8A /* FunctionalityPresenter+State.swift */; };
+		86985E292C86FF8900253A8A /* AssessmentPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86985E282C86FF8900253A8A /* AssessmentPresenter+State.swift */; };
 		86AC30D72DB3A8530072772A /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AC30D62DB3A8530072772A /* View+Conditional.swift */; };
 		86AC30DA2DB3BD170072772A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AC30D92DB3BD160072772A /* MainView.swift */; };
 		86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */; };
@@ -45,12 +45,12 @@
 		86FF94812CF96D5F008F1FA6 /* NavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */; };
 		86FF94842CF9743C008F1FA6 /* Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF94822CF973C3008F1FA6 /* Previews.swift */; };
 		91011DCA2CCE90E700725E46 /* DashboardMetricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DC92CCE90E700725E46 /* DashboardMetricView.swift */; };
-		91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */; };
-		91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */; };
+		91011DD52CD11BFF00725E46 /* CompassAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD32CD11BFF00725E46 /* CompassAssessmentView.swift */; };
+		91011DD62CD11BFF00725E46 /* CompassAssessmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD42CD11BFF00725E46 /* CompassAssessmentPresenter.swift */; };
 		91011DD82CD1688400725E46 /* TimerCountdownText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91011DD72CD1688400725E46 /* TimerCountdownText.swift */; };
 		916F2A112CD9947D00CE3BFD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916F2A102CD9947D00CE3BFD /* ActivityIndicator.swift */; };
 		91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CCC2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift */; };
-		91778CD02CCDE0EC00B70FF4 /* CameraFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CCF2CCDE0EC00B70FF4 /* CameraFunctionalityView.swift */; };
+		91778CD02CCDE0EC00B70FF4 /* CameraAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CCF2CCDE0EC00B70FF4 /* CameraAssessmentView.swift */; };
 		91778CD42CCE8ACF00B70FF4 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91778CD32CCE8ACF00B70FF4 /* Blur.swift */; };
 		919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EA2CCD6CF300B84F3C /* SpecificationView.swift */; };
 		919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EE2CCD714D00B84F3C /* IntroductionView.swift */; };
@@ -65,17 +65,17 @@
 		CE40ADCA2B2BD4D300F76E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40ADBF2B2BD4D300F76E3C /* Assets.xcassets */; };
 		CE40ADCC2B2BD4D300F76E3C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40ADC22B2BD4D300F76E3C /* Preview Assets.xcassets */; };
 		CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADC32B2BD4D300F76E3C /* MainApp.swift */; };
-		CE40ADCF2B2BD4D300F76E3C /* FunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADC52B2BD4D300F76E3C /* FunctionalityView.swift */; };
-		CE766A262C8DB56600B54877 /* ScreenFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A252C8DB56600B54877 /* ScreenFunctionalityView.swift */; };
-		CE766A282C8DB62700B54877 /* ScreenFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A272C8DB62700B54877 /* ScreenFunctionalityPresenter.swift */; };
+		CE40ADCF2B2BD4D300F76E3C /* AssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40ADC52B2BD4D300F76E3C /* AssessmentView.swift */; };
+		CE766A262C8DB56600B54877 /* ScreenAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A252C8DB56600B54877 /* ScreenAssessmentView.swift */; };
+		CE766A282C8DB62700B54877 /* ScreenAssessmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A272C8DB62700B54877 /* ScreenAssessmentPresenter.swift */; };
 		CE766A2A2C8DC5B100B54877 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A292C8DC5B100B54877 /* Notifications.swift */; };
-		CE766A2C2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A2B2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift */; };
-		CE766A312C8DD9F600B54877 /* DeadpixelFunctionalityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A302C8DD9F600B54877 /* DeadpixelFunctionalityView.swift */; };
-		CE766A332C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A322C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift */; };
-		CE766A352C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A342C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift */; };
+		CE766A2C2C8DCAE400B54877 /* ScreenAssessmentPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A2B2C8DCAE400B54877 /* ScreenAssessmentPresenter+State.swift */; };
+		CE766A312C8DD9F600B54877 /* DeadpixelAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A302C8DD9F600B54877 /* DeadpixelAssessmentView.swift */; };
+		CE766A332C8DDA3400B54877 /* DeadpixelAssessmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A322C8DDA3400B54877 /* DeadpixelAssessmentPresenter.swift */; };
+		CE766A352C8DDA3C00B54877 /* DeadpixelAssessmentPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE766A342C8DDA3C00B54877 /* DeadpixelAssessmentPresenter+State.swift */; };
 		CE8C78D52B4989B5003139E1 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C78D42B4989B5003139E1 /* CommonUtils.swift */; };
-		CE8E5E8C2B497FD5007EC804 /* FunctionalityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E5E8B2B497FD5007EC804 /* FunctionalityPresenter.swift */; };
-		CE91C21D2B4E9DC700E1C413 /* FunctionalityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91C21C2B4E9DC700E1C413 /* FunctionalityRow.swift */; };
+		CE8E5E8C2B497FD5007EC804 /* AssessmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E5E8B2B497FD5007EC804 /* AssessmentPresenter.swift */; };
+		CE91C21D2B4E9DC700E1C413 /* AssessmentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE91C21C2B4E9DC700E1C413 /* AssessmentRow.swift */; };
 		CEEE205D2BAC0C7300E74937 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = CEEE205C2BAC0C7300E74937 /* AlertToast */; };
 		CEF9A2B02B2B37B30034E06F /* DeviceAutomaticAsessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9A2AF2B2B37B30034E06F /* DeviceAutomaticAsessmentTests.swift */; };
 /* End PBXBuildFile section */
@@ -113,7 +113,7 @@
 
 /* Begin PBXFileReference section */
 		860560672D3E4E0600BDF866 /* Benchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmark.swift; sourceTree = "<group>"; };
-		861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchFunctionalityView.swift; sourceTree = "<group>"; };
+		861A053C2CD4D3B100B60D35 /* MultitouchAssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchAssessmentView.swift; sourceTree = "<group>"; };
 		861FE6D62D413683002DB5E2 /* MaintenancePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenancePresenter.swift; sourceTree = "<group>"; };
 		8641AFC52D989494004DA414 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		8641AFC72D98957C004DA414 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,9 +135,9 @@
 		8670C2C12DC3220300F4F4F5 /* SerialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialState.swift; sourceTree = "<group>"; };
 		8670C2C32DC3222500F4F4F5 /* ConfirmationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationStatus.swift; sourceTree = "<group>"; };
 		8670C2C52DC3228B00F4F4F5 /* AssessmentMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentMode.swift; sourceTree = "<group>"; };
-		8670C2C72DC3258C00F4F4F5 /* FunctionalityPresenter+Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+Assessment.swift"; sourceTree = "<group>"; };
+		8670C2C72DC3258C00F4F4F5 /* AssessmentPresenter+Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssessmentPresenter+Assessment.swift"; sourceTree = "<group>"; };
 		869808E12D449333005647E6 /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
-		86985E282C86FF8900253A8A /* FunctionalityPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FunctionalityPresenter+State.swift"; sourceTree = "<group>"; };
+		86985E282C86FF8900253A8A /* AssessmentPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssessmentPresenter+State.swift"; sourceTree = "<group>"; };
 		86AC30D62DB3A8530072772A /* View+Conditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Conditional.swift"; sourceTree = "<group>"; };
 		86AC30D92DB3BD160072772A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
@@ -145,12 +145,12 @@
 		86FF94802CF96D5F008F1FA6 /* NavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModifier.swift; sourceTree = "<group>"; };
 		86FF94822CF973C3008F1FA6 /* Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Previews.swift; sourceTree = "<group>"; };
 		91011DC92CCE90E700725E46 /* DashboardMetricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMetricView.swift; sourceTree = "<group>"; };
-		91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityView.swift; sourceTree = "<group>"; };
-		91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassFunctionalityPresenter.swift; sourceTree = "<group>"; };
+		91011DD32CD11BFF00725E46 /* CompassAssessmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassAssessmentView.swift; sourceTree = "<group>"; };
+		91011DD42CD11BFF00725E46 /* CompassAssessmentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassAssessmentPresenter.swift; sourceTree = "<group>"; };
 		91011DD72CD1688400725E46 /* TimerCountdownText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownText.swift; sourceTree = "<group>"; };
 		916F2A102CD9947D00CE3BFD /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		91778CCC2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearModifier.swift; sourceTree = "<group>"; };
-		91778CCF2CCDE0EC00B70FF4 /* CameraFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFunctionalityView.swift; sourceTree = "<group>"; };
+		91778CCF2CCDE0EC00B70FF4 /* CameraAssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssessmentView.swift; sourceTree = "<group>"; };
 		91778CD32CCE8ACF00B70FF4 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		919632EA2CCD6CF300B84F3C /* SpecificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationView.swift; sourceTree = "<group>"; };
 		919632EE2CCD714D00B84F3C /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
@@ -164,18 +164,18 @@
 		CE40ADBF2B2BD4D300F76E3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE40ADC22B2BD4D300F76E3C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CE40ADC32B2BD4D300F76E3C /* MainApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
-		CE40ADC52B2BD4D300F76E3C /* FunctionalityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalityView.swift; sourceTree = "<group>"; };
+		CE40ADC52B2BD4D300F76E3C /* AssessmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentView.swift; sourceTree = "<group>"; };
 		CE5725912B294BE1000E4EC2 /* inOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE766A252C8DB56600B54877 /* ScreenFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFunctionalityView.swift; sourceTree = "<group>"; };
-		CE766A272C8DB62700B54877 /* ScreenFunctionalityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFunctionalityPresenter.swift; sourceTree = "<group>"; };
+		CE766A252C8DB56600B54877 /* ScreenAssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAssessmentView.swift; sourceTree = "<group>"; };
+		CE766A272C8DB62700B54877 /* ScreenAssessmentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAssessmentPresenter.swift; sourceTree = "<group>"; };
 		CE766A292C8DC5B100B54877 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		CE766A2B2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenFunctionalityPresenter+StateAction.swift"; sourceTree = "<group>"; };
-		CE766A302C8DD9F600B54877 /* DeadpixelFunctionalityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadpixelFunctionalityView.swift; sourceTree = "<group>"; };
-		CE766A322C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadpixelFunctionalityPresenter.swift; sourceTree = "<group>"; };
-		CE766A342C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeadpixelFunctionalityPresenter+StateAction.swift"; sourceTree = "<group>"; };
+		CE766A2B2C8DCAE400B54877 /* ScreenAssessmentPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenAssessmentPresenter+State.swift"; sourceTree = "<group>"; };
+		CE766A302C8DD9F600B54877 /* DeadpixelAssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadpixelAssessmentView.swift; sourceTree = "<group>"; };
+		CE766A322C8DDA3400B54877 /* DeadpixelAssessmentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadpixelAssessmentPresenter.swift; sourceTree = "<group>"; };
+		CE766A342C8DDA3C00B54877 /* DeadpixelAssessmentPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeadpixelAssessmentPresenter+State.swift"; sourceTree = "<group>"; };
 		CE8C78D42B4989B5003139E1 /* CommonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
-		CE8E5E8B2B497FD5007EC804 /* FunctionalityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityPresenter.swift; sourceTree = "<group>"; };
-		CE91C21C2B4E9DC700E1C413 /* FunctionalityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalityRow.swift; sourceTree = "<group>"; };
+		CE8E5E8B2B497FD5007EC804 /* AssessmentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPresenter.swift; sourceTree = "<group>"; };
+		CE91C21C2B4E9DC700E1C413 /* AssessmentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentRow.swift; sourceTree = "<group>"; };
 		CEDF26602B4F98F100D8D675 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF9A2AD2B2B37B30034E06F /* inOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = inOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF9A2AF2B2B37B30034E06F /* DeviceAutomaticAsessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAutomaticAsessmentTests.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 		861A053B2CD4D34F00B60D35 /* Multitouch */ = {
 			isa = PBXGroup;
 			children = (
-				861A053C2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift */,
+				861A053C2CD4D3B100B60D35 /* MultitouchAssessmentView.swift */,
 			);
 			path = Multitouch;
 			sourceTree = "<group>";
@@ -250,7 +250,7 @@
 				91011DC92CCE90E700725E46 /* DashboardMetricView.swift */,
 				86CBAF942CD8D0E50016487A /* TextFieldAlert.swift */,
 				869808E12D449333005647E6 /* DeviceView.swift */,
-				CE91C21C2B4E9DC700E1C413 /* FunctionalityRow.swift */,
+				CE91C21C2B4E9DC700E1C413 /* AssessmentRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,8 +324,8 @@
 		91011DCC2CD1197600725E46 /* Compass */ = {
 			isa = PBXGroup;
 			children = (
-				91011DD42CD11BFF00725E46 /* CompassFunctionalityPresenter.swift */,
-				91011DD32CD11BFF00725E46 /* CompassFunctionalityView.swift */,
+				91011DD42CD11BFF00725E46 /* CompassAssessmentPresenter.swift */,
+				91011DD32CD11BFF00725E46 /* CompassAssessmentView.swift */,
 			);
 			path = Compass;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 		91778CCE2CCDE0E200B70FF4 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				91778CCF2CCDE0EC00B70FF4 /* CameraFunctionalityView.swift */,
+				91778CCF2CCDE0EC00B70FF4 /* CameraAssessmentView.swift */,
 				91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */,
 			);
 			path = Camera;
@@ -428,10 +428,10 @@
 			children = (
 				8670C2AD2DC31BD700F4F4F5 /* Domain */,
 				8670C2AC2DC31AE500F4F4F5 /* Views */,
-				CE8E5E8B2B497FD5007EC804 /* FunctionalityPresenter.swift */,
-				8670C2C72DC3258C00F4F4F5 /* FunctionalityPresenter+Assessment.swift */,
-				86985E282C86FF8900253A8A /* FunctionalityPresenter+State.swift */,
-				CE40ADC52B2BD4D300F76E3C /* FunctionalityView.swift */,
+				CE8E5E8B2B497FD5007EC804 /* AssessmentPresenter.swift */,
+				8670C2C72DC3258C00F4F4F5 /* AssessmentPresenter+Assessment.swift */,
+				86985E282C86FF8900253A8A /* AssessmentPresenter+State.swift */,
+				CE40ADC52B2BD4D300F76E3C /* AssessmentView.swift */,
 			);
 			path = Assessment;
 			sourceTree = "<group>";
@@ -439,9 +439,9 @@
 		CE766A232C8DB43700B54877 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				CE766A252C8DB56600B54877 /* ScreenFunctionalityView.swift */,
-				CE766A272C8DB62700B54877 /* ScreenFunctionalityPresenter.swift */,
-				CE766A2B2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift */,
+				CE766A252C8DB56600B54877 /* ScreenAssessmentView.swift */,
+				CE766A272C8DB62700B54877 /* ScreenAssessmentPresenter.swift */,
+				CE766A2B2C8DCAE400B54877 /* ScreenAssessmentPresenter+State.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -478,9 +478,9 @@
 		CE766A2F2C8DD9B900B54877 /* Deadpixel */ = {
 			isa = PBXGroup;
 			children = (
-				CE766A302C8DD9F600B54877 /* DeadpixelFunctionalityView.swift */,
-				CE766A322C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift */,
-				CE766A342C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift */,
+				CE766A302C8DD9F600B54877 /* DeadpixelAssessmentView.swift */,
+				CE766A322C8DDA3400B54877 /* DeadpixelAssessmentPresenter.swift */,
+				CE766A342C8DDA3C00B54877 /* DeadpixelAssessmentPresenter+State.swift */,
 			);
 			path = Deadpixel;
 			sourceTree = "<group>";
@@ -656,33 +656,33 @@
 				861FE6D72D413683002DB5E2 /* MaintenancePresenter.swift in Sources */,
 				869808E22D449333005647E6 /* DeviceView.swift in Sources */,
 				CE11C48A2BB1105700EC3028 /* Assessment+UI.swift in Sources */,
-				CE766A282C8DB62700B54877 /* ScreenFunctionalityPresenter.swift in Sources */,
+				CE766A282C8DB62700B54877 /* ScreenAssessmentPresenter.swift in Sources */,
 				8641AFC82D98957C004DA414 /* AppDelegate.swift in Sources */,
 				8670C2B72DC31CE500F4F4F5 /* PassedAssessmentCollection.swift in Sources */,
-				91778CD02CCDE0EC00B70FF4 /* CameraFunctionalityView.swift in Sources */,
+				91778CD02CCDE0EC00B70FF4 /* CameraAssessmentView.swift in Sources */,
 				91778CD42CCE8ACF00B70FF4 /* Blur.swift in Sources */,
 				86AC30DA2DB3BD170072772A /* MainView.swift in Sources */,
-				CE40ADCF2B2BD4D300F76E3C /* FunctionalityView.swift in Sources */,
+				CE40ADCF2B2BD4D300F76E3C /* AssessmentView.swift in Sources */,
 				CE8C78D52B4989B5003139E1 /* CommonUtils.swift in Sources */,
-				CE766A352C8DDA3C00B54877 /* DeadpixelFunctionalityPresenter+StateAction.swift in Sources */,
+				CE766A352C8DDA3C00B54877 /* DeadpixelAssessmentPresenter+State.swift in Sources */,
 				8670C2B52DC31C9F00F4F4F5 /* AssessmentResult.swift in Sources */,
 				8670C2C42DC3222500F4F4F5 /* ConfirmationStatus.swift in Sources */,
 				8670C2BE2DC31F6F00F4F4F5 /* Assessment+Config.swift in Sources */,
 				919632F12CCD73C000B84F3C /* Bundle.swift in Sources */,
 				916F2A112CD9947D00CE3BFD /* ActivityIndicator.swift in Sources */,
-				8670C2C82DC3258C00F4F4F5 /* FunctionalityPresenter+Assessment.swift in Sources */,
+				8670C2C82DC3258C00F4F4F5 /* AssessmentPresenter+Assessment.swift in Sources */,
 				91011DD82CD1688400725E46 /* TimerCountdownText.swift in Sources */,
 				86EE3C452D742A160021ED12 /* Delay.swift in Sources */,
 				8670C2AF2DC31C0B00F4F4F5 /* AssessmentPresentation.swift in Sources */,
 				CE766A2A2C8DC5B100B54877 /* Notifications.swift in Sources */,
 				8670C2C02DC321D700F4F4F5 /* CurrentAssessments.swift in Sources */,
-				91011DD52CD11BFF00725E46 /* CompassFunctionalityView.swift in Sources */,
+				91011DD52CD11BFF00725E46 /* CompassAssessmentView.swift in Sources */,
 				8670C2B32DC31C5D00F4F4F5 /* SerialAssessmentControl.swift in Sources */,
 				8670C2C22DC3220300F4F4F5 /* SerialState.swift in Sources */,
-				CE766A262C8DB56600B54877 /* ScreenFunctionalityView.swift in Sources */,
+				CE766A262C8DB56600B54877 /* ScreenAssessmentView.swift in Sources */,
 				91B3C4112CF7763D00DE15A1 /* BenchmarkView.swift in Sources */,
 				91B3C4132CF7764500DE15A1 /* BenchmarkPresenter.swift in Sources */,
-				861A053D2CD4D3B100B60D35 /* MultitouchFunctionalityView.swift in Sources */,
+				861A053D2CD4D3B100B60D35 /* MultitouchAssessmentView.swift in Sources */,
 				8670C2B12DC31C3E00F4F4F5 /* AssessmentPhase.swift in Sources */,
 				8670C2BA2DC31D0500F4F4F5 /* DeviceMetric.swift in Sources */,
 				91B3C4152CF7764F00DE15A1 /* BenchmarkPresenter+State.swift in Sources */,
@@ -692,20 +692,20 @@
 				860560682D3E4E0600BDF866 /* Benchmark.swift in Sources */,
 				CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */,
 				8670C2BC2DC31DDA00F4F4F5 /* UserDefaultsKey.swift in Sources */,
-				CE91C21D2B4E9DC700E1C413 /* FunctionalityRow.swift in Sources */,
+				CE91C21D2B4E9DC700E1C413 /* AssessmentRow.swift in Sources */,
 				8641AFCA2D989B12004DA414 /* Theme.swift in Sources */,
-				CE766A2C2C8DCAE400B54877 /* ScreenFunctionalityPresenter+StateAction.swift in Sources */,
+				CE766A2C2C8DCAE400B54877 /* ScreenAssessmentPresenter+State.swift in Sources */,
 				91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */,
-				CE8E5E8C2B497FD5007EC804 /* FunctionalityPresenter.swift in Sources */,
+				CE8E5E8C2B497FD5007EC804 /* AssessmentPresenter.swift in Sources */,
 				86FF94812CF96D5F008F1FA6 /* NavigationModifier.swift in Sources */,
 				8670C2C62DC3228B00F4F4F5 /* AssessmentMode.swift in Sources */,
 				86FF94842CF9743C008F1FA6 /* Previews.swift in Sources */,
-				CE766A332C8DDA3400B54877 /* DeadpixelFunctionalityPresenter.swift in Sources */,
+				CE766A332C8DDA3400B54877 /* DeadpixelAssessmentPresenter.swift in Sources */,
 				8641AFC62D989495004DA414 /* AppUtility.swift in Sources */,
-				91011DD62CD11BFF00725E46 /* CompassFunctionalityPresenter.swift in Sources */,
-				CE766A312C8DD9F600B54877 /* DeadpixelFunctionalityView.swift in Sources */,
+				91011DD62CD11BFF00725E46 /* CompassAssessmentPresenter.swift in Sources */,
+				CE766A312C8DD9F600B54877 /* DeadpixelAssessmentView.swift in Sources */,
 				91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */,
-				86985E292C86FF8900253A8A /* FunctionalityPresenter+State.swift in Sources */,
+				86985E292C86FF8900253A8A /* AssessmentPresenter+State.swift in Sources */,
 				91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */,
 				86AC30D72DB3A8530072772A /* View+Conditional.swift in Sources */,
 				919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */,

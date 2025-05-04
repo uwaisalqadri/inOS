@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-struct CameraFunctionalityViewRepresentable: UIViewControllerRepresentable {
+struct CameraAssessmentViewRepresentable: UIViewControllerRepresentable {
   @Environment(\.presentationMode) var presentation
   @Binding var isCheckingFrontCamera: Bool
   @Binding var isFrontCameraUndetected: Bool

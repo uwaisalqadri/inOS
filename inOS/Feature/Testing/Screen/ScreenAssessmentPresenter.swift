@@ -1,5 +1,5 @@
 //
-//  ScreenFunctionalityPresenter.swift
+//  ScreenAssessmentPresenter.swift
 //  DeviceFunctionality
 //
 //  Created by Uwais Alqadri on 8/9/24.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @MainActor
-class ScreenFunctionalityPresenter: ObservableObject {
+class ScreenAssessmentPresenter: ObservableObject {
 
   @Published var state = State()
 
@@ -46,7 +46,7 @@ class ScreenFunctionalityPresenter: ObservableObject {
   }
 }
 
-extension ScreenFunctionalityPresenter {
+extension ScreenAssessmentPresenter {
   private func handleTap(row: Int, column: Int, onResetTimer: () -> Void) {
     let index = indexFor(row: row, column: column)
     if state.boxes[index] == .blue {

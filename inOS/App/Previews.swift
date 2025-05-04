@@ -33,9 +33,9 @@ import inCore
 }
 
 #Preview {
-  DeadpixelFunctionalityView()
+  DeadpixelAssessmentView()
 }
 
 #Preview {
-  ScreenFunctionalityView()
+  ScreenAssessmentView()
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreMotion
 
-class CompassFunctionalityPresenter: ObservableObject {
+class CompassAssessmentPresenter: ObservableObject {
   @Published var state = State()
   private var motionManager = CMMotionManager()
   

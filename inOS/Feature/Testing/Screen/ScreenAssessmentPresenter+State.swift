@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension ScreenFunctionalityPresenter {
+extension ScreenAssessmentPresenter {
   struct State {
     var boxes: [Color] = Array(repeating: .blue, count: 13 * 19)
     var rows: Int = 19

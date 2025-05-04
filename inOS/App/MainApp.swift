@@ -42,7 +42,7 @@ struct MainApp: App {
           if #available(iOS 17.0, *) {
             MainView()
           } else {
-            FunctionalityView()
+            AssessmentView()
           }
         }
       }

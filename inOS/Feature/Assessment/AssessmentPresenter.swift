@@ -1,5 +1,5 @@
 //
-//  FunctionalityPresenter.swift
+//  AssessmentPresenter.swift
 //  DeviceAssessment
 //
 //  Created by Uwais Alqadri on 6/1/24.
@@ -13,7 +13,7 @@ import Foundation
 import inCore
 
 @MainActor
-class FunctionalityPresenter: ObservableObject {
+class AssessmentPresenter: ObservableObject {
 
   @Published var state = State()
   var assessmentTask: Task<Void, Never>?
@@ -70,7 +70,7 @@ class FunctionalityPresenter: ObservableObject {
   }
 }
 
-extension FunctionalityPresenter {
+extension AssessmentPresenter {
   func startAssessmentsSerialized(from assessment: Assessment) async {
     state.serialState = .running
 

@@ -1,5 +1,5 @@
 //
-//  ScreenFunctionalityView.swift
+//  ScreenAssessmentView.swift
 //  DeviceFunctionality
 //
 //  Created by Uwais Alqadri on 8/9/24.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ScreenFunctionalityView: View {
+struct ScreenAssessmentView: View {
   @AppStorage(.persistence(key: .isDarkMode)) var isDarkMode: Bool = false
-  @StateObject var presenter = ScreenFunctionalityPresenter()
+  @StateObject var presenter = ScreenAssessmentPresenter()
   @StateObject var timerPresenter = TimerCountdownPresenter()
 
   var body: some View {

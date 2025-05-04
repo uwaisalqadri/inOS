@@ -1,5 +1,5 @@
 //
-//  FunctionalityRow.swift
+//  AssessmentRow.swift
 //  DeviceAssessment
 //
 //  Created by Uwais Alqadri on 10/1/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import inCore
 
-struct FunctionalityRow: View {
+struct AssessmentRow: View {
   let item: Assessment
   var isTesting: Bool
   var isPassed: Bool?

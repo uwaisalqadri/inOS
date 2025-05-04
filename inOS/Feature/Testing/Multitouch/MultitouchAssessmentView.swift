@@ -1,5 +1,5 @@
 //
-//  MultitouchFunctionalityView.swift
+//  MultitouchAssessmentView.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 01/11/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import inCore
 
-struct MultitouchFunctionalityView: View {
+struct MultitouchAssessmentView: View {
   @State private var circle1Color = Color.red
   @State private var circle2Color = Color.blue
   @State private var isCircle1Pressing = false
@@ -89,7 +89,7 @@ struct MultitouchFunctionalityView: View {
   }
 }
 
-extension MultitouchFunctionalityView {
+extension MultitouchAssessmentView {
   enum Side {
     case right
     case left
@@ -98,6 +98,6 @@ extension MultitouchFunctionalityView {
 
 struct MultitouchView_Previews: PreviewProvider {
   static var previews: some View {
-    MultitouchFunctionalityView()
+    MultitouchAssessmentView()
   }
 }

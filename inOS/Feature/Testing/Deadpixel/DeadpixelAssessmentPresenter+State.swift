@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension DeadpixelFunctionalityPresenter {
+extension DeadpixelAssessmentPresenter {
   struct State {
     var index = 0
     var isDialogShown = false

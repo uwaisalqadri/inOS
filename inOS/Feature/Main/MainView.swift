@@ -9,12 +9,12 @@ import SwiftUI
 import inCore
 
 struct MainView: View {
-  @StateObject private var presenter = FunctionalityPresenter()
+  @StateObject private var presenter = AssessmentPresenter()
   
   var body: some View {
     SplitView(
       topView: {
-        FunctionalityView()
+        AssessmentView()
       },
       bottomView: {
         BenchmarkView()
