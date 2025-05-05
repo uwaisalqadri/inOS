@@ -1,5 +1,5 @@
 //
-//  BenchmarkPresenter.swift
+//  MetricPresenter.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 27/11/24.
@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 import inCore
+import BackgroundTasks
 
 @MainActor
-final class BenchmarkPresenter: ObservableObject {
+final class MetricPresenter: ObservableObject {
   @Published var state: State
   
   init() {
@@ -21,18 +22,18 @@ final class BenchmarkPresenter: ObservableObject {
     switch action {
     case .onAppear:
       startMonitoring()
-//      if #available(iOS 16.2, *) {
-//        LiveActivityManager.startLiveActivity(with: "Connecting...")
-//      }
+      if #available(iOS 16.2, *) {
+        LiveActivityManager.startLiveActivity(with: "Connecting...")
+      }
     case .onDisappear:
       state.timer?.invalidate()
-//      if #available(iOS 16.2, *) {
-//        LiveActivityManager.endLiveActivity(with: "Stopped")
-//      }
+      if #available(iOS 16.2, *) {
+        LiveActivityManager.endLiveActivity(with: "Stopped")
+      }
     }
   }
   
-  func getBenchmark(of benchmark: Benchmark) -> Binding<String> {
+  func getBenchmark(of benchmark: Metric) -> Binding<String> {
     switch benchmark {
     case .cpu:
       return Binding(
@@ -53,7 +54,7 @@ final class BenchmarkPresenter: ObservableObject {
   }
 }
 
-private extension BenchmarkPresenter {
+private extension MetricPresenter {
   func startMonitoring() {
     state.timer = Timer.scheduledTimer(
       withTimeInterval: 1.0,

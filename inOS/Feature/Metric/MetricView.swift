@@ -1,5 +1,5 @@
 //
-//  BenchmarkView.swift
+//  MetricView.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 27/11/24.
@@ -8,12 +8,12 @@
 import SwiftUI
 import DeviceKit
 
-struct BenchmarkView: View {
-  @StateObject var presenter: BenchmarkPresenter
+struct MetricView: View {
+  @StateObject var presenter: MetricPresenter
   
   init() {
     _presenter = StateObject(
-      wrappedValue: BenchmarkPresenter()
+      wrappedValue: MetricPresenter()
     )
   }
   
@@ -83,6 +83,6 @@ struct BenchmarkView: View {
 
 #Preview {
   NavigationView {
-    BenchmarkView()
+    MetricView()
   }
 }

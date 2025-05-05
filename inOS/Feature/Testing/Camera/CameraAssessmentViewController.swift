@@ -1,5 +1,5 @@
 //
-//  CameraFunctionalityViewController.swift
+//  CameraAssessmentViewController.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 05/11/24.
@@ -25,8 +25,8 @@ struct CameraAssessmentViewRepresentable: UIViewControllerRepresentable {
     _isBackCameraUndetected = isBackCameraUndetected
   }
   
-  func makeUIViewController(context: Context) -> CameraFunctionalityViewController {
-    CameraFunctionalityViewController(
+  func makeUIViewController(context: Context) -> CameraAssessmentViewController {
+    CameraAssessmentViewController(
       isCheckingFrontCamera: $isCheckingFrontCamera,
       isFrontCameraUndetected: $isFrontCameraUndetected,
       isBackCameraUndetected: $isBackCameraUndetected,
@@ -36,12 +36,12 @@ struct CameraAssessmentViewRepresentable: UIViewControllerRepresentable {
     )
   }
   
-  func updateUIViewController(_ uiViewController: CameraFunctionalityViewController, context: Context) {}
+  func updateUIViewController(_ uiViewController: CameraAssessmentViewController, context: Context) {}
   
-  typealias UIViewControllerType = CameraFunctionalityViewController
+  typealias UIViewControllerType = CameraAssessmentViewController
 }
 
-class CameraFunctionalityViewController: UIViewController {
+class CameraAssessmentViewController: UIViewController {
   
   @Binding var isCheckingFrontCamera: Bool
   @Binding var isFrontCameraUndetected: Bool
@@ -204,7 +204,7 @@ class CameraFunctionalityViewController: UIViewController {
 }
 
 // MARK: - AVCapturePhotoCaptureDelegate
-extension CameraFunctionalityViewController: AVCapturePhotoCaptureDelegate {
+extension CameraAssessmentViewController: AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
     guard error == nil, let imageData = photo.fileDataRepresentation(), let uiImage = UIImage(data: imageData) else {
       stopCameraWhenFailed()

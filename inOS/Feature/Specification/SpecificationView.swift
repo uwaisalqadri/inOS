@@ -53,7 +53,7 @@ struct SpecificationView: View {
       presenter.send(.loadDeviceSpecs)
     }
     .navigation(isPresented: $presenter.state.isBenchmarkPresented) {
-      BenchmarkView()
+      MetricView()
     }
     .toolbar {
       ToolbarItem(placement: .principal) {

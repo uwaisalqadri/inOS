@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		860560682D3E4E0600BDF866 /* Benchmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860560672D3E4E0600BDF866 /* Benchmark.swift */; };
+		860560682D3E4E0600BDF866 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860560672D3E4E0600BDF866 /* Metric.swift */; };
 		861A053D2CD4D3B100B60D35 /* MultitouchAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A053C2CD4D3B100B60D35 /* MultitouchAssessmentView.swift */; };
 		861FE6D72D413683002DB5E2 /* MaintenancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861FE6D62D413683002DB5E2 /* MaintenancePresenter.swift */; };
 		8641AFC42D9893A2004DA414 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 8641AFC32D9893A2004DA414 /* SwiftUIIntrospect */; };
@@ -53,11 +53,11 @@
 		919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EA2CCD6CF300B84F3C /* SpecificationView.swift */; };
 		919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632EE2CCD714D00B84F3C /* IntroductionView.swift */; };
 		919632F12CCD73C000B84F3C /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919632F02CCD73C000B84F3C /* Bundle.swift */; };
-		91B3C4112CF7763D00DE15A1 /* BenchmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4102CF7763D00DE15A1 /* BenchmarkView.swift */; };
-		91B3C4132CF7764500DE15A1 /* BenchmarkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4122CF7764500DE15A1 /* BenchmarkPresenter.swift */; };
-		91B3C4152CF7764F00DE15A1 /* BenchmarkPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+State.swift */; };
+		91B3C4112CF7763D00DE15A1 /* MetricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4102CF7763D00DE15A1 /* MetricView.swift */; };
+		91B3C4132CF7764500DE15A1 /* MetricPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4122CF7764500DE15A1 /* MetricPresenter.swift */; };
+		91B3C4152CF7764F00DE15A1 /* MetricPresenter+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4142CF7764F00DE15A1 /* MetricPresenter+State.swift */; };
 		91B3C4182CF7789000DE15A1 /* MaintenanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */; };
-		91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */; };
+		91CC41D42CDA61FD00D26AC0 /* CameraAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC41D32CDA61FD00D26AC0 /* CameraAssessmentViewController.swift */; };
 		CE066E2D2BAB2DE7007C7014 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE066E2C2BAB2DE7007C7014 /* DeviceKit */; };
 		CE11C48A2BB1105700EC3028 /* Assessment+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11C4892BB1105700EC3028 /* Assessment+UI.swift */; };
 		CE40ADCA2B2BD4D300F76E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40ADBF2B2BD4D300F76E3C /* Assets.xcassets */; };
@@ -110,7 +110,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		860560672D3E4E0600BDF866 /* Benchmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmark.swift; sourceTree = "<group>"; };
+		860560672D3E4E0600BDF866 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 		861A053C2CD4D3B100B60D35 /* MultitouchAssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultitouchAssessmentView.swift; sourceTree = "<group>"; };
 		861FE6D62D413683002DB5E2 /* MaintenancePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenancePresenter.swift; sourceTree = "<group>"; };
 		8641AFC52D989494004DA414 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
@@ -151,11 +151,11 @@
 		919632EA2CCD6CF300B84F3C /* SpecificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationView.swift; sourceTree = "<group>"; };
 		919632EE2CCD714D00B84F3C /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 		919632F02CCD73C000B84F3C /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		91B3C4102CF7763D00DE15A1 /* BenchmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkView.swift; sourceTree = "<group>"; };
-		91B3C4122CF7764500DE15A1 /* BenchmarkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkPresenter.swift; sourceTree = "<group>"; };
-		91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BenchmarkPresenter+State.swift"; sourceTree = "<group>"; };
+		91B3C4102CF7763D00DE15A1 /* MetricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricView.swift; sourceTree = "<group>"; };
+		91B3C4122CF7764500DE15A1 /* MetricPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricPresenter.swift; sourceTree = "<group>"; };
+		91B3C4142CF7764F00DE15A1 /* MetricPresenter+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetricPresenter+State.swift"; sourceTree = "<group>"; };
 		91B3C4172CF7789000DE15A1 /* MaintenanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceView.swift; sourceTree = "<group>"; };
-		91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFunctionalityViewController.swift; sourceTree = "<group>"; };
+		91CC41D32CDA61FD00D26AC0 /* CameraAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssessmentViewController.swift; sourceTree = "<group>"; };
 		CE11C4892BB1105700EC3028 /* Assessment+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assessment+UI.swift"; sourceTree = "<group>"; };
 		CE40ADBF2B2BD4D300F76E3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE40ADC22B2BD4D300F76E3C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -267,12 +267,13 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		8670C2B82DC31CFC00F4F4F5 /* Model */ = {
+		8670C2B82DC31CFC00F4F4F5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				860560672D3E4E0600BDF866 /* Metric.swift */,
 				8670C2B92DC31D0500F4F4F5 /* DeviceMetric.swift */,
 			);
-			path = Model;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		869808DA2D43BAD6005647E6 /* Frameworks */ = {
@@ -328,7 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				91778CCF2CCDE0EC00B70FF4 /* CameraAssessmentView.swift */,
-				91CC41D32CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift */,
+				91CC41D32CDA61FD00D26AC0 /* CameraAssessmentViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -342,16 +343,15 @@
 			path = Specification;
 			sourceTree = "<group>";
 		};
-		91B3C40F2CF7762800DE15A1 /* Benchmark */ = {
+		91B3C40F2CF7762800DE15A1 /* Metric */ = {
 			isa = PBXGroup;
 			children = (
-				8670C2B82DC31CFC00F4F4F5 /* Model */,
-				91B3C4102CF7763D00DE15A1 /* BenchmarkView.swift */,
-				91B3C4122CF7764500DE15A1 /* BenchmarkPresenter.swift */,
-				91B3C4142CF7764F00DE15A1 /* BenchmarkPresenter+State.swift */,
-				860560672D3E4E0600BDF866 /* Benchmark.swift */,
+				8670C2B82DC31CFC00F4F4F5 /* Domain */,
+				91B3C4102CF7763D00DE15A1 /* MetricView.swift */,
+				91B3C4122CF7764500DE15A1 /* MetricPresenter.swift */,
+				91B3C4142CF7764F00DE15A1 /* MetricPresenter+State.swift */,
 			);
-			path = Benchmark;
+			path = Metric;
 			sourceTree = "<group>";
 		};
 		91B3C4162CF7787F00DE15A1 /* Maintenance */ = {
@@ -367,9 +367,9 @@
 			isa = PBXGroup;
 			children = (
 				CE766A222C8DB42000B54877 /* Assessment */,
-				91B3C40F2CF7762800DE15A1 /* Benchmark */,
 				86AC30D82DB3BD0C0072772A /* Main */,
 				91B3C4162CF7787F00DE15A1 /* Maintenance */,
+				91B3C40F2CF7762800DE15A1 /* Metric */,
 				919632E92CCD6CE300B84F3C /* Specification */,
 				91011DCB2CD1182400725E46 /* Testing */,
 				CE766A2D2C8DD99300B54877 /* Utils */,
@@ -672,16 +672,16 @@
 				91011DD52CD11BFF00725E46 /* CompassAssessmentView.swift in Sources */,
 				8670C2C22DC3220300F4F4F5 /* SerialState.swift in Sources */,
 				CE766A262C8DB56600B54877 /* ScreenAssessmentView.swift in Sources */,
-				91B3C4112CF7763D00DE15A1 /* BenchmarkView.swift in Sources */,
-				91B3C4132CF7764500DE15A1 /* BenchmarkPresenter.swift in Sources */,
+				91B3C4112CF7763D00DE15A1 /* MetricView.swift in Sources */,
+				91B3C4132CF7764500DE15A1 /* MetricPresenter.swift in Sources */,
 				861A053D2CD4D3B100B60D35 /* MultitouchAssessmentView.swift in Sources */,
 				8670C2B12DC31C3E00F4F4F5 /* AssessmentPhase.swift in Sources */,
 				8670C2BA2DC31D0500F4F4F5 /* DeviceMetric.swift in Sources */,
-				91B3C4152CF7764F00DE15A1 /* BenchmarkPresenter+State.swift in Sources */,
+				91B3C4152CF7764F00DE15A1 /* MetricPresenter+State.swift in Sources */,
 				919632EB2CCD6CF300B84F3C /* SpecificationView.swift in Sources */,
 				91011DCA2CCE90E700725E46 /* DashboardMetricView.swift in Sources */,
 				86CBAF952CD8D0E50016487A /* TextFieldAlert.swift in Sources */,
-				860560682D3E4E0600BDF866 /* Benchmark.swift in Sources */,
+				860560682D3E4E0600BDF866 /* Metric.swift in Sources */,
 				CE40ADCD2B2BD4D300F76E3C /* MainApp.swift in Sources */,
 				8670C2BC2DC31DDA00F4F4F5 /* UserDefaultsKey.swift in Sources */,
 				CE91C21D2B4E9DC700E1C413 /* AssessmentRow.swift in Sources */,
@@ -698,7 +698,7 @@
 				CE766A312C8DD9F600B54877 /* DeadpixelAssessmentView.swift in Sources */,
 				91778CCD2CCDD8C500B70FF4 /* OnFirstAppearModifier.swift in Sources */,
 				86985E292C86FF8900253A8A /* AssessmentPresenter+State.swift in Sources */,
-				91CC41D42CDA61FD00D26AC0 /* CameraFunctionalityViewController.swift in Sources */,
+				91CC41D42CDA61FD00D26AC0 /* CameraAssessmentViewController.swift in Sources */,
 				86AC30D72DB3A8530072772A /* View+Conditional.swift in Sources */,
 				919632EF2CCD714D00B84F3C /* IntroductionView.swift in Sources */,
 				866392352D47191200AF6D50 /* SpecificationPresenter.swift in Sources */,

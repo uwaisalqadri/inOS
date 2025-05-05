@@ -9,7 +9,7 @@ import SwiftUI
 import inCore
 
 #Preview {
-  BenchmarkView()
+  MetricView()
 }
 
 #Preview {

@@ -1,5 +1,5 @@
 //
-//  Benchmark.swift
+//  Metric.swift
 //  inOS
 //
 //  Created by Uwais Alqadri on 20/01/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Benchmark: CaseIterable {
+enum Metric: CaseIterable {
   case cpu
   case storage
   case internet

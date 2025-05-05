@@ -17,7 +17,7 @@ struct MainView: View {
         AssessmentView()
       },
       bottomView: {
-        BenchmarkView()
+        MetricView()
       },
       topMiniOverlay: {
         HStack {

@@ -7,10 +7,10 @@
 
 import Foundation
 
-extension BenchmarkPresenter {
+extension MetricPresenter {
   struct State {
     var timer: Timer?
-    var benchmarks: [Benchmark] = Benchmark.allCases
+    var benchmarks: [Metric] = Metric.allCases
     var cpuUsage: String = "Calculating..."
     var storageSpeed: String = "Calculating..."
     var internetSpeed: String = "Calculating..."
