@@ -1,5 +1,5 @@
 <p align="center">
- <img width="1000" alt="inOS Thumbnail" src="https://github.com/user-attachments/assets/9c70510c-1538-406a-a45f-04757eb2d2b0" />
+<img width="500" alt="Screenshot 2025-03-03 at 16 53 38" src="https://github.com/user-attachments/assets/82a5d443-abce-4a3e-9594-0f01b44baf6c" />
 <p align="center">
 
 ## <a name="title"></a> ⚙️ inOS
